@@ -48,6 +48,7 @@ BEGIN
 
   -- Actualiza el estado a 'descartada' de todas las solicitudes que no hayan pagado el deposito y falte menos de un
   -- mes para la fecha de entrada, con periodo de gracia de 4d desde la confirmación y la creación del pago.
+  BEGIN
     UPDATE "Booking"."Booking" b
     SET "Status" = 'descartadapagada'
     WHERE b."Status" IN ('confirmada', 'documentacionok')
