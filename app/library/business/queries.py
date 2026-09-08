@@ -69,7 +69,7 @@ def sql_dashboard_operaciones(status, vars):
   select_b2c = '''
     SELECT
       'B2C' AS "b2c_b2b",
-      b.id, 0 as "Line", b."Status"::text, b."Confirmation_date",
+      b.id, 0 as "Line", b."Status"::text, NULL AS "Group_status", b."Confirmation_date",
       b."Contract_status"::text AS "Contract_status",
       b."Date_from", b."Date_to", b."Check_in", b."Check_out", 
       COALESCE(b."Check_in", b."Date_from") AS "Date_in", COALESCE(b."Check_out", b."Date_to") AS "Date_out",
@@ -100,7 +100,7 @@ def sql_dashboard_operaciones(status, vars):
   select_b2b = '''
     SELECT 
       'B2B' AS "b2c_b2b",
-      bg.id, b.id as "Line", b."Status"::text, bg."Confirmation_date",
+      bg.id, b.id as "Line", b."Status"::text, bg."Status"::text AS "Group_status", bg."Confirmation_date",
       bg."Contract_status"::text AS "Contract_status",
       bg."Date_from", bg."Date_to", b."Check_in", b."Check_out", 
       b."Check_in" AS "Date_in", b."Check_out" AS "Date_out",
