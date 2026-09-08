@@ -2,7 +2,6 @@
 DECLARE
 
   days INTEGER;
-  months INTEGER;
   years INTEGER;
   duration INTERVAL;
   num INTEGER;
@@ -14,6 +13,7 @@ DECLARE
   
   deposit NUMERIC;
   legal_deposit NUMERIC;
+  barcelona BOOLEAN;
 
 BEGIN
 
@@ -121,29 +121,35 @@ BEGIN
     END IF;
   END IF;
 
-  -- Calculate stay length in montns
-  SELECT EXTRACT(MONTH FROM AGE(NEW."Date_to", NEW."Date_from")) INTO months;
-
   -- Deposit
-  IF NEW."Full_flat" THEN
-    IF NEW."Book_type" = 'limitado' THEN
-      legal_deposit := NEW."Rent" + NEW."Limit" + NEW."Furniture" + NEW."Expenses";
-      deposit := 1.5 * legal_deposit;
-    ELSE
-      legal_deposit := months * (NEW."Rent" + NEW."Limit" + NEW."Furniture" + NEW."Expenses") / 6;
-      deposit := 1.5 * (NEW."Rent" + NEW."Limit" + NEW."Furniture" + NEW."Expenses");
-      IF deposit > legal_deposit THEN
-        deposit := deposit - legal_deposit;
-      ELSE
-        deposit = 0;
-      END IF;
-    END IF;
+  -- Legal deposit: one month of the base: rent, plus utility, furniture and expenses
+  -- when limited. Whole flats deposit two months, prorated over the stay.
+  IF NEW."Book_type" = 'limitado' THEN
+    legal_deposit := COALESCE(NEW."Rent", 0) + COALESCE(NEW."Limit", 0) + COALESCE(NEW."Furniture", 0) + COALESCE(NEW."Expenses", 0);
   ELSE
-    deposit := 1.5 * (NEW."Rent" + NEW."Limit" + NEW."Furniture" + NEW."Expenses");
+    legal_deposit := COALESCE(NEW."Rent", 0);
+  END IF;
+  deposit := 1.5 * legal_deposit;
+  IF NEW."Full_flat" THEN
+    legal_deposit := ROUND(LEAST(legal_deposit * (NEW."Date_to" - NEW."Date_from" + 1) / 180, 2 * legal_deposit), 2);
+  END IF;
+
+  -- Incasol deposit only applies in Barcelona
+  SELECT d."Location_id" = 1
+  INTO barcelona
+  FROM "Building"."Building" bu
+    INNER JOIN "Geo"."District" d ON d.id = bu."District_id"
+  WHERE bu.id = NEW."Building_id";
+  IF NOT COALESCE(barcelona, FALSE) THEN
     legal_deposit := 0;
   END IF;
-  NEW."Deposit" = deposit;
-  NEW."Incasol_deposit" = legal_deposit * COALESCE(NEW."Rooms", 0);
+
+  -- The deposit always includes the legal deposit
+  IF deposit < legal_deposit THEN
+    deposit := legal_deposit;
+  END IF;
+  NEW."Deposit" = COALESCE(NEW."Deposit", deposit);
+  NEW."Incasol_deposit" = COALESCE(NEW."Incasol_deposit", legal_deposit * COALESCE(NEW."Rooms", 0));
 
   -- Return record
   RETURN NEW;
