@@ -21,18 +21,27 @@ from library.services.config import settings
 
 def q_labels(dbClient, id, locale):
 
+  # Enum can be identified by id, or by "Schema.Name" (i.e. "Auxiliar.Rooming_status")
+  if isinstance(id, str) and not id.isdigit():
+    schema, _, name = id.rpartition('.')
+    where = 'et.schema = %s AND et.name = %s'
+    params = (schema, name, locale,)
+  else:
+    where = 'et.id = %s'
+    params = (int(id), locale,)
+
   # Get labels
   con = None
   try:
     con = dbClient.getconn()
     cur = dbClient.execute(con,
-      '''
+      f'''
       SELECT "values", "labels"
       FROM "Models"."EnumType" et
       INNER JOIN "Models"."EnumTypeLabel" ON container = et.id
-      WHERE et.id = %s AND locale = %s;
+      WHERE {where} AND locale = %s;
       ''',
-      (id, locale,))
+      params)
     result = cur.fetchone()
     cur.close()
     return json.dumps(result, default=str)

@@ -192,7 +192,7 @@ def runapp():
   app.add_url_rule(settings.API_PREFIX + '/dashboard/documents', view_func=req_dashboard_documents, methods=['GET'])
   app.add_url_rule(settings.API_PREFIX + '/dashboard/documents/<string:status>', view_func=req_dashboard_documents, methods=['GET'])
   app.add_url_rule(settings.API_PREFIX + '/dashboardlau/<string:type>', view_func=req_dashboard_lau, methods=['GET'])
-  app.add_url_rule(settings.API_PREFIX + '/labels/<int:id>/<string:locale>', view_func=req_labels, methods=['GET'])
+  app.add_url_rule(settings.API_PREFIX + '/labels/<string:id>/<string:locale>', view_func=req_labels, methods=['GET'])
 
   # Airflows plugins - Planning
   app.add_url_rule(settings.API_PREFIX + '/availability', view_func=req_availability, methods=['POST'])
