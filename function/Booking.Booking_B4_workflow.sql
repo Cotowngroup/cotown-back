@@ -246,6 +246,35 @@ BEGIN
     END IF;
   END IF;
 
+  -- REACTIVACION (BOTON 'ACTIVAR')
+  -- Al descartar se borran los cobros pendientes, hay que volver a emitir el membership fee
+  IF (OLD."Status" IN ('descartada')
+      AND NEW."Status" NOT IN ('descartada', 'descartadapagada', 'cancelada')) THEN
+
+    -- Una reserva reactivada no arrastra el cobro ni la devolucion anteriores
+    NEW."Booking_fee_actual" := NULL;
+    NEW."Booking_fee_returned" := NULL;
+
+    -- Vuelve a emitir el membership fee
+    IF NEW."Booking_fee" > 0 THEN
+      DELETE FROM "Billing"."Payment"
+        WHERE "Payment_type" = 'booking' AND "Booking_id" = NEW.id AND "Payment_date" IS NULL;
+      INSERT
+        INTO "Billing"."Payment"("Payment_method_id", "Pos", "Customer_id", "Booking_id", "Amount", "Issued_date", "Concept", "Payment_type" )
+        VALUES (COALESCE(payment_method_id, 1), 'cotown', NEW."Customer_id", NEW.id, NEW."Booking_fee", CURRENT_DATE, 'Membership fee', 'booking');
+      -- Email
+      IF NEW."Origin_id" IS NULL THEN
+        INSERT
+          INTO "Customer"."Customer_email" ("Customer_id", "Template", "Entity_id")
+          VALUES (NEW."Customer_id", 'solicitud', NEW.id);
+      END IF;
+    END IF;
+
+    -- Log
+    change := 'Solicitud reactivada';
+
+  END IF;
+
   -- A ALTERNATIVA o ALTERNATIVAS PAGADA
   IF (NEW."Status" = 'alternativas' OR NEW."Status" = 'alternativaspagada') THEN
     -- Email
