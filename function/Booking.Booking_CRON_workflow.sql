@@ -20,19 +20,11 @@ BEGIN
   -- Descarta las solicitudes confirmadas sin documentación pasadas de fecha
   BEGIN
     UPDATE "Booking"."Booking"
-    SET "Status"='descartada'
+    SET "Status"='documentacionko'
     WHERE "Booking"."Documentation_limit" < CURRENT_DATE
-    AND "Booking"."Status" = 'pendientepago';
+    AND "Booking"."Status" IN ('pendientepago', 'confirmada');
   EXCEPTION WHEN OTHERS THEN
-    RAISE NOTICE 'Error caducando solicitudes sin documentacion pasadas de fecha: % %', SQLSTATE, SQLERRM;
-  END; 
-  BEGIN
-    UPDATE "Booking"."Booking"
-    SET "Status"='descartadapagada'
-    WHERE "Booking"."Documentation_limit" < CURRENT_DATE
-    AND "Booking"."Status" = 'confirmada';
-  EXCEPTION WHEN OTHERS THEN
-    RAISE NOTICE 'Error caducando solicitudes pagadas sin documentacion pasadas de fecha: % %', SQLSTATE, SQLERRM;
+    RAISE NOTICE 'Error descartando solicitudes sin documentacion pasadas de fecha: % %', SQLSTATE, SQLERRM;
   END; 
 
   -- Actualiza el estado a 'descartada' de todas las solicitudes que esten caducadas con la fecha de caducidad a NULL o
