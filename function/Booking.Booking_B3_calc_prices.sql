@@ -319,14 +319,14 @@ BEGIN
 
     -- Base promotion
     IF dt_curr >= promotion."Date_from" AND dt_curr <= promotion."Date_to" THEN
-      IF promotion."Value_rent" IS NOT NULL THEN
-        disc_rent := promotion."Value_rent";
-        disc_type := 1;
+      IF promotion."Value_rent_pct" IS NOT NULL THEN
+        disc_rent     := curr_rent * (promotion."Value_rent_pct" / 100);
+        disc_services := curr_services * (promotion."Value_rent_pct" / 100);
+        disc_type     := 1;
       ELSE
-        IF promotion."Value_rent_pct" IS NOT NULL THEN
-          disc_rent     := curr_rent * (promotion."Value_rent_pct" / 100);
-          disc_services := curr_services * (promotion."Value_rent_pct" / 100);
-          disc_type     := 1;
+        IF promotion."Value_rent" IS NOT NULL THEN
+          disc_rent := promotion."Value_rent";
+          disc_type := 1;
         END IF;
       END IF;
     END IF;

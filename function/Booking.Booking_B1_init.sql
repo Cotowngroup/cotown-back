@@ -57,7 +57,20 @@ BEGIN
           AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = NEW."Place_type_id")
       )
     )
-  ORDER BY id DESC
+    -- Limitación: el edificio debe tener recursos del régimen que exige la promo.
+    AND (
+      COALESCE(p."Limit_type", 'ambos') = 'ambos'
+      OR EXISTS (
+        SELECT 1
+        FROM "Resource"."Resource" r
+        WHERE r."Building_id" = NEW."Building_id"
+          AND (
+            (p."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
+            OR (p."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
+          )
+      )
+    )
+  ORDER BY p."Value_rent_pct" ASC NULLS LAST, p."Value_fee_pct" ASC NULLS LAST, id DESC
   LIMIT 1;
   NEW."Promotion_id" = promotion.id;
 
@@ -83,12 +96,12 @@ BEGIN
 
     -- Asigna el valor obtenido con posible promoción
     IF NEW."Booking_fee" IS NULL THEN
-      IF promotion."Value_fee" IS NOT NULL THEN
-        booking_fee_amount := booking_fee_amount + promotion."Value_fee";
+      IF promotion."Value_fee_pct" IS NOT NULL THEN
+        booking_fee_amount := booking_fee_amount * (1 + promotion."Value_fee_pct" / 100);
         NEW."Booking_discount_type_id" := 1;
       ELSE
-        IF promotion."Value_fee_pct" IS NOT NULL THEN
-          booking_fee_amount := booking_fee_amount * (1 + promotion."Value_fee_pct" / 100);
+        IF promotion."Value_fee" IS NOT NULL THEN
+          booking_fee_amount := booking_fee_amount + promotion."Value_fee";
           NEW."Booking_discount_type_id" := 1;
         END IF;
       END IF;

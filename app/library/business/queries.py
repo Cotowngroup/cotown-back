@@ -814,7 +814,7 @@ def q_room_prices(dbClient, segment, year, dui=False):
         SELECT 
           bpb."Building_id",
           bpp."Place_type_id",
-          bp."Flat_type_id",
+          bpp."Flat_type_id",
           1 + bp."Value_rent_pct" / 100.0 AS "Value_rent_pct", 
           1 + bp."Value_fee_pct" / 100.0 "Value_fee_pct"
         FROM "Billing"."Promotion" bp
@@ -976,22 +976,42 @@ def q_promo(dbClient, segment):
   try:
     con = dbClient.getconn()
 
-    # Get highest promo
+    # Promos activas del segmento, una fila por edificio/tipo de piso/tipo de plaza.
+    # La elección de la mejor promo la hace la web (mínimo de los pct).
     sql = '''
-      SELECT DISTINCT b.id AS "building", r."Segment_id", rft."Code" AS "flat_type", rpt."Code" AS "place_type",
-        ROUND(p."Value_rent_pct", 0) AS "Value_rent_pct", ROUND(p."Value_fee_pct", 0) AS "Value_fee_pct",
+      SELECT DISTINCT r."Building_id" AS "building", r."Segment_id", rft."Code" AS "flat_type", rpt."Code" AS "place_type",
+        ROUND(p."Value_rent_pct", 1) AS "Value_rent_pct", ROUND(p."Value_fee_pct", 1) AS "Value_fee_pct",
         p."Active_from", p."Active_to", p."Date_from", p."Date_to", p."Name", p."Name_en"
       FROM "Billing"."Promotion" p
-        LEFT JOIN "Billing"."Promotion_building" pb ON pb."Promotion_id" = p.id
+        INNER JOIN "Resource"."Resource" r
+           ON r."Resource_type" = 'piso'
+          AND r."Segment_id" = %s
+          -- Edificios: si no hay filas -> aplica a todos.
+          AND (
+            NOT EXISTS (
+              SELECT 1
+              FROM "Billing"."Promotion_building" pb0
+              WHERE pb0."Promotion_id" = p.id
+            )
+            OR EXISTS (
+              SELECT 1
+              FROM "Billing"."Promotion_building" pb
+              WHERE pb."Promotion_id" = p.id
+                AND pb."Building_id"  = r."Building_id"
+            )
+          )
+          -- Limitación: el edificio debe tener recursos del régimen que anuncia la promo.
+          AND (
+            COALESCE(p."Limit_type", 'ambos') = 'ambos'
+            OR (p."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
+            OR (p."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
+          )
         LEFT JOIN "Billing"."Promotion_place" pp ON pp."Promotion_id" = p.id
-        LEFT JOIN "Resource"."Resource_flat_type" rft ON rft."id" = pp."Flat_type_id" 
-        LEFT JOIN "Resource"."Resource_place_type" rpt ON rpt."id" = pp."Place_type_id" 
-        LEFT JOIN "Building"."Building" b ON b.id = pb."Building_id"
-       INNER JOIN "Resource"."Resource" r ON r."Building_id" = pb."Building_id" 
+        LEFT JOIN "Resource"."Resource_flat_type" rft ON rft."id" = pp."Flat_type_id"
+        LEFT JOIN "Resource"."Resource_place_type" rpt ON rpt."id" = pp."Place_type_id"
       WHERE  p."Active_from" <= CURRENT_DATE
         AND p."Active_to" >= CURRENT_DATE
-        AND r."Resource_type" = 'piso'
-        AND r."Segment_id" = %s
+      ORDER BY 1, 3, 4
     '''
     cur = dbClient.execute(con, sql, (segment, ))
 

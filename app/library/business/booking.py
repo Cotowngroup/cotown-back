@@ -494,10 +494,23 @@ def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_i
               AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = %s)
           )
         )
-      ORDER BY id DESC
+        -- Limitación: el edificio debe tener recursos del régimen que exige la promo.
+        AND (
+          COALESCE(p."Limit_type", 'ambos') = 'ambos'
+          OR EXISTS (
+            SELECT 1
+            FROM "Resource"."Resource" r
+            WHERE r."Building_id" = %s
+              AND (
+                (p."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
+                OR (p."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
+              )
+          )
+        )
+      ORDER BY p."Value_rent_pct" ASC NULLS LAST, p."Value_fee_pct" ASC NULLS LAST, id DESC
       LIMIT 1;
     '''
-    cur = dbClient.execute(con, sql, (date_to, date_from, building_id, flat_type_id, place_type_id))
+    cur = dbClient.execute(con, sql, (date_to, date_from, building_id, flat_type_id, place_type_id, building_id))
     promos = [dict(row) for row in cur.fetchall()]
     cur.close()
 
@@ -515,16 +528,16 @@ def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_i
     # Apply promotion
     if len(promos):
       promo = promos[0]
-      if promo['Value_fee']:
-        first['Booking_fee'] += float(promo['Value_fee'])
-      elif promo['Value_fee_pct']:
+      if promo['Value_fee_pct']:
         first['Booking_fee'] *= (1.0 + float(promo['Value_fee_pct'] / 100))
+      elif promo['Value_fee']:
+        first['Booking_fee'] += float(promo['Value_fee'])
       for m in months:
         if promo['Date_from'] <= m['d'] <= promo['Date_to']:
-          if promo['Value_rent']:
-            m['price'] += float(promo['Value_rent'])
-          elif promo['Value_rent_pct']:
+          if promo['Value_rent_pct']:
             m['price'] *= (1.0 + float(promo['Value_rent_pct'] / 100))
+          elif promo['Value_rent']:
+            m['price'] += float(promo['Value_rent'])
           m['price'] = round(m['price'])
 
     # Totals
