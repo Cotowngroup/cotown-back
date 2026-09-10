@@ -688,18 +688,55 @@ def q_flat_prices(dbClient, segment, year):
 
     # Get prices
     sql = '''
-      WITH 
+      WITH
+      -- Promos activas aplicables a cada piso, con las mismas reglas que q_promo (web).
+      -- Si a un piso le aplican varias, se toma la mejor (mínimo de los pct).
       "Promotions" AS (
-        SELECT 
-          bpb."Building_id",
-          bpp."Flat_type_id",
-          1 + bp."Value_rent_pct" / 100.0 AS "Value_rent_pct", 
-          1 + bp."Value_fee_pct"  / 100.0 AS "Value_fee_pct"
+        SELECT
+          r.id AS "Resource_id",
+          1 + MIN(bp."Value_rent_pct") / 100.0 AS "Value_rent_pct",
+          1 + MIN(bp."Value_fee_pct")  / 100.0 AS "Value_fee_pct"
         FROM "Billing"."Promotion" bp
-          LEFT JOIN "Billing"."Promotion_building" bpb ON bpb."Promotion_id" = bp.id
-          LEFT JOIN "Billing"."Promotion_place" bpp ON bpp."Promotion_id" = bp.id
-        WHERE bp."Active_from" <= CURRENT_DATE 
+          INNER JOIN "Resource"."Resource" r
+             ON r."Resource_type" = 'piso'
+            AND r."Segment_id" = %s
+            -- Edificios: si no hay filas -> aplica a todos.
+            AND (
+              NOT EXISTS (
+                SELECT 1
+                FROM "Billing"."Promotion_building" pb0
+                WHERE pb0."Promotion_id" = bp.id
+              )
+              OR EXISTS (
+                SELECT 1
+                FROM "Billing"."Promotion_building" pb
+                WHERE pb."Promotion_id" = bp.id
+                  AND pb."Building_id"  = r."Building_id"
+              )
+            )
+            -- Limitación: el piso debe ser del régimen que anuncia la promo.
+            AND (
+              COALESCE(bp."Limit_type", 'ambos') = 'ambos'
+              OR (bp."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
+              OR (bp."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
+            )
+            -- Tipos de piso: si no hay filas -> aplica a todos.
+            AND (
+              NOT EXISTS (
+                SELECT 1
+                FROM "Billing"."Promotion_place" pp0
+                WHERE pp0."Promotion_id" = bp.id
+              )
+              OR EXISTS (
+                SELECT 1
+                FROM "Billing"."Promotion_place" pp
+                WHERE pp."Promotion_id" = bp.id
+                  AND (pp."Flat_type_id" IS NULL OR pp."Flat_type_id" = r."Flat_type_id")
+              )
+            )
+        WHERE bp."Active_from" <= CURRENT_DATE
           AND bp."Active_to"   >= CURRENT_DATE
+        GROUP BY r.id
       ),
       "Prices" AS (
         SELECT
@@ -714,7 +751,9 @@ def q_flat_prices(dbClient, segment, year):
           MIN(ROUND(px."Services" + pr."Multiplier" * px."Rent_long",   0)) AS "Rent_long_next",
           MIN(ROUND(px."Services" + pr."Multiplier" * px."Rent_medium", 0)) AS "Rent_medium_next",
           MIN(ROUND(px."Services" + pr."Multiplier" * px."Rent_short",  0)) AS "Rent_short_next",
-          COUNT(*) AS "Qty"
+          COUNT(*) AS "Qty",
+          MIN(pm."Value_rent_pct") AS "Value_rent_pct",
+          MIN(pm."Value_fee_pct")  AS "Value_fee_pct"
         FROM "Resource"."Resource" r
           INNER JOIN "Building"."Building" b ON r."Building_id" = b.id
           INNER JOIN "Resource"."Resource_flat_type" rft ON r."Flat_type_id" = rft.id
@@ -722,23 +761,18 @@ def q_flat_prices(dbClient, segment, year):
           INNER JOIN "Billing"."Pricing_rate" pr ON r."Rate_id" = pr.id
           INNER JOIN "Billing"."Pricing_detail" pd ON pd."Building_id" = r."Building_id" AND pd."Flat_type_id" = r."Flat_type_id" AND pd."Place_type_id" IS NULL
           LEFT  JOIN "Billing"."Pricing_detail" px ON px."Building_id" = r."Building_id" AND px."Flat_type_id" = r."Flat_type_id" AND px."Place_type_id" IS NULL
+          LEFT  JOIN "Promotions" pm ON pm."Resource_id" = r.id
         WHERE r."Sale_type" IN ('ambos', 'completo')
           AND pd."Year" = %s
           AND px."Year" = %s
           AND r."Segment_id" = %s
         GROUP BY 1, 2, 3, 4, 5
       )
-      SELECT 
-        pz.*,
-        pr."Value_rent_pct", 
-        pr."Value_fee_pct"
+      SELECT pz.*
       FROM "Prices" pz
-      LEFT JOIN "Promotions" pr
-        ON pr."Building_id" = pz."Building_id"
-       AND (pr."Flat_type_id" IS NULL OR pr."Flat_type_id" = pz."Flat_type_id")
       ORDER BY pz."Building_id", pz."Flat_type_id", pz."Flat_subtype_id";
     '''
-    cur = dbClient.execute(con, sql, (year, year + 1, segment))
+    cur = dbClient.execute(con, sql, (segment, year, year + 1, segment))
 
     # Obtener los resultados de la consulta
     results = cur.fetchall()
@@ -809,24 +843,64 @@ def q_room_prices(dbClient, segment, year, dui=False):
 
     # Get prices
     sql = '''
-      WITH 
+      WITH
+      -- Promos activas aplicables a cada plaza, con las mismas reglas que q_promo (web).
+      -- Si a una plaza le aplican varias, se toma la mejor (mínimo de los pct).
       "Promotions" AS (
-        SELECT 
-          bpb."Building_id",
-          bpp."Place_type_id",
-          bpp."Flat_type_id",
-          1 + bp."Value_rent_pct" / 100.0 AS "Value_rent_pct", 
-          1 + bp."Value_fee_pct" / 100.0 "Value_fee_pct"
+        SELECT
+          r.id AS "Resource_id",
+          1 + MIN(bp."Value_rent_pct") / 100.0 AS "Value_rent_pct",
+          1 + MIN(bp."Value_fee_pct")  / 100.0 AS "Value_fee_pct"
         FROM "Billing"."Promotion" bp
-          LEFT JOIN "Billing"."Promotion_building" bpb ON bpb."Promotion_id" = bp.id
-          LEFT JOIN "Billing"."Promotion_place" bpp ON bpp."Promotion_id" = bp.id
-        WHERE bp."Active_from" <= CURRENT_DATE AND bp."Active_to" >= CURRENT_DATE 
+          INNER JOIN "Resource"."Resource" r
+             ON r."Resource_type" IN ('habitacion', 'plaza')
+            -- Edificios: si no hay filas -> aplica a todos.
+            AND (
+              NOT EXISTS (
+                SELECT 1
+                FROM "Billing"."Promotion_building" pb0
+                WHERE pb0."Promotion_id" = bp.id
+              )
+              OR EXISTS (
+                SELECT 1
+                FROM "Billing"."Promotion_building" pb
+                WHERE pb."Promotion_id" = bp.id
+                  AND pb."Building_id"  = r."Building_id"
+              )
+            )
+            -- Limitación: la plaza debe ser del régimen que anuncia la promo.
+            AND (
+              COALESCE(bp."Limit_type", 'ambos') = 'ambos'
+              OR (bp."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
+              OR (bp."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
+            )
+            -- Tipos de piso/plaza: si no hay filas -> aplica a todos.
+            AND (
+              NOT EXISTS (
+                SELECT 1
+                FROM "Billing"."Promotion_place" pp0
+                WHERE pp0."Promotion_id" = bp.id
+              )
+              OR EXISTS (
+                SELECT 1
+                FROM "Billing"."Promotion_place" pp
+                WHERE pp."Promotion_id" = bp.id
+                  AND (pp."Flat_type_id"  IS NULL OR pp."Flat_type_id"  = r."Flat_type_id")
+                  AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = r."Place_type_id")
+              )
+            )
+          INNER JOIN "Resource"."Resource" f
+             ON f.id = r."Flat_id"
+            AND f."Segment_id" = %s
+        WHERE bp."Active_from" <= CURRENT_DATE
+          AND bp."Active_to"   >= CURRENT_DATE
+        GROUP BY r.id
       ),
       "Prices" AS (
         SELECT
-          r."Building_id", 
-          rpt.id AS "Place_type_id", 
-          rft.id AS "Flat_type_id", 
+          r."Building_id",
+          rpt.id AS "Place_type_id",
+          rft.id AS "Flat_type_id",
           CASE
             WHEN rpt."Code" LIKE 'DUI%%' THEN REPLACE(rpt."Code", 'DUI_', 'ID_')
             ELSE rpt."Code"
@@ -838,15 +912,18 @@ def q_room_prices(dbClient, segment, year, dui=False):
           MIN(ROUND(px."Services" + pr."Multiplier" * px."Rent_long",   0)) AS "Rent_long_next",
           MIN(ROUND(px."Services" + pr."Multiplier" * px."Rent_medium", 0)) AS "Rent_medium_next",
           MIN(ROUND(px."Services" + pr."Multiplier" * px."Rent_short",  0)) AS "Rent_short_next",
-          COUNT(*) AS "Qty"
+          COUNT(*) AS "Qty",
+          MIN(pm."Value_rent_pct") AS "Value_rent_pct",
+          MIN(pm."Value_fee_pct")  AS "Value_fee_pct"
         FROM "Resource"."Resource" r
-        	INNER JOIN "Resource"."Resource" f ON f.id = r."Flat_id" 
+          INNER JOIN "Resource"."Resource" f ON f.id = r."Flat_id"
           INNER JOIN "Building"."Building" b ON r."Building_id" = b.id
           INNER JOIN "Resource"."Resource_flat_type" rft ON r."Flat_type_id" = rft.id
           INNER JOIN "Resource"."Resource_place_type" rpt ON r."Place_type_id" = rpt.id
           INNER JOIN "Billing"."Pricing_rate" pr  ON r."Rate_id"  = pr.id
           INNER JOIN "Billing"."Pricing_detail" pd ON pd."Building_id" = r."Building_id" AND pd."Flat_type_id" = r."Flat_type_id" AND pd."Place_type_id" = r."Place_type_id"
           LEFT JOIN "Billing"."Pricing_detail" px ON px."Building_id" = r."Building_id" AND px."Flat_type_id" = r."Flat_type_id" AND px."Place_type_id" = r."Place_type_id"
+          LEFT JOIN "Promotions" pm ON pm."Resource_id" = r.id
         WHERE r."Sale_type" in ('ambos', 'plazas')
           AND pd."Year" = %s
           AND px."Year" = %s
@@ -854,18 +931,11 @@ def q_room_prices(dbClient, segment, year, dui=False):
           AND rpt."Code" NOT LIKE %s
         GROUP BY 1, 2, 3, 4, 5
       )
-      SELECT 
-        pz.*,
-        pr."Value_rent_pct", 
-        pr."Value_fee_pct"
+      SELECT pz.*
       FROM "Prices" pz
-      LEFT JOIN "Promotions" pr
-        ON pr."Building_id" = pz."Building_id"
-      AND (pr."Place_type_id" IS NULL OR pr."Place_type_id" = pz."Place_type_id")
-      AND (pr."Flat_type_id"  IS NULL OR pr."Flat_type_id"  = pz."Flat_type_id")
       ORDER BY pz."Building_id", pz."Place_type_id", pz."Flat_type_id";
     '''
-    cur = dbClient.execute(con, sql, (year, year + 1, segment, type))
+    cur = dbClient.execute(con, sql, (segment, year, year + 1, segment, type))
 
     # Obtener los resultados de la consulta
     results = cur.fetchall()
