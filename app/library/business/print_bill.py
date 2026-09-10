@@ -201,7 +201,7 @@ def do_bill(apiClient, id, emails=[]):
       try:
         smtp_mail(
           to,
-          context['Bill_code'] + ' - ' + context['Bill_concept'] + ' ' + context['Bill_issued_date'], 
+          context['Bill_type'] + ': ' + context['Bill_code'] + ' - ' + context['Bill_concept'] + ' ' + context['Bill_issued_date'], 
           'Adjuntamos ' + context['Bill_type'].lower() + ' ' + context['Bill_concept'].lower() + ' ' + context['Bill_issued_date'], 
           cc=cc,
           file=file,
