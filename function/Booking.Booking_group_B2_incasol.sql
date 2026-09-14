@@ -37,10 +37,7 @@ BEGIN
     legal_deposit := 0;
   END IF;
 
-  -- The deposit (per room) always includes the legal deposit
-  IF NEW."Deposit" < legal_deposit THEN
-    NEW."Deposit" := legal_deposit;
-  END IF;
+  -- Legal deposit as calculated, the deposit is left untouched
   NEW."Incasol_deposit" := legal_deposit * COALESCE(NEW."Rooms", 0);
 
   RETURN NEW;

@@ -40,11 +40,8 @@ BEGIN
     legal_deposit := 0;
   END IF;
 
-  -- The deposit always includes the legal deposit
+  -- Legal deposit as calculated, the deposit is left untouched
   NEW."Incasol_deposit" := legal_deposit;
-  IF NEW."Deposit" < legal_deposit THEN
-    NEW."Deposit" := legal_deposit;
-  END IF;
 
   RETURN NEW;
 
