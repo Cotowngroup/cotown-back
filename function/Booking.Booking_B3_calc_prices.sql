@@ -19,16 +19,12 @@ DECLARE
   services NUMERIC;
   deposit NUMERIC;
   deposit_base NUMERIC;
-  legal_deposit NUMERIC;
   final_cleaning NUMERIC;
   second_resident NUMERIC;
   climit NUMERIC;
   furniture NUMERIC;
   expenses NUMERIC;
   utility NUMERIC;
-
-  resource_type VARCHAR;
-  barcelona BOOLEAN;
 
   n_rent NUMERIC;
   n_services NUMERIC;
@@ -254,36 +250,6 @@ BEGIN
   END IF;
   NEW."Furniture"       := COALESCE(NEW."Furniture", furniture);
   NEW."Expenses"        := COALESCE(NEW."Expenses", expenses);
-
-  -- ##################################################
-  -- Incasol deposit
-  -- One month of the base: rent, plus utility, furniture and expenses when limited.
-  -- Whole flats booked for leisure deposit two months, prorated over the stay.
-  -- Only in Barcelona, and always included in the deposit.
-  -- ##################################################
-  IF NEW."Book_type" = 'limitado' THEN
-    legal_deposit := COALESCE(NEW."Rent", 0) + COALESCE(NEW."Limit", 0) + COALESCE(NEW."Furniture", 0) + COALESCE(NEW."Expenses", 0);
-  ELSE
-    legal_deposit := COALESCE(NEW."Rent", 0);
-  END IF;
-  SELECT d."Location_id" = 1, r."Resource_type"
-  INTO barcelona, resource_type
-  FROM "Resource"."Resource" r
-    INNER JOIN "Building"."Building" bu ON bu.id = r."Building_id"
-    INNER JOIN "Geo"."District" d ON d.id = bu."District_id"
-  WHERE r.id = NEW."Resource_id";
-  IF resource_type = 'piso' AND NEW."Book_type" = 'recreativo' THEN
-    legal_deposit := ROUND(LEAST(legal_deposit * (NEW."Date_to" - NEW."Date_from" + 1) / 180, 2 * legal_deposit), 2);
-  END IF;
-  IF NOT COALESCE(barcelona, FALSE) THEN
-    legal_deposit := 0;
-  END IF;
-  NEW."Incasol_deposit" := COALESCE(NEW."Incasol_deposit", legal_deposit);
-  IF NEW."Deposit" IS NULL THEN
-    NEW."Incasol_deposit" := 0;
-  ELSIF NEW."Deposit" < NEW."Incasol_deposit" THEN
-    NEW."Deposit" := NEW."Incasol_deposit";
-  END IF;
 
   monthly_rent     := NEW."Rent";
   monthly_services := NEW."Services";
