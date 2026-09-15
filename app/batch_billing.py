@@ -429,7 +429,15 @@ def bill_month(dbClient, con):
 
         # Create services invoice
         if total_services + total_extra_services > 0:
-         
+
+          # Invoice concept: the line concept if only one, 'Varios' otherwise
+          services_concept = PRODUCTS[PR_SERVICES]['concept'] + ' [' + item['Code'] + '] ' + str(item['Rent_date'])[:7]
+          concepts = [services_concept] if total_services > 0 else []
+          for e in extra_services:
+            if e['Amount'] != 0 and e['Concept'] not in concepts:
+              concepts.append(e['Concept'])
+          invoice_concept = concepts[0] if len(concepts) == 1 else 'Varios' if len(concepts) > 1 else services_concept
+
           cur = dbClient.execute(con,
             '''
             INSERT INTO "Billing"."Invoice"
@@ -447,7 +455,7 @@ def bill_month(dbClient, con):
               item['Booking_id'],
               item['Payment_method_id'] if item['Payment_method_id'] is not None else PM_CARD,
               paymentid,
-              PRODUCTS[PR_SERVICES]['concept'] + ' [' + item['Code'] + '] ' + str(item['Rent_date'])[:7]
+              invoice_concept
             )
           )
           servid = cur.fetchone()[0]
@@ -763,7 +771,15 @@ def bill_group_month(dbClient, con):
 
         # Create services invoice
         if total_services + total_extra_services > 0:
-         
+
+          # Invoice concept: the line concept if only one, 'Varios' otherwise
+          services_concept = PRODUCTS[PR_SERVICES]['concept'] + ' (' + str(item['num']) + ' plazas) ' + str(item['Rent_date'])[:7]
+          concepts = [services_concept] if total_services > 0 else []
+          for e in extra_services:
+            if e['Amount'] != 0 and e['Concept'] not in concepts:
+              concepts.append(e['Concept'])
+          invoice_concept = concepts[0] if len(concepts) == 1 else 'Varios' if len(concepts) > 1 else services_concept
+
           cur = dbClient.execute(con,
             '''
             INSERT INTO "Billing"."Invoice"
@@ -781,7 +797,7 @@ def bill_group_month(dbClient, con):
               item['Booking_id'],
               PM_TRANSFER,
               paymentid,
-              PRODUCTS[PR_SERVICES]['concept'] + ' (' + str(item['num']) + ' plazas) ' + str(item['Rent_date'])[:7],
+              invoice_concept,
               ''
             )
           )
