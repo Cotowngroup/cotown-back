@@ -533,6 +533,7 @@ def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_i
     first['Months'] = months
 
     # Apply promotion
+    first['Promotion_id'] = promos[0]['id'] if len(promos) else None
     if len(promos):
       promo = promos[0]
       if promo['Value_fee_pct']:
@@ -650,21 +651,14 @@ def q_insert_booking(dbClient, booking):
       cur.close()
       return id[0], None
   
-    # Segmento de la web: el trigger Booking_B1_init lo usa para elegir la promoción con la
-    # misma regla que el banner. Es local a la transacción (desaparece con el commit o rollback).
-    segment = str(booking.get('Segment') or '')
-    if segment.isdigit():
-      cur = dbClient.execute(con, "SELECT set_config('cotown.segment', %s, true)", (segment, ))
-      cur.close()
-
     # SQL
     sql = f'''
       INSERT INTO "Booking"."Booking" (
         "Date_from", "Date_to", "Customer_id", "Building_id", 
         "Resource_type", "Flat_type_id", "Place_type_id", "Reason_id", "School_id", "Other_school", "Company", "Comments", 
-        "Booking_channel_id", "Second_resident", "Lock"
+        "Promotion_id", "Booking_channel_id", "Second_resident", "Lock"
       )
-      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 1, FALSE, FALSE)
+      VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 1, FALSE, FALSE)
       RETURNING id
     '''
     cur = dbClient.execute(con, sql, (
@@ -679,7 +673,8 @@ def q_insert_booking(dbClient, booking):
       booking["School_id"],
       booking["Other_school"],
       booking["Company"],
-      booking["Comments"]
+      booking["Comments"],
+      booking.get("Promotion_id")
     ))
     id = cur.fetchone()[0]
     con.commit()

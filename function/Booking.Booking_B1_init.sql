@@ -20,59 +20,62 @@ BEGIN
   INNER JOIN "Building"."Building_type" bt ON bt.id = b."Building_type_id"
   WHERE b.id = NEW."Building_id";
 
-  -- Look up applicable promotion
-  SELECT *
-  INTO promotion
-  FROM "Billing"."Promotion" p
-  WHERE p."Date_from" <= NEW."Date_to" 
-    AND p."Date_to" >= NEW."Date_from"
-    AND p."Active_from" <= CURRENT_DATE
-    AND p."Active_to" >= CURRENT_DATE
-    -- Edificio: si no hay filas para la promo -> aplica a todos.
-    AND (
-      NOT EXISTS (
-        SELECT 1
-        FROM "Billing"."Promotion_building" pb0
-        WHERE pb0."Promotion_id" = p.id
+  -- Promoción
+  -- Web: la envía el backend, la misma que se muestra en el resumen de la reserva (conoce el segmento).
+  -- Alta manual sin promoción: se aplica la mejor que no depende del recurso (régimen 'ambos').
+  -- Las promociones de régimen libre o limitado se asignan a mano, junto con el recurso.
+  IF NEW."Promotion_id" IS NOT NULL THEN
+
+    SELECT *
+    INTO promotion
+    FROM "Billing"."Promotion"
+    WHERE id = NEW."Promotion_id";
+
+  ELSE
+
+    SELECT *
+    INTO promotion
+    FROM "Billing"."Promotion" p
+    WHERE p."Date_from" <= NEW."Date_to"
+      AND p."Date_to" >= NEW."Date_from"
+      AND p."Active_from" <= CURRENT_DATE
+      AND p."Active_to" >= CURRENT_DATE
+      -- Régimen: solo las que valen para cualquier recurso
+      AND COALESCE(p."Limit_type", 'ambos') = 'ambos'
+      -- Edificio: si no hay filas para la promo -> aplica a todos.
+      AND (
+        NOT EXISTS (
+          SELECT 1
+          FROM "Billing"."Promotion_building" pb0
+          WHERE pb0."Promotion_id" = p.id
+        )
+        OR EXISTS (
+          SELECT 1
+          FROM "Billing"."Promotion_building" pb
+          WHERE pb."Promotion_id" = p.id
+            AND pb."Building_id"  = NEW."Building_id"
+        )
       )
-      OR EXISTS (
-        SELECT 1
-        FROM "Billing"."Promotion_building" pb
-        WHERE pb."Promotion_id" = p.id
-          AND pb."Building_id"  = NEW."Building_id"
+      -- Tipos de piso/plaza: Si no hay filas -> aplica a todos.
+      AND (
+        NOT EXISTS (
+          SELECT 1
+          FROM "Billing"."Promotion_place" pp0
+          WHERE pp0."Promotion_id" = p.id
+        )
+        OR EXISTS (
+          SELECT 1
+          FROM "Billing"."Promotion_place" pp
+          WHERE pp."Promotion_id" = p.id
+            AND (pp."Flat_type_id"  IS NULL OR pp."Flat_type_id"  = NEW."Flat_type_id")
+            AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = NEW."Place_type_id")
+        )
       )
-    )
-    -- Tipos de piso/plaza: Si no hay filas -> aplica a todos.
-    AND (
-      NOT EXISTS (
-        SELECT 1
-        FROM "Billing"."Promotion_place" pp0
-        WHERE pp0."Promotion_id" = p.id
-      )
-      OR EXISTS (
-        SELECT 1
-        FROM "Billing"."Promotion_place" pp
-        WHERE pp."Promotion_id" = p.id
-          AND (pp."Flat_type_id"  IS NULL OR pp."Flat_type_id"  = NEW."Flat_type_id")
-          AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = NEW."Place_type_id")
-      )
-    )
-    -- Limitación: el edificio debe tener recursos del régimen que exige la promo.
-    AND (
-      COALESCE(p."Limit_type", 'ambos') = 'ambos'
-      OR EXISTS (
-        SELECT 1
-        FROM "Resource"."Resource" r
-        WHERE r."Building_id" = NEW."Building_id"
-          AND (
-            (p."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
-            OR (p."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
-          )
-      )
-    )
-  ORDER BY p."Value_rent_pct" ASC NULLS LAST, p."Value_fee_pct" ASC NULLS LAST, id DESC
-  LIMIT 1;
-  NEW."Promotion_id" = promotion.id;
+    ORDER BY p."Value_rent_pct" ASC NULLS LAST, p."Value_fee_pct" ASC NULLS LAST, id DESC
+    LIMIT 1;
+    NEW."Promotion_id" = promotion.id;
+
+  END IF;
 
   -- Calcula el membership fee si está vacío
   IF NEW."Booking_fee_calc" IS NULL THEN

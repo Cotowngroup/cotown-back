@@ -469,7 +469,8 @@ def req_pub_booking(step):
         'Other_school': get_var('Other_school', None),
         'Company': get_var('Company', None),
         'Comments': comments,
-        'Segment': segment
+        # La promoción la decide la web: la misma que se ha mostrado en el resumen (con el segmento)
+        'Promotion_id': summary.get('Promotion_id')
       }
       booking_id, error = q_insert_booking(g.dbClient, booking)
 
