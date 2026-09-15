@@ -349,7 +349,7 @@ def q_book_search(dbClient, segment, lang, date_from, date_to, city, acom_type, 
 # Get summary
 # ------------------------------------------------------
 
-def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type):
+def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type, segment=None):
 
   # Query parameters
   l = '_en' if lang == 'en' else ''
@@ -460,11 +460,16 @@ def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_i
     months[-1]['rack'] = float(first['Rent_last']) + float(last['Services'])
 
     # Get promotion
-    sql = '''
+    # Con segmento (reserva desde una web) se aplica la misma regla que el banner (q_promo):
+    # el edificio debe tener pisos de ese segmento del régimen que exige la promo.
+    seg_filter = '''
+            AND r."Resource_type" = 'piso'
+            AND r."Segment_id"    = %(segment)s''' if segment is not None else ''
+    sql = f'''
       SELECT *
       FROM "Billing"."Promotion" p
-      WHERE p."Date_from" <= %s 
-        AND p."Date_to" >= %s
+      WHERE p."Date_from" <= %(date_to)s
+        AND p."Date_to" >= %(date_from)s
         AND p."Active_from" <= CURRENT_DATE
         AND p."Active_to" >= CURRENT_DATE
         AND (
@@ -477,7 +482,7 @@ def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_i
             SELECT 1
             FROM "Billing"."Promotion_building" pb
             WHERE pb."Promotion_id" = p.id
-              AND pb."Building_id"  = %s
+              AND pb."Building_id"  = %(building_id)s
           )
         )
         AND (
@@ -490,27 +495,29 @@ def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_i
             SELECT 1
             FROM "Billing"."Promotion_place" pp
             WHERE pp."Promotion_id" = p.id
-              AND (pp."Flat_type_id"  IS NULL OR pp."Flat_type_id"  = %s)
-              AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = %s)
+              AND (pp."Flat_type_id"  IS NULL OR pp."Flat_type_id"  = %(flat_type_id)s)
+              AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = %(place_type_id)s)
           )
         )
-        -- Limitación: el edificio debe tener recursos del régimen que exige la promo.
-        AND (
-          COALESCE(p."Limit_type", 'ambos') = 'ambos'
-          OR EXISTS (
-            SELECT 1
-            FROM "Resource"."Resource" r
-            WHERE r."Building_id" = %s
-              AND (
-                (p."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
-                OR (p."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
-              )
-          )
+        -- Limitación (y segmento, si la reserva viene de una web): el edificio debe tener
+        -- recursos del régimen que exige la promo.
+        AND EXISTS (
+          SELECT 1
+          FROM "Resource"."Resource" r
+          WHERE r."Building_id" = %(building_id)s{seg_filter}
+            AND (
+              COALESCE(p."Limit_type", 'ambos') = 'ambos'
+              OR (p."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
+              OR (p."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
+            )
         )
       ORDER BY p."Value_rent_pct" ASC NULLS LAST, p."Value_fee_pct" ASC NULLS LAST, id DESC
       LIMIT 1;
     '''
-    cur = dbClient.execute(con, sql, (date_to, date_from, building_id, flat_type_id, place_type_id, building_id))
+    cur = dbClient.execute(con, sql, {
+      'date_from': date_from, 'date_to': date_to, 'building_id': building_id,
+      'flat_type_id': flat_type_id, 'place_type_id': place_type_id, 'segment': segment
+    })
     promos = [dict(row) for row in cur.fetchall()]
     cur.close()
 
@@ -643,6 +650,13 @@ def q_insert_booking(dbClient, booking):
       cur.close()
       return id[0], None
   
+    # Segmento de la web: el trigger Booking_B1_init lo usa para elegir la promoción con la
+    # misma regla que el banner. Es local a la transacción (desaparece con el commit o rollback).
+    segment = str(booking.get('Segment') or '')
+    if segment.isdigit():
+      cur = dbClient.execute(con, "SELECT set_config('cotown.segment', %s, true)", (segment, ))
+      cur.close()
+
     # SQL
     sql = f'''
       INSERT INTO "Booking"."Booking" (

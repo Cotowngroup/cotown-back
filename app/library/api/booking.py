@@ -378,7 +378,7 @@ def req_pub_booking(step):
       schools   = q_schools(g.dbClient, lang)
       countries = q_countries(g.dbClient, lang)
       id_types  = q_id_types(g.dbClient, lang)
-      summary   = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type)
+      summary   = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type, segment)
       
     # ---------------------------------------------------
     # STEP 4 - Logout
@@ -397,7 +397,7 @@ def req_pub_booking(step):
       schools   = q_schools(g.dbClient, lang)
       countries = q_countries(g.dbClient, lang)
       id_types  = q_id_types(g.dbClient, lang)
-      summary   = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type)
+      summary   = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type, segment)
 
     # ---------------------------------------------------
     # STEP 4 - Login
@@ -422,7 +422,7 @@ def req_pub_booking(step):
       schools   = q_schools(g.dbClient, lang)
       countries = q_countries(g.dbClient, lang)
       id_types  = q_id_types(g.dbClient, lang)
-      summary   = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type)
+      summary   = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type, segment)
 
     # ---------------------------------------------------
     # STEP 4 - Register
@@ -440,7 +440,7 @@ def req_pub_booking(step):
       reasons   = q_reasons(g.dbClient, lang)
       countries = q_countries(g.dbClient, lang)
       id_types  = q_id_types(g.dbClient, lang)
-      summary   = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type)
+      summary   = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type, segment)
 
     # ---------------------------------------------------
     # STEP 4 - Book
@@ -449,7 +449,7 @@ def req_pub_booking(step):
     elif step == 4 and action == 'book':
 
       # Try to mke the reservation book
-      summary = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type)
+      summary = q_book_summary(g.dbClient, lang, date_from, date_to, building_id, place_type_id, flat_type_id, acom_type, segment)
 
       # Comentarios (con traza de la declaracion de estancia recreativa)
       comments = summary['Building_name'] + ' / ' + summary['Place_type_name'] + ' / ' + summary['Flat_type_name'] + ((' / ' + extras) if extras else '')
@@ -468,7 +468,8 @@ def req_pub_booking(step):
         'School_id': get_var('School_id', None) or None,
         'Other_school': get_var('Other_school', None),
         'Company': get_var('Company', None),
-        'Comments': comments
+        'Comments': comments,
+        'Segment': segment
       }
       booking_id, error = q_insert_booking(g.dbClient, booking)
 
