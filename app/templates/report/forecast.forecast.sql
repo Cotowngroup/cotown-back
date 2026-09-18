@@ -24,7 +24,7 @@ WITH
   SELECT
   	substring(r."Code", 1, 12) AS "Code",
     d."Date", 
-  	r."Flat_id",
+  	COALESCE(r."Flat_id", r.id) AS "Flat_id",
   	rft."Code" AS "Flat_type",
   	rpt."Code" AS "Place_type",
     pd."Rent_short" * pr."Multiplier" * e."Extra" AS "Rent_short",
@@ -36,7 +36,7 @@ WITH
         SELECT ra.id 
         FROM "Resource"."Resource_availability" ra 
         INNER JOIN "Resource"."Resource_status" rs on rs.id = ra."Status_id"
-        WHERE NOT rs."Available" AND ra."Resource_id" = r."Flat_id" AND ra."Date_from" <= d."Date" AND ra."Date_to" >= d."Date"
+        WHERE NOT rs."Available" AND ra."Resource_id" = COALESCE(r."Flat_id", r.id) AND ra."Date_from" <= d."Date" AND ra."Date_to" >= d."Date"
       ) THEN 0
       ELSE 1
     END AS "Beds"
@@ -84,7 +84,7 @@ WITH
   SELECT
   	r.id,
   	r."Code",
-    r."Management_fee" / 100.0 AS "Management_fee",
+    r."Management_fee_biweekly" / 100.0 AS "Management_fee",
     d."Date" AS "Date_price"
   FROM "Resource"."Resource" r
     CROSS JOIN "Dates" d
