@@ -78,6 +78,7 @@ LEAD_FIELDS = [
         "Chatbot": 73,
         "Formulario Disponibilidad": 115,
         "Formulario Visita": 116,
+        "Solicitud reserva": 203,
     }},
     {"name": "reason", "key": "2d1956dbe91e04dbc2e6419ecd74cd242b502bb3", "options": {
         "1": 107,  # Study

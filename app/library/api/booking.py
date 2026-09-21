@@ -114,6 +114,7 @@ def crm_booking(customer, summary, booking, lang, segment, acom_type, city):
     'language':    lang,
     'comments':    booking['Comments'],
     'type':        'B2B' if booking['Company'] else 'B2C',
+    'form':        'Solicitud reserva',
     'brand':       brand,
     'web':         brand,
     'reason':      str(booking['Reason_id']) if booking['Reason_id'] else None,
@@ -530,9 +531,9 @@ def req_pub_booking(step):
         id_types  = q_id_types(g.dbClient, lang)
         step = 3
 
-      # Ok, send to Pipedrive (desactivado de momento)
-      #else:
-      #  crm_booking(customer, summary, booking, lang, segment, acom_type, city.get('Name'))
+      # Send to Pipedrive
+      else:
+        pass # crm_booking(customer, summary, booking, lang, segment, acom_type, city.get('Name'))
 
     # Barcelona (Cotown): mostrar la declaracion de estancia recreativa
     # y dejar el motivo vacacional como unica opcion
