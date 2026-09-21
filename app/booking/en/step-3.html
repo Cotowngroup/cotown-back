@@ -80,6 +80,10 @@
                   [% endif %]
 
                   <input type="hidden" name="book_action" value="book">
+                  <input type="hidden" id="utm_source" name="utm_source">
+                  <input type="hidden" id="utm_medium" name="utm_medium">
+                  <input type="hidden" id="utm_campaign" name="utm_campaign">
+                  <input type="hidden" id="gclid" name="gclid">
 
                   <section class="next">
                     <button type="submit" class="btn-secondary">Confirm and book</button>
@@ -325,6 +329,15 @@
 [% include 'en/includes/footer.html' %]
 
 <script>
+  // Etiquetas SEM (guardadas por la web en sessionStorage, o en la URL)
+  ['utm_source', 'utm_medium', 'utm_campaign', 'gclid'].forEach(name => {
+    const input = document.getElementById(name);
+    if (!input) return;
+    let value = new URLSearchParams(location.search).get(name);
+    if (!value) try { value = sessionStorage.getItem(name); } catch (e) {}
+    if (value && value != 'null') input.value = value;
+  });
+
   const birthdate = document.getElementById('Birth_date');
   const tutor = document.getElementById("tutor");
   if (birthdate && tutor)

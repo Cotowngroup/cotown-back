@@ -92,6 +92,52 @@ def leisure_required(segment, summary):
   return segment != '1' and bool(summary) and summary.get('Location_id') == LEISURE_LOCATION_ID
 
 # ---------------------------------------------------
+# Send booking request to Pipedrive
+# ---------------------------------------------------
+
+def crm_booking(customer, summary, booking, lang, segment, acom_type, city):
+
+  # Nombre de pila y apellidos
+  first_name, _, last_name = (customer.get('Name') or '').strip().partition(' ')
+
+  # Marca: segmento 1 es Vanguard, cualquier otro valor es Cotown
+  brand = 'Vanguard' if str(segment) == '1' else 'Cotown'
+
+  data = {
+    'first_name':  first_name,
+    'last_name':   last_name,
+    'email':       customer.get('Email'),
+    'phone':       customer.get('Phones'),
+    'birth_date':  customer.get('Birth_date'),
+    'nationality': (customer.get('Country') or {}).get('Name'),
+    'gender':      str(customer['Gender_id']) if customer.get('Gender_id') else None,
+    'language':    lang,
+    'comments':    booking['Comments'],
+    'type':        'B2B' if booking['Company'] else 'B2C',
+    'brand':       brand,
+    'web':         brand,
+    'reason':      str(booking['Reason_id']) if booking['Reason_id'] else None,
+    'city':        city,
+    'building':    summary.get('Building_code'),
+    'place_type':  summary.get('Place_type_code') if acom_type != 'ap' else None,
+    'date_from':   booking['Date_from'],
+    'date_to':     booking['Date_to'],
+    'budget-max':  int((summary.get('Rent') or 0) + (summary.get('Services') or 0)) or None,
+  }
+
+  # Etiquetas SEM (utm / gclid) recogidas en el formulario
+  for tag in ('utm_source', 'utm_medium', 'utm_campaign', 'gclid'):
+    value = request.form.get(tag)
+    if value and value != 'null':
+      data[tag] = value
+
+  # Add to Pipedrive, and notify by email (CRMSEND / CRMEMAIL)
+  try:
+    add_info({ k: v for k, v in data.items() if v is not None })
+  except Exception:
+    logger.exception('Pipedrive booking error')
+
+# ---------------------------------------------------
 # Get variable from form, request or session
 # ---------------------------------------------------
 
@@ -484,7 +530,9 @@ def req_pub_booking(step):
         id_types  = q_id_types(g.dbClient, lang)
         step = 3
 
-      # El envío al CRM lo encola el trigger Booking_A4_lead y lo procesa batch_sendcrm
+      # Ok, send to Pipedrive (desactivado de momento)
+      #else:
+      #  crm_booking(customer, summary, booking, lang, segment, acom_type, city.get('Name'))
 
     # Barcelona (Cotown): mostrar la declaracion de estancia recreativa
     # y dejar el motivo vacacional como unica opcion

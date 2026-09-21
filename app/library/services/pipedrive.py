@@ -156,14 +156,6 @@ DEFAULTS_FORM = {
     'form':       'Formulario Disponibilidad',
 }
 
-# Reservas (web y Core). El canal/subcanal reales los aporta el llamante
-DEFAULTS_BOOKING = {
-    'type':       'B2C',
-    'channel':    'Directo',
-    'subchannel': 'Web',
-    'form':       'Reserva',
-}
-
 
 def resolve(field_name, value, fields=PERSON_FIELDS):
     name_match = None
@@ -303,16 +295,55 @@ def upsert_person(data):
     return response.json()["data"]["id"]
 
 
-def add_lead(data):
+def get_open_lead_id(person_id):
+    response = requests.get(
+        f"{CRM_URL}/leads",
+        headers=CRM_HEADERS,
+        params={"person_id": person_id, "archived_status": "not_archived", "sort": "add_time DESC", "limit": 1},
+    )
+    check(response)
+    items = response.json().get("data") or []
+    if not items:
+        return None
+    return items[0]["id"]
+
+
+def get_open_deal_id(person_id):
+    response = requests.get(
+        f"{CRM_URL}/persons/{person_id}/deals",
+        headers=CRM_HEADERS,
+        params={"status": "open", "sort": "add_time DESC", "limit": 1},
+    )
+    check(response)
+    items = response.json().get("data") or []
+    if not items:
+        return None
+    return items[0]["id"]
+
+
+def upsert_lead(data):
+    lead_id = get_open_lead_id(data["person_id"])
     payload = prepare_lead(data)
-    response = requests.post(f"{CRM_URL}/leads", headers=CRM_HEADERS, json=payload)
+    if lead_id:
+        # El canal de origen solo se fija al crear
+        payload.pop("channel", None)
+        response = requests.patch(f"{CRM_URL}/leads/{lead_id}", headers=CRM_HEADERS, json=payload)
+    else:
+        response = requests.post(f"{CRM_URL}/leads", headers=CRM_HEADERS, json=payload)
     check(response)
     return response.json()["data"]["id"]
 
 
-def add_deal(data):
+def upsert_deal(data):
+    deal_id = get_open_deal_id(data["person_id"])
     payload = prepare_deal(data)
-    response = requests.post(f"{CRM_URL}/deals", headers=CRM_HEADERS, json=payload)
+    if deal_id:
+        # No se mueve el negocio de embudo/etapa ni se cambia su canal de origen
+        for key in ("channel", "pipeline_id", "stage_id"):
+            payload.pop(key, None)
+        response = requests.put(f"{CRM_URL}/deals/{deal_id}", headers=CRM_HEADERS, json=payload)
+    else:
+        response = requests.post(f"{CRM_URL}/deals", headers=CRM_HEADERS, json=payload)
     check(response)
     return response.json()["data"]["id"]
 
@@ -344,8 +375,8 @@ def add_info(data, defaults=None, file=None):
     person_id = upsert_person(data)
 
     data['person_id'] = person_id
-    lead_id = add_lead(data)
-    deal_id = add_deal(data)
+    lead_id = upsert_lead(data)
+    deal_id = upsert_deal(data)
 
     logger.info(f"Pipedrive: person={person_id} lead={lead_id} deal={deal_id}")
 
