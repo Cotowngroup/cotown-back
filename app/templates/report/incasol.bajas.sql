@@ -18,7 +18,7 @@ FROM "Booking"."Booking" b
   LEFT JOIN "Customer"."Customer" c ON c.id = b."Customer_id"
 WHERE COALESCE(b."Check_out", b."Date_to") >= %(fdesde)s AND COALESCE(b."Check_out", b."Date_to") < %(fhasta)s
   AND b."Contract_signed" IS NOT NULL
-  AND b."Status" NOT IN ('cancelada', 'descartada', 'descartadapagada')
+  AND b."Status"::text NOT IN ('cancelada', 'descartada', 'descartadapagada')
   AND COALESCE(b."Incasol_deposit", 0) > 0
 
 UNION ALL
@@ -48,7 +48,7 @@ FROM "Booking"."Booking_group" g
   LEFT JOIN "Customer"."Customer" c ON c.id = g."Payer_id"
 WHERE g."Date_to" >= %(fdesde)s AND g."Date_to" < %(fhasta)s
   AND g."Contract_signed" IS NOT NULL
-  AND g."Status" NOT IN ('cancelada', 'descartada', 'descartadapagada')
+  AND g."Status"::text NOT IN ('cancelada', 'descartada', 'descartadapagada')
   AND COALESCE(g."Incasol_deposit", 0) > 0
 GROUP BY g.id
 

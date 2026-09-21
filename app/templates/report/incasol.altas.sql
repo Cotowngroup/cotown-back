@@ -28,7 +28,7 @@ altas AS (
     LEFT JOIN "Customer"."Customer" c ON c.id = b."Customer_id"
     LEFT JOIN "Provider"."Provider" p ON p.id = r."Owner_id"
   WHERE b."Contract_signed" >= %(fdesde)s AND b."Contract_signed" < %(fhasta)s
-    AND b."Status" NOT IN ('cancelada', 'descartada', 'descartadapagada')
+    AND b."Status"::text NOT IN ('cancelada', 'descartada', 'descartadapagada')
     AND COALESCE(b."Incasol_deposit", 0) > 0
 
   UNION ALL
@@ -63,7 +63,7 @@ altas AS (
     LEFT JOIN "Customer"."Customer" c ON c.id = g."Payer_id"
     LEFT JOIN "Provider"."Provider" p ON p.id = r."Owner_id"
   WHERE g."Contract_signed" >= %(fdesde)s AND g."Contract_signed" < %(fhasta)s
-    AND g."Status" NOT IN ('cancelada', 'descartada', 'descartadapagada')
+    AND g."Status"::text NOT IN ('cancelada', 'descartada', 'descartadapagada')
     AND COALESCE(g."Incasol_deposit", 0) > 0
   GROUP BY g.id
 )
