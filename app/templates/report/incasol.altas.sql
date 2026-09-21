@@ -34,10 +34,10 @@ altas AS (
   UNION ALL
 
   -- Altas Incasol B2B (reservas de grupo), una fila por reserva con la fianza total
-  -- Los datos del piso solo si todas las plazas estan en el mismo piso, el recurso solo si es unico
+  -- Los datos del piso solo si todas las plazas estan en el mismo piso, el recurso es el piso (o pisos) y el nº de plazas
   SELECT
     'B' || g.id,
-    CASE WHEN COUNT(DISTINCT r."Code") = 1 THEN MIN(r."Code") END,
+    COALESCE(STRING_AGG(DISTINCT COALESCE(f."Code", r."Code"), ', '), MIN(bu."Code")) || ' (' || COALESCE(g."Rooms", COUNT(gr.id)) || ' plazas)',
     COALESCE(CASE WHEN COUNT(DISTINCT COALESCE(r."Street", f."Street")) = 1 THEN MIN(COALESCE(r."Street", f."Street")) END, MIN(bu."Address")),
     CASE WHEN COUNT(DISTINCT COALESCE(f."Address", r."Address")) = 1 THEN MIN(COALESCE(f."Address", r."Address")) END,
     MIN(bu."Zip"),

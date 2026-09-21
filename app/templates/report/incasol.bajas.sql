@@ -24,10 +24,10 @@ WHERE COALESCE(b."Check_out", b."Date_to") >= %(fdesde)s AND COALESCE(b."Check_o
 UNION ALL
 
 -- Bajas Incasol B2B (reservas de grupo), una fila por reserva con la fianza total
--- La direccion del piso solo si todas las plazas estan en el mismo piso, el recurso solo si es unico
+-- La direccion del piso solo si todas las plazas estan en el mismo piso, el recurso es el piso (o pisos) y el nº de plazas
 SELECT
   'B' || g.id,
-  CASE WHEN COUNT(DISTINCT r."Code") = 1 THEN MIN(r."Code") END,
+  COALESCE(STRING_AGG(DISTINCT COALESCE(f."Code", r."Code"), ', '), MIN(bu."Code")) || ' (' || COALESCE(g."Rooms", COUNT(gr.id)) || ' plazas)',
   NULL, -- TODO: g."Incasol_registry" cuando exista el campo en CORE
   g."Date_to",
   COALESCE(
