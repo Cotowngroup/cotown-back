@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ca">
+<head>
+<title>Declaració responsable devolució de fiança</title>
+<meta charset="utf-8">
+<style>
+@page{size:A4;margin:2.5cm 3cm;}
+body{font-size:11pt;font-family:Arial,Helvetica,sans-serif;line-height:1.4;text-align:justify;}
+p{margin:0 0 10pt 0;}
+ol{margin:0;padding-left:0.7cm;}
+li{margin-bottom:12pt;padding-left:0.1cm;}
+.to{margin:24pt 0 24pt 0;font-weight:bold;text-decoration:underline;}
+.intro{text-indent:0;}
+.sign{margin-left:0.8cm;}
+.sign img{height:80px;margin:6pt 0;}
+</style>
+</head>
+<body>
+
+  <p><strong>Número de Registre {{registry or '............'}}</strong></p>
+  <p><strong>Número de Control {{control or '..............'}}</strong></p>
+
+  <p class="to">A L'INCASÒL:</p>
+
+  <p class="intro">
+    En/Na <strong>{{signer_name or '............................................'}}</strong>,
+    amb {{signer_id_type or 'D.N.I.'}} <strong>{{signer_id or '......................'}}</strong>
+    i domicili a {{owner_address}},
+    actuant en nom i representació de <strong>{{owner_name}}</strong>, amb N.I.F. <strong>{{owner_id}}</strong>
+    i domicili a {{owner_address}},
+    en qualitat d'apoderat, segons còpia de l'escriptura de constitució/apoderament que acompanyo al present, DECLARO:
+  </p>
+
+  <ol>
+    <li>Que <strong>{{owner_name}}</strong> és propietària de l'habitatge <strong>{{address}}</strong>.</li>
+    <li>Que en data <strong>{{contract_date}}</strong> va subscriure un contracte de lloguer amb En/Na <strong>{{customer_name}}</strong>.</li>
+    <li>Que amb Número de Registre {{registry or '..............'}} / Número de Control {{control or '..............'}} va ser dipositada fiança per import de <strong>{{deposit}} €</strong>.</li>
+    <li>Que en data <strong>{{date_to}}</strong> s'ha extingit el contracte de lloguer i la part arrendatària ha deixat lliure l'immoble, sense que s'hagi documentat, el que <strong><u>declaro de manera expressa ser cert i sota la meva responsabilitat a tots els efectes.</u></strong></li>
+    <li>I que <strong><u>sol·licito la devolució de la fiança per import de {{deposit}} €, mitjançant transferència/ingrés al compte bancari núm. {{account or '.....................................................'}}, titularitat de {{owner_name}}</u></strong> segons certificació adjunta.</li>
+  </ol>
+
+  <div class="sign">
+    <p>Barcelona, {{today}}.</p>
+    {% if signature %}<img src="{{signature}}">{% else %}<br><br><br>{% endif %}
+    <p>En/Na {{signer_name or '.........................................'}}<br>{{owner_name}}</p>
+  </div>
+
+</body>
+</html>
