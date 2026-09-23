@@ -720,7 +720,8 @@ def q_flat_prices(dbClient, segment, year):
               OR (bp."Limit_type" = 'libre'    AND COALESCE(r."Limit_type", 'libre') =  'libre')
               OR (bp."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
             )
-            -- Tipos de piso: si no hay filas -> aplica a todos.
+            -- Tipos de piso/plaza: si no hay filas -> aplica a todos.
+            -- A un apartamento privado solo le aplican las filas sin tipo de plaza.
             AND (
               NOT EXISTS (
                 SELECT 1
@@ -731,6 +732,7 @@ def q_flat_prices(dbClient, segment, year):
                 SELECT 1
                 FROM "Billing"."Promotion_place" pp
                 WHERE pp."Promotion_id" = bp.id
+                  AND pp."Place_type_id" IS NULL
                   AND (pp."Flat_type_id" IS NULL OR pp."Flat_type_id" = r."Flat_type_id")
               )
             )
@@ -875,6 +877,7 @@ def q_room_prices(dbClient, segment, year, dui=False):
               OR (bp."Limit_type" = 'limitado' AND COALESCE(r."Limit_type", 'libre') <> 'libre')
             )
             -- Tipos de piso/plaza: si no hay filas -> aplica a todos.
+            -- A una plaza solo le aplican las filas con su tipo de plaza (las de solo tipo de piso son de apartamentos).
             AND (
               NOT EXISTS (
                 SELECT 1
@@ -885,8 +888,8 @@ def q_room_prices(dbClient, segment, year, dui=False):
                 SELECT 1
                 FROM "Billing"."Promotion_place" pp
                 WHERE pp."Promotion_id" = bp.id
-                  AND (pp."Flat_type_id"  IS NULL OR pp."Flat_type_id"  = r."Flat_type_id")
-                  AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = r."Place_type_id")
+                  AND (pp."Flat_type_id" IS NULL OR pp."Flat_type_id" = r."Flat_type_id")
+                  AND (pp."Place_type_id" = r."Place_type_id" OR (pp."Place_type_id" IS NULL AND pp."Flat_type_id" IS NULL))
               )
             )
           INNER JOIN "Resource"."Resource" f

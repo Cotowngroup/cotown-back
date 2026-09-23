@@ -465,6 +465,16 @@ def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_i
     seg_filter = '''
             AND r."Resource_type" = 'piso'
             AND r."Segment_id"    = %(segment)s''' if segment is not None else ''
+    # Tipos de piso/plaza: a un apartamento privado solo le aplican las filas sin tipo de plaza,
+    # y a una plaza las de su tipo de plaza (en 'ap', place_type_id es el subtipo de piso).
+    if acom_type == 'ap':
+      place_filter = '''
+              AND pp."Place_type_id" IS NULL
+              AND (pp."Flat_type_id" IS NULL OR pp."Flat_type_id" = %(flat_type_id)s)'''
+    else:
+      place_filter = '''
+              AND (pp."Flat_type_id" IS NULL OR pp."Flat_type_id" = %(flat_type_id)s)
+              AND (pp."Place_type_id" = %(place_type_id)s OR (pp."Place_type_id" IS NULL AND pp."Flat_type_id" IS NULL))'''
     sql = f'''
       SELECT *
       FROM "Billing"."Promotion" p
@@ -494,9 +504,7 @@ def q_book_summary(dbClient, lang, date_from, date_to, building_id, place_type_i
           OR EXISTS (
             SELECT 1
             FROM "Billing"."Promotion_place" pp
-            WHERE pp."Promotion_id" = p.id
-              AND (pp."Flat_type_id"  IS NULL OR pp."Flat_type_id"  = %(flat_type_id)s)
-              AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = %(place_type_id)s)
+            WHERE pp."Promotion_id" = p.id{place_filter}
           )
         )
         -- Limitación (y segmento, si la reserva viene de una web): el edificio debe tener

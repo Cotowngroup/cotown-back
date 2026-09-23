@@ -57,6 +57,7 @@ BEGIN
         )
       )
       -- Tipos de piso/plaza: Si no hay filas -> aplica a todos.
+      -- Apartamento privado: solo filas sin tipo de plaza. Plaza: solo filas con su tipo de plaza.
       AND (
         NOT EXISTS (
           SELECT 1
@@ -67,8 +68,13 @@ BEGIN
           SELECT 1
           FROM "Billing"."Promotion_place" pp
           WHERE pp."Promotion_id" = p.id
-            AND (pp."Flat_type_id"  IS NULL OR pp."Flat_type_id"  = NEW."Flat_type_id")
-            AND (pp."Place_type_id" IS NULL OR pp."Place_type_id" = NEW."Place_type_id")
+            AND (pp."Flat_type_id" IS NULL OR pp."Flat_type_id" = NEW."Flat_type_id")
+            AND (
+              CASE
+                WHEN NEW."Resource_type" = 'piso' THEN pp."Place_type_id" IS NULL
+                ELSE pp."Place_type_id" = NEW."Place_type_id" OR (pp."Place_type_id" IS NULL AND pp."Flat_type_id" IS NULL)
+              END
+            )
         )
       )
     ORDER BY p."Value_rent_pct" ASC NULLS LAST, p."Value_fee_pct" ASC NULLS LAST, id DESC
