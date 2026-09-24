@@ -533,7 +533,7 @@ def req_pub_booking(step):
 
       # Send to Pipedrive
       else:
-        pass # crm_booking(customer, summary, booking, lang, segment, acom_type, city.get('Name'))
+        crm_booking(customer, summary, booking, lang, segment, acom_type, city.get('Name'))
 
     # Barcelona (Cotown): mostrar la declaracion de estancia recreativa
     # y dejar el motivo vacacional como unica opcion
