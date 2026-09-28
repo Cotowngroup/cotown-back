@@ -2,7 +2,7 @@
 SELECT
   b.id::text                                        AS "Id",
   r."Code"                                          AS "Resource",
-  NULL                                              AS "Incasol_registry", -- TODO: b."Incasol_registry" cuando exista el campo en CORE
+  b."Incasol_reg"                                   AS "Incasol_registry",
   COALESCE(b."Check_out", b."Date_to")              AS "Date_to",
   CONCAT_WS(', ', COALESCE(r."Street", f."Street"), COALESCE(f."Address", r."Address"), bu."Zip", l."Name") AS "Address",
   b."Incasol_deposit"                               AS "Incasol_deposit",
@@ -28,7 +28,7 @@ UNION ALL
 SELECT
   'B' || g.id,
   COALESCE(STRING_AGG(DISTINCT COALESCE(f."Code", r."Code"), ', '), MIN(bu."Code")) || ' (' || COALESCE(g."Rooms", COUNT(gr.id)) || ' plazas)',
-  NULL, -- TODO: g."Incasol_registry" cuando exista el campo en CORE
+  g."Incasol_reg",
   g."Date_to",
   COALESCE(
     CASE WHEN COUNT(DISTINCT CONCAT_WS(', ', COALESCE(r."Street", f."Street"), COALESCE(f."Address", r."Address"), bu."Zip", l."Name")) = 1 THEN MIN(CONCAT_WS(', ', COALESCE(r."Street", f."Street"), COALESCE(f."Address", r."Address"), bu."Zip", l."Name")) END,
