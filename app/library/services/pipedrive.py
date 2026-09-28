@@ -21,6 +21,10 @@ logger = logging.getLogger('COTOWN')
 CRM_URL     = settings.CRM_URL
 CRM_HEADERS = { 'x-api-token': settings.CRM_KEY }
 
+# Etapas del embudo de negocios
+STAGE_LEAD    = 12  # Lead entrante
+STAGE_BOOKING = 20  # Reserva pendiente
+
 
 # #####################################
 # Field mappings
@@ -238,7 +242,7 @@ def prepare_deal(data):
         "person_id":   data['person_id'],
         "channel":     3,
         "pipeline_id": 3,
-        "stage_id":    12,
+        "stage_id":    STAGE_BOOKING if data.get('form') == 'Solicitud reserva' else STAGE_LEAD,
     }
     for field, raw in data.items():
         if raw is None or raw == "null":
