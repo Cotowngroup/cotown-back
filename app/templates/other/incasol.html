@@ -17,8 +17,7 @@ li{margin-bottom:12pt;padding-left:0.1cm;}
 </head>
 <body>
 
-  <p><strong>Número de Registre {{registry or '............'}}</strong></p>
-  <p><strong>Número de Control {{control or '..............'}}</strong></p>
+  {% if registry %}<p><strong>Número de Registre {{registry}}</strong></p>{% endif %}
 
   <p class="to">A L'INCASÒL:</p>
 
@@ -28,15 +27,15 @@ li{margin-bottom:12pt;padding-left:0.1cm;}
     i domicili a {{owner_address}},
     actuant en nom i representació de <strong>{{owner_name}}</strong>, amb N.I.F. <strong>{{owner_id}}</strong>
     i domicili a {{owner_address}},
-    en qualitat d'apoderat, segons còpia de l'escriptura de constitució/apoderament que acompanyo al present, DECLARO:
+    en qualitat apoderat, DECLARO:
   </p>
 
   <ol>
     <li>Que <strong>{{owner_name}}</strong> és propietària de l'habitatge <strong>{{address}}</strong>.</li>
-    <li>Que en data <strong>{{contract_date}}</strong> va subscriure un contracte de lloguer amb En/Na <strong>{{customer_name}}</strong>.</li>
-    <li>Que amb Número de Registre {{registry or '..............'}} / Número de Control {{control or '..............'}} va ser dipositada fiança per import de <strong>{{deposit}} €</strong>.</li>
-    <li>Que en data <strong>{{date_to}}</strong> s'ha extingit el contracte de lloguer i la part arrendatària ha deixat lliure l'immoble, sense que s'hagi documentat, el que <strong><u>declaro de manera expressa ser cert i sota la meva responsabilitat a tots els efectes.</u></strong></li>
-    <li>I que <strong><u>sol·licito la devolució de la fiança per import de {{deposit}} €, mitjançant transferència/ingrés al compte bancari núm. {{account or '.....................................................'}}, titularitat de {{owner_name}}</u></strong> segons certificació adjunta.</li>
+    <li>Que en data <strong>{{contract_date}}</strong> va subscriure un contracte de lloguer amb En/Na <strong>{{customer_name}}{% if customer_id %}, {{customer_id_type or 'D.N.I.'}} {{customer_id}}{% endif %}</strong>.</li>
+    <li>Que va ser dipositada fiança per import de <strong>{{deposit}} €</strong>.</li>
+    <li>Que en data <strong>{{date_to}}</strong> s'ha extingit el contracte de lloguer i la part arrendatària ha deixat lliure l'immoble, sense que s'hagi documentat, el que declaro de manera expressa ser cert i sota la meva responsabilitat tots els efectes.</li>
+    <li>I que sol·licito la devolució de la fiança per import de <strong>{{deposit}} €</strong>.</li>
   </ol>
 
   <div class="sign">

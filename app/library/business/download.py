@@ -361,7 +361,9 @@ INCASOL_SQL = '''
       b."Contract_signed"::date AS "Contract_date",
       COALESCE(b."Check_out", b."Date_to")::date AS "Date_to",
       b."Incasol_deposit" AS "Deposit",
-      c."Name" AS "Customer_name"
+      c."Name" AS "Customer_name",
+      c."Document" AS "Customer_document",
+      ct."Name" AS "Customer_id_type"
     FROM "Booking"."Booking" b
       INNER JOIN "Resource"."Resource" r ON r.id = b."Resource_id"
       LEFT JOIN "Resource"."Resource" f ON f.id = r."Flat_id"
@@ -369,6 +371,7 @@ INCASOL_SQL = '''
       LEFT JOIN "Geo"."District" d ON d.id = bu."District_id"
       LEFT JOIN "Geo"."Location" l ON l.id = d."Location_id"
       LEFT JOIN "Customer"."Customer" c ON c.id = b."Customer_id"
+      LEFT JOIN "Auxiliar"."Id_type" ct ON ct.id = c."Id_type_id"
     WHERE COALESCE(b."Check_out", b."Date_to") >= %(fdesde)s AND COALESCE(b."Check_out", b."Date_to") < %(fhasta)s
       AND b."Contract_signed" IS NOT NULL
       AND b."Status"::text NOT IN ('cancelada', 'descartada', 'descartadapagada')
@@ -385,7 +388,9 @@ INCASOL_SQL = '''
       g."Contract_signed"::date,
       g."Date_to"::date,
       g."Incasol_deposit",
-      MIN(c."Name")
+      MIN(c."Name"),
+      MIN(c."Document"),
+      NULL
     FROM "Booking"."Booking_group" g
       INNER JOIN "Booking"."Booking_group_rooms" gr ON gr."Booking_id" = g.id
       INNER JOIN "Resource"."Resource" r ON r.id = gr."Resource_id"
@@ -405,7 +410,6 @@ INCASOL_SQL = '''
     p."Name" AS "Owner_name",
     p."Document" AS "Owner_document",
     CONCAT_WS(', ', p."Address", p."Zip", p."City") AS "Owner_address",
-    p."IBAN" AS "Owner_iban",
     s.id AS "Signer",
     s."Name" AS "Signer_name",
     s."Document" AS "Signer_document",
@@ -527,11 +531,9 @@ def download_incasol(apiClient, dbClient, variables=None):
       except Exception as e:
         logger.warning('Firmante {} sin firma: {}'.format(signer, e))
 
-    # Render (registry and control are blank until the fields exist)
+    # Render (the registry number is blank until the field exists)
     html = tpl.render(
       registry=None,
-      control=None,
-      account=item['Owner_iban'],
       signer_name=item['Signer_name'],
       signer_id=item['Signer_document'],
       signer_id_type=item['Signer_id_type'],
@@ -544,6 +546,8 @@ def download_incasol(apiClient, dbClient, variables=None):
       date_to=fmt_date(item['Date_to']),
       deposit=fmt_amount(item['Deposit']),
       customer_name=item['Customer_name'],
+      customer_id=item['Customer_document'],
+      customer_id_type=item['Customer_id_type'],
       today=today,
     )
 
