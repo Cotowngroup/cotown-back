@@ -32,7 +32,7 @@ BEGIN
 
   -- Whole flats booked for leisure: two months, prorated over the stay
   IF resource_type = 'piso' AND NEW."Book_type" = 'recreativo' THEN
-    legal_deposit := ROUND(LEAST(legal_deposit * (NEW."Date_to" - NEW."Date_from" + 1) / 180, 2 * legal_deposit), 2);
+    legal_deposit := ROUND(LEAST(legal_deposit * (NEW."Date_to" - NEW."Date_from") / 180, 2 * legal_deposit), 2);
   END IF;
 
   -- Only in Barcelona, and only with a deposit

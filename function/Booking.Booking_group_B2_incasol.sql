@@ -22,7 +22,7 @@ BEGIN
 
   -- Whole flats: two months, prorated over the stay
   IF NEW."Full_flat" THEN
-    legal_deposit := ROUND(LEAST(legal_deposit * (NEW."Date_to" - NEW."Date_from" + 1) / 180, 2 * legal_deposit), 2);
+    legal_deposit := ROUND(LEAST(legal_deposit * (NEW."Date_to" - NEW."Date_from") / 180, 2 * legal_deposit), 2);
   END IF;
 
   -- Location
