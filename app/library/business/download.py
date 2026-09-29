@@ -363,7 +363,8 @@ INCASOL_SQL = '''
       b."Incasol_deposit" AS "Deposit",
       c."Name" AS "Customer_name",
       c."Document" AS "Customer_document",
-      ct."Name" AS "Customer_id_type"
+      ct."Name" AS "Customer_id_type",
+      b."Incasol_reg"
     FROM "Booking"."Booking" b
       INNER JOIN "Resource"."Resource" r ON r.id = b."Resource_id"
       LEFT JOIN "Resource"."Resource" f ON f.id = r."Flat_id"
@@ -390,7 +391,8 @@ INCASOL_SQL = '''
       g."Incasol_deposit",
       MIN(c."Name"),
       MIN(c."Document"),
-      NULL
+      NULL,
+      g."Incasol_reg"
     FROM "Booking"."Booking_group" g
       INNER JOIN "Booking"."Booking_group_rooms" gr ON gr."Booking_id" = g.id
       INNER JOIN "Resource"."Resource" r ON r.id = gr."Resource_id"
@@ -551,9 +553,10 @@ def download_incasol(apiClient, dbClient, variables=None):
       today=today,
     )
 
-    # File name: Incasol number (placeholder until the field exists), address and booking, safe for the file system
+    # File name: Incasol registry number (zeros if missing), address and booking, safe for the file system
     address = re.sub(r'[\\/:*?"<>|]', '-', str(item['Address'] or '')).strip()
-    name = '{} {} {}'.format('XXXXXXXX', address, item['Id'])
+    registry = re.sub(r'[\\/:*?"<>|]', '-', str(item['Incasol_reg'] or '00000000')).strip()
+    name = '{} {} {}'.format(registry, address, item['Id'])
 
     # Same booking with several owners, avoid overwriting
     if os.path.exists('download/' + name + '.pdf'):
