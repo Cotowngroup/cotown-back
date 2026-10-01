@@ -36,7 +36,7 @@ def month_dates(date_from, date_to, price, price_next, lang):
   d = month(df.month, lang).capitalize()[:3] + ' ' + str(df.year)
   dates = [{'date': d, 'd':df.date(), 'price': 0, 'rack': 0}]
   next = (df.replace(day=1) + relativedelta(months=1))
-  while next <= dt:
+  while next < dt:
     if df.month != next.month and next.month == 9:
       price = price_next
     d = month(next.month, lang).capitalize()[:3] + ' ' + str(next.year)
