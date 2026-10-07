@@ -24,7 +24,7 @@ from library.api.misc import req_pub_hello, req_pub_http, req_validate_iban, req
 from library.api.contract import req_pub_contract
 from library.api.booking import req_form, req_typologies, req_pub_asset, req_pub_availability, req_pub_booking
 from library.api.airflows import req_signature, req_export, req_href, req_download, req_booking_status, req_labels, req_dashboard_operaciones, req_dashboard_lau, req_dashboard_payments, req_dashboard_deposits, req_dashboard_incasol, req_dashboard_documents, req_dashboard_to_excel, req_prev_next_operaciones, req_availability, req_questionnaire
-from library.api.web import req_flats, req_rooms, req_roomsd, req_amenities, req_promo
+from library.api.web import req_flats, req_rooms, req_roomsd, req_amenities, req_promo, req_locked
 from library.api.payment import req_pay, req_pub_notification
 from library.api.integration import req_pub_int_customers, req_pub_int_invoices, req_pub_int_management_fees, req_pub_int_payments
 
@@ -222,6 +222,7 @@ def runapp():
   app.add_url_rule(settings.API_PREFIX + '/typologies/<int:segment>', view_func=req_typologies, methods=['GET'])
   app.add_url_rule(settings.API_PREFIX + '/form', view_func=req_form, methods=['POST'])
   app.add_url_rule(settings.API_PREFIX + '/promo/<int:segment>', view_func=req_promo, methods=['GET'])
+  app.add_url_rule(settings.API_PREFIX + '/locked', view_func=req_locked, methods=['GET'])
 
   # Static web (dynamic availability)
   app.add_url_rule(settings.API_PREFIX + '/availability/<int:type>/<int:filter>', view_func=req_pub_availability, methods=['GET'])

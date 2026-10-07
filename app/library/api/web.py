@@ -12,7 +12,7 @@
 from flask import g, request
 
 # Cotown includes - business functions
-from library.business.queries import q_flat_prices, q_room_prices, q_room_amenities, q_promo
+from library.business.queries import q_flat_prices, q_room_prices, q_room_amenities, q_promo, q_locked
 
 # Logging
 import logging
@@ -47,3 +47,8 @@ def req_amenities(segment):
 def req_promo(segment):
 
     return q_promo(g.dbClient, segment)
+
+# Get resources with a long lock
+def req_locked():
+
+    return q_locked(g.dbClient)

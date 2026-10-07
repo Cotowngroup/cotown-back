@@ -11,6 +11,9 @@ from calendar import monthrange
 import logging
 logger = logging.getLogger('COTOWN')
 
+# Cotown includes
+from library.business.queries import LONG_LOCK
+
 
 # ######################################################
 # Misc functions
@@ -188,6 +191,7 @@ def q_typologies(dbClient, segment):
       AND b."Active" 
       AND CASE WHEN r."Resource_type" = 'piso' THEN r."Segment_id" ELSE f."Segment_id" END = %s
       AND r."Sale_type" IS NOT NULL
+      AND NOT ''' + LONG_LOCK + '''
       --AND (rpt."Code" IS NULL OR rpt."Code" NOT LIKE 'DUI_%%')
     GROUP BY 1, 2, 3, 4
     ORDER BY 1, 2, 3, 4

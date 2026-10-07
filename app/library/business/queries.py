@@ -14,6 +14,19 @@ logger = logging.getLogger('COTOWN')
 # Cotown includes
 from library.services.config import settings
 
+# Bloqueo largo: bloqueo en vigor hoy al que le quedan mas de 5 años.
+# Los recursos (alias r) que lo cumplen no se publican en las webs
+LONG_LOCK = '''
+  EXISTS (
+    SELECT 1
+    FROM "Booking"."Booking_detail" ll
+    WHERE ll."Resource_id" = r.id
+      AND ll."Availability_id" IS NOT NULL
+      AND ll."Date_from" <= CURRENT_DATE
+      AND ll."Date_to" > CURRENT_DATE + INTERVAL '5 years'
+  )
+'''
+
 
 # ######################################################
 # Dashboard
@@ -768,6 +781,7 @@ def q_flat_prices(dbClient, segment, year):
           AND pd."Year" = %s
           AND px."Year" = %s
           AND r."Segment_id" = %s
+          AND NOT ''' + LONG_LOCK + '''
         GROUP BY 1, 2, 3, 4, 5
       )
       SELECT pz.*
@@ -932,6 +946,7 @@ def q_room_prices(dbClient, segment, year, dui=False):
           AND px."Year" = %s
           AND f."Segment_id" = %s
           AND rpt."Code" NOT LIKE %s
+          AND NOT ''' + LONG_LOCK + '''
         GROUP BY 1, 2, 3, 4, 5
       )
       SELECT pz.*
@@ -1020,6 +1035,7 @@ def q_room_amenities(dbClient, segment):
       INNER JOIN "Resource"."Resource_place_type" rpt ON r."Place_type_id" = rpt.id
       INNER JOIN "Building"."Building" b ON r."Building_id" = b.id
     WHERE f."Segment_id" = %s
+      AND NOT ''' + LONG_LOCK + '''
     GROUP BY 1, 2, 3, 4, 5, 6
     ORDER BY 1, 2, 3, 4
     '''
@@ -1028,6 +1044,39 @@ def q_room_amenities(dbClient, segment):
     # To JSON
     result = json.dumps([dict(row) for row in cur.fetchall()], default=str)
  
+    # Disconnect
+    cur.close()
+
+    # Return
+    return result
+
+  finally:
+    dbClient.putconn(con)
+
+
+# ######################################################
+# Web - Resources with a long lock (not published)
+# ######################################################
+
+def q_locked(dbClient):
+
+  # Connect
+  con = None
+  try:
+    con = dbClient.getconn()
+
+    # Get resources
+    sql = '''
+    SELECT r.id
+    FROM "Resource"."Resource" r
+    WHERE ''' + LONG_LOCK + '''
+    ORDER BY 1
+    '''
+    cur = dbClient.execute(con, sql, ())
+
+    # To JSON
+    result = json.dumps([row['id'] for row in cur.fetchall()])
+
     # Disconnect
     cur.close()
 
