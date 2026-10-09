@@ -175,7 +175,7 @@ def main():
       max_expenses = (float(expenses[building]['ibi']) + float(expenses[building]['hoa'])) * weight / 12 / 100.0 if resource['HOA'] else 0
 
       # Not in Barcelona
-      if resource["Location_id"] != 1:
+      if resource["Location_id"] not in (1, 4):
         status = 'libre'
 
       # Big renovation < 5 years

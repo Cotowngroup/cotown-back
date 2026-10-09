@@ -13,6 +13,7 @@
 "Flight", 
 "Check_in_room_ok",
 "Check_in_notice_ok",
+"Check_in_req",
 "Check_in_keys_ok",
 "Check_in_keyless_ok", 
 "Check_out_keys_ok",
