@@ -29,6 +29,7 @@
 
       <h4>Desglose del precio</h4>
 
+      [% if data.summary.Booking_fee %]
       <div class="prices">
         <p>Membership fee</p>
         <p>
@@ -36,6 +37,7 @@
         [[data.summary.Booking_fee | number]] €
         </p>
       </div>
+      [% endif %]
 
       <div class="prices">
         <p>Garantía</p>

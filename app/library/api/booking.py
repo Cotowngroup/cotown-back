@@ -46,7 +46,7 @@ LEISURE_FIELD = 'leisure'
 # ---------------------------------------------------
 
 def format_number(value):
-  if value:
+  if value is not None:
     return locale.format_string("%d", value, grouping=True)
   return ''
 
