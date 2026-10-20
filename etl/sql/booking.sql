@@ -41,11 +41,13 @@ SELECT
   COALESCE(t."Value", 0) / 100 AS "tax",
   COALESCE(b."Booking_fee_actual", 0) AS "booking_fee",
   CASE 
-    WHEN b."Cleaning_freq" = 'no' THEN r."Management_fee" / 100 
-    WHEN b."Cleaning_freq" = 'semanal' THEN r."Management_fee" / 100 
-    WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee" / 100 
-    WHEN b."Cleaning_freq" = 'mensual' THEN r."Management_fee" / 100
-    ELSE r."Management_fee" / 100
+    WHEN b."Agent_id" IS NOT NULL THEN r."Management_fee_marketplace" / 100
+    WHEN b."Cleaning_freq" = 'no' THEN r."Management_fee_no_cleaning" / 100
+    WHEN b."Cleaning_freq" = 'semanal' THEN r."Management_fee_weekly" / 100
+    WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee_biweekly" / 100
+    WHEN b."Cleaning_freq" = 'mensual' THEN r."Management_fee_monthly" / 100
+    WHEN b."Cleaning_freq" = 'sin' THEN r."Management_fee" / 100
+    ELSE r."Management_fee_biweekly" / 100
   END AS "Management_fee",
   COALESCE(NULLIF(b."Book_type"::text, ''), 'libre') AS "book_type",
   b."Expenses" AS "expenses",

@@ -31,21 +31,23 @@ BEGIN
       "Management_fee_no_cleaning" = NEW."Management_fee_no_cleaning",
       "Management_fee_weekly" = NEW."Management_fee_weekly",
       "Management_fee_biweekly" = NEW."Management_fee_biweekly",
-      "Management_fee_monthly" = NEW."Management_fee_monthly"
+      "Management_fee_monthly" = NEW."Management_fee_monthly",
+      "Management_fee_marketplace" = NEW."Management_fee_marketplace"
     WHERE "Flat_id" = NEW.id
       AND id <> NEW.id
       AND (
-        "Building_id" <> NEW."Building_id" OR 
-        "Owner_id" <> NEW."Owner_id" OR 
-        "Service_id" <> NEW."Service_id" OR
+        "Building_id" IS DISTINCT FROM NEW."Building_id" OR
+        "Owner_id" IS DISTINCT FROM NEW."Owner_id" OR
+        "Service_id" IS DISTINCT FROM NEW."Service_id" OR
         "Billing_type" IS NULL OR
         "Sale_type" IS NULL OR
-        "SAP_code" <> NEW."SAP_code" OR
-        "Management_fee" <> NEW."Management_fee" OR
-        "Management_fee_no_cleaning" <> NEW."Management_fee_no_cleaning" OR
-        "Management_fee_weekly" <> NEW."Management_fee_weekly" OR
-        "Management_fee_biweekly" <> NEW."Management_fee_biweekly" OR
-        "Management_fee_monthly" <> NEW."Management_fee_monthly"
+        "SAP_code" IS DISTINCT FROM NEW."SAP_code" OR
+        "Management_fee" IS DISTINCT FROM NEW."Management_fee" OR
+        "Management_fee_no_cleaning" IS DISTINCT FROM NEW."Management_fee_no_cleaning" OR
+        "Management_fee_weekly" IS DISTINCT FROM NEW."Management_fee_weekly" OR
+        "Management_fee_biweekly" IS DISTINCT FROM NEW."Management_fee_biweekly" OR
+        "Management_fee_monthly" IS DISTINCT FROM NEW."Management_fee_monthly" OR
+        "Management_fee_marketplace" IS DISTINCT FROM NEW."Management_fee_marketplace"
       );
     EXECUTE 'SET ROLE "' || curr_user || '"';
     RETURN NEW;

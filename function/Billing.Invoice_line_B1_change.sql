@@ -1,5 +1,5 @@
 -- Verifica si se puede modificar la factura
--- AFTER INSERT/UPDATE/DELETE
+-- BEFORE INSERT/UPDATE/DELETE
 DECLARE
 
   issued BOOLEAN;
@@ -64,6 +64,7 @@ BEGIN
     IF booking_id IS NOT NULL THEN
       SELECT
         CASE
+          WHEN b."Agent_id" IS NOT NULL        THEN r."Management_fee_marketplace"
           WHEN b."Cleaning_freq" = 'no'        THEN r."Management_fee_no_cleaning"
           WHEN b."Cleaning_freq" = 'semanal'   THEN r."Management_fee_weekly"
           WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee_biweekly"
@@ -79,6 +80,7 @@ BEGIN
     IF booking_group_id IS NOT NULL THEN
       SELECT
         CASE
+          WHEN b."Agent_id" IS NOT NULL        THEN r."Management_fee_marketplace"
           WHEN b."Cleaning_freq" = 'no'        THEN r."Management_fee_no_cleaning"
           WHEN b."Cleaning_freq" = 'semanal'   THEN r."Management_fee_weekly"
           WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee_biweekly"

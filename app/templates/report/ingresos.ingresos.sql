@@ -116,11 +116,13 @@ SELECT
   pdt."Name" AS "Product_type",
   CASE WHEN pr."Provider_type_id" = 1 THEN 
     CASE 
-      WHEN b."Cleaning_freq" = 'no' THEN r."Management_fee" / 100 
-      WHEN b."Cleaning_freq" = 'semanal' THEN r."Management_fee" / 100 
-      WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee" / 100 
-      WHEN b."Cleaning_freq" = 'mensual' THEN r."Management_fee" / 100 
-      ELSE r."Management_fee" / 100 
+      WHEN b."Agent_id" IS NOT NULL THEN r."Management_fee_marketplace" / 100
+      WHEN b."Cleaning_freq" = 'no' THEN r."Management_fee_no_cleaning" / 100
+      WHEN b."Cleaning_freq" = 'semanal' THEN r."Management_fee_weekly" / 100
+      WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee_biweekly" / 100
+      WHEN b."Cleaning_freq" = 'mensual' THEN r."Management_fee_monthly" / 100
+      WHEN b."Cleaning_freq" = 'sin' THEN r."Management_fee" / 100
+      ELSE r."Management_fee_biweekly" / 100
     END
     ELSE NULL 
   END AS "Management_fee"
@@ -225,11 +227,13 @@ SELECT DISTINCT ON (bp.id)
   pdt."Name" AS "Product_type",
   CASE WHEN pr."Provider_type_id" = 1 THEN 
     CASE 
-      WHEN b."Cleaning_freq" = 'no' THEN r."Management_fee" / 100 
-      WHEN b."Cleaning_freq" = 'semanal' THEN r."Management_fee" / 100 
-      WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee" / 100 
-      WHEN b."Cleaning_freq" = 'mensual' THEN r."Management_fee" / 100 
-      ELSE r."Management_fee" / 100 
+      WHEN b."Agent_id" IS NOT NULL THEN r."Management_fee_marketplace" / 100
+      WHEN b."Cleaning_freq" = 'no' THEN r."Management_fee_no_cleaning" / 100
+      WHEN b."Cleaning_freq" = 'semanal' THEN r."Management_fee_weekly" / 100
+      WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee_biweekly" / 100
+      WHEN b."Cleaning_freq" = 'mensual' THEN r."Management_fee_monthly" / 100
+      WHEN b."Cleaning_freq" = 'sin' THEN r."Management_fee" / 100
+      ELSE r."Management_fee_biweekly" / 100
     END
     ELSE NULL 
   END AS "Management_fee"

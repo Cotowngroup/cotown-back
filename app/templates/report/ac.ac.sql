@@ -50,11 +50,13 @@ FROM "Booking"."Booking" b
   	  SUM(bp."Rent") AS "Total_rent", 
       SUM(
 		CASE 
-        	WHEN b."Cleaning_freq" = 'no' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee" / 100
+        	WHEN b."Agent_id" IS NOT NULL THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_marketplace" / 100
+        	WHEN b."Cleaning_freq" = 'no' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_no_cleaning" / 100
         	WHEN b."Cleaning_freq" = 'semanal' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_weekly" / 100
         	WHEN b."Cleaning_freq" = 'quincenal' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_biweekly" / 100
         	WHEN b."Cleaning_freq" = 'mensual' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_monthly" / 100
-        	ELSE bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee" / 100
+        	WHEN b."Cleaning_freq" = 'sin' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee" / 100
+        	ELSE bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_biweekly" / 100
       	END
       ) AS "Management_fee",
   	  SUM(bp."Services") AS "Total_services"

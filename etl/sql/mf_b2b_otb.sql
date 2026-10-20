@@ -1,7 +1,7 @@
 WITH 
 "Rooms" AS (
 	SELECT bgr."Booking_id" AS "id", r."Owner_id", r."Service_id", p."Document", (r."Code"), 
-  r."Management_fee",  r."Management_fee_no_cleaning", r."Management_fee_weekly", r."Management_fee_biweekly", r."Management_fee_monthly", 
+  r."Management_fee",  r."Management_fee_no_cleaning", r."Management_fee_weekly", r."Management_fee_biweekly", r."Management_fee_monthly", r."Management_fee_marketplace",
   bgr.id AS "rid"
 	FROM "Booking"."Booking_group_rooms" bgr 
     INNER JOIN "Resource"."Resource" r ON r.id = bgr."Resource_id"
@@ -25,11 +25,13 @@ SELECT
     END 
     * 
     CASE 
+      WHEN b."Agent_id" IS NOT NULL THEN COALESCE(r."Management_fee_marketplace", 0) / 100 
       WHEN b."Cleaning_freq" = 'no' THEN COALESCE(r."Management_fee_no_cleaning", 0) / 100 
       WHEN b."Cleaning_freq" = 'semanal' THEN COALESCE(r."Management_fee_weekly", 0) / 100 
       WHEN b."Cleaning_freq" = 'quincenal' THEN COALESCE(r."Management_fee_biweekly", 0) / 100 
       WHEN b."Cleaning_freq" = 'mensual' THEN COALESCE(r."Management_fee_monthly", 0) / 100 
-      ELSE COALESCE(r."Management_fee", 0) / 100 
+      WHEN b."Cleaning_freq" = 'sin' THEN COALESCE(r."Management_fee", 0) / 100
+      ELSE COALESCE(r."Management_fee_biweekly", 0) / 100
     END, 4
   ) AS "amount",
   0 AS "rate",
