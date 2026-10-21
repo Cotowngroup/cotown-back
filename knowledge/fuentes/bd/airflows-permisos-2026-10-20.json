@@ -1,0 +1,8684 @@
+{
+ "Role": [
+  {
+   "id": 400,
+   "name": "external",
+   "documentation": null,
+   "search": "external ",
+   "oid": null,
+   "timestamp": "2025-07-21 14:36:00.835844",
+   "defaultEntity": 502,
+   "disableReferenceWidgetButtons": true,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 403,
+   "name": "AiaViewer",
+   "documentation": "Full IA access (same as aia) without AI Assistance menu entry",
+   "search": "AiaViewer Full IA access (same as aia) without AI Assistance menu entry",
+   "oid": 1555274,
+   "timestamp": "2026-09-02 20:21:36.129745",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 404,
+   "name": "WorkflowsEmbed",
+   "documentation": "Full Workflows access (same as Workflows, can launch instances) without Workflows menu entry",
+   "search": "WorkflowsEmbed Full Workflows access (same as Workflows, can launch instances) without Workflows menu entry",
+   "oid": 1555275,
+   "timestamp": "2026-09-02 20:21:36.129745",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 401,
+   "name": "aia",
+   "documentation": "Rol nativo para gestión de acceso IA",
+   "search": "aia Rol nativo para gestión de acceso IA",
+   "oid": 1423029,
+   "timestamp": "2025-10-01 00:00:00",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": true
+  },
+  {
+   "id": 402,
+   "name": "Workflows",
+   "documentation": "Rol nativo para gestión de acceso a Workflows",
+   "search": "Workflows Rol nativo para gestión de acceso a Workflows",
+   "oid": 1423030,
+   "timestamp": "2025-10-01 00:00:00",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": true
+  },
+  {
+   "id": 405,
+   "name": "Developer",
+   "documentation": "Rol de etiqueta UI: admin sin acceso al menú de Configuración",
+   "search": "Developer Rol de etiqueta UI: admin sin acceso al menú de Configuración",
+   "oid": 1555287,
+   "timestamp": "2026-09-02 20:21:36.350089",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": true
+  },
+  {
+   "id": 300,
+   "name": "customer",
+   "documentation": null,
+   "search": "customer ",
+   "oid": 16435,
+   "timestamp": "2023-07-27 18:40:47.821131",
+   "defaultEntity": 104,
+   "disableReferenceWidgetButtons": true,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 200,
+   "name": "provider",
+   "documentation": null,
+   "search": "provider ",
+   "oid": 16439,
+   "timestamp": "2023-07-27 18:41:33.839999",
+   "defaultEntity": 502,
+   "disableReferenceWidgetButtons": true,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 100,
+   "name": "cotown",
+   "documentation": null,
+   "search": "cotown ",
+   "oid": 16434,
+   "timestamp": "2023-07-27 18:40:11.247451",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 101,
+   "name": "administrators",
+   "documentation": null,
+   "search": "administrators ",
+   "oid": 16430,
+   "timestamp": "2023-07-27 18:40:11.247451",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 102,
+   "name": "bookings",
+   "documentation": null,
+   "search": "bookings ",
+   "oid": 16433,
+   "timestamp": "2023-07-27 18:40:11.247451",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 103,
+   "name": "marketing",
+   "documentation": null,
+   "search": "marketing ",
+   "oid": 16436,
+   "timestamp": "2023-07-27 18:40:11.247451",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 104,
+   "name": "operations",
+   "documentation": null,
+   "search": "operations ",
+   "oid": 16438,
+   "timestamp": "2023-07-27 18:40:11.247451",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 105,
+   "name": "billing",
+   "documentation": null,
+   "search": "billing ",
+   "oid": 16432,
+   "timestamp": "2023-07-27 18:40:11.247451",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 106,
+   "name": "vandor",
+   "documentation": null,
+   "search": "vandor ",
+   "oid": 1223680,
+   "timestamp": "2025-04-30 13:17:57.552537",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  },
+  {
+   "id": 1,
+   "name": "admin",
+   "documentation": null,
+   "search": "admin ",
+   "oid": 16429,
+   "timestamp": "2023-03-02 12:56:46.893422",
+   "defaultEntity": null,
+   "disableReferenceWidgetButtons": false,
+   "defaultExternalEntity": null,
+   "protected": false
+  }
+ ],
+ "EntityPermission": [
+  {
+   "id": 300820,
+   "role": 102,
+   "entity": 601,
+   "types": "{DELETE,SELECT,INSERT,MENU,UPDATE}",
+   "timestamp": "2025-04-29 18:46:44.159941"
+  },
+  {
+   "id": 300104,
+   "role": 300,
+   "entity": 104,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300105,
+   "role": 300,
+   "entity": 105,
+   "types": "{SELECT,INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 200109,
+   "role": 200,
+   "entity": 109,
+   "types": "{SELECT}",
+   "timestamp": "2023-12-02 18:07:07.089539"
+  },
+  {
+   "id": 300108,
+   "role": 300,
+   "entity": 108,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 400101,
+   "role": 400,
+   "entity": 101,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400102,
+   "role": 400,
+   "entity": 102,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 300110,
+   "role": 300,
+   "entity": 110,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300112,
+   "role": 300,
+   "entity": 112,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300201,
+   "role": 300,
+   "entity": 201,
+   "types": "{SELECT,UPDATE,MENU}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300202,
+   "role": 300,
+   "entity": 202,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 200114,
+   "role": 200,
+   "entity": 114,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-09 15:33:12.825308"
+  },
+  {
+   "id": 300206,
+   "role": 300,
+   "entity": 206,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 400103,
+   "role": 400,
+   "entity": 103,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400104,
+   "role": 400,
+   "entity": 104,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400105,
+   "role": 400,
+   "entity": 105,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400106,
+   "role": 400,
+   "entity": 106,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400107,
+   "role": 400,
+   "entity": 107,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400108,
+   "role": 400,
+   "entity": 108,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400109,
+   "role": 400,
+   "entity": 109,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400110,
+   "role": 400,
+   "entity": 110,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 300207,
+   "role": 300,
+   "entity": 207,
+   "types": "{SELECT}",
+   "timestamp": "2026-06-26 07:51:41.167900"
+  },
+  {
+   "id": 400111,
+   "role": 400,
+   "entity": 111,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400112,
+   "role": 400,
+   "entity": 112,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400113,
+   "role": 400,
+   "entity": 113,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400114,
+   "role": 400,
+   "entity": 114,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400115,
+   "role": 400,
+   "entity": 115,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400201,
+   "role": 400,
+   "entity": 201,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 300301,
+   "role": 300,
+   "entity": 301,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300302,
+   "role": 300,
+   "entity": 302,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300303,
+   "role": 300,
+   "entity": 303,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300304,
+   "role": 300,
+   "entity": 304,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300309,
+   "role": 300,
+   "entity": 309,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300311,
+   "role": 300,
+   "entity": 311,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300312,
+   "role": 300,
+   "entity": 312,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300404,
+   "role": 300,
+   "entity": 404,
+   "types": "{SELECT}",
+   "timestamp": "2025-05-15 10:46:45.190226"
+  },
+  {
+   "id": 300502,
+   "role": 300,
+   "entity": 502,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300503,
+   "role": 300,
+   "entity": 503,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300504,
+   "role": 300,
+   "entity": 504,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300505,
+   "role": 300,
+   "entity": 505,
+   "types": "{SELECT,UPDATE,INSERT,DELETE,EXPORT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 200201,
+   "role": 200,
+   "entity": 201,
+   "types": "{SELECT}",
+   "timestamp": "2023-12-02 17:49:51.512075"
+  },
+  {
+   "id": 400202,
+   "role": 400,
+   "entity": 202,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400203,
+   "role": 400,
+   "entity": 203,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400204,
+   "role": 400,
+   "entity": 204,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400205,
+   "role": 400,
+   "entity": 205,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400206,
+   "role": 400,
+   "entity": 206,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400210,
+   "role": 400,
+   "entity": 210,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400301,
+   "role": 400,
+   "entity": 301,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400302,
+   "role": 400,
+   "entity": 302,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400303,
+   "role": 400,
+   "entity": 303,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400304,
+   "role": 400,
+   "entity": 304,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400305,
+   "role": 400,
+   "entity": 305,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400306,
+   "role": 400,
+   "entity": 306,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400307,
+   "role": 400,
+   "entity": 307,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400308,
+   "role": 400,
+   "entity": 308,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400401,
+   "role": 400,
+   "entity": 401,
+   "types": "{SELECT}",
+   "timestamp": "2026-01-15 10:53:24.218906"
+  },
+  {
+   "id": 400405,
+   "role": 400,
+   "entity": 405,
+   "types": "{SELECT}",
+   "timestamp": "2026-01-15 10:53:24.218906"
+  },
+  {
+   "id": 200202,
+   "role": 200,
+   "entity": 202,
+   "types": "{SELECT}",
+   "timestamp": "2023-12-02 17:49:51.512075"
+  },
+  {
+   "id": 200206,
+   "role": 200,
+   "entity": 206,
+   "types": "{SELECT}",
+   "timestamp": "2023-11-15 10:07:58.929823"
+  },
+  {
+   "id": 200301,
+   "role": 200,
+   "entity": 301,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200302,
+   "role": 200,
+   "entity": 302,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200303,
+   "role": 200,
+   "entity": 303,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200304,
+   "role": 200,
+   "entity": 304,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200305,
+   "role": 200,
+   "entity": 305,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200307,
+   "role": 200,
+   "entity": 307,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200309,
+   "role": 200,
+   "entity": 309,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200310,
+   "role": 200,
+   "entity": 310,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200311,
+   "role": 200,
+   "entity": 311,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200312,
+   "role": 200,
+   "entity": 312,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200313,
+   "role": 200,
+   "entity": 313,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200314,
+   "role": 200,
+   "entity": 314,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200404,
+   "role": 200,
+   "entity": 404,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-09 15:33:12.825308"
+  },
+  {
+   "id": 400322,
+   "role": 400,
+   "entity": 322,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400323,
+   "role": 400,
+   "entity": 323,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400324,
+   "role": 400,
+   "entity": 324,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400325,
+   "role": 400,
+   "entity": 325,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400326,
+   "role": 400,
+   "entity": 326,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400327,
+   "role": 400,
+   "entity": 327,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400328,
+   "role": 400,
+   "entity": 328,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400329,
+   "role": 400,
+   "entity": 329,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400330,
+   "role": 400,
+   "entity": 330,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400404,
+   "role": 400,
+   "entity": 404,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400501,
+   "role": 400,
+   "entity": 501,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400502,
+   "role": 400,
+   "entity": 502,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400503,
+   "role": 400,
+   "entity": 503,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400504,
+   "role": 400,
+   "entity": 504,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400505,
+   "role": 400,
+   "entity": 505,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400506,
+   "role": 400,
+   "entity": 506,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400507,
+   "role": 400,
+   "entity": 507,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400508,
+   "role": 400,
+   "entity": 508,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400509,
+   "role": 400,
+   "entity": 509,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400510,
+   "role": 400,
+   "entity": 510,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400309,
+   "role": 400,
+   "entity": 309,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400310,
+   "role": 400,
+   "entity": 310,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400311,
+   "role": 400,
+   "entity": 311,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400312,
+   "role": 400,
+   "entity": 312,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400313,
+   "role": 400,
+   "entity": 313,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400314,
+   "role": 400,
+   "entity": 314,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400315,
+   "role": 400,
+   "entity": 315,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400316,
+   "role": 400,
+   "entity": 316,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400317,
+   "role": 400,
+   "entity": 317,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400318,
+   "role": 400,
+   "entity": 318,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400319,
+   "role": 400,
+   "entity": 319,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400511,
+   "role": 400,
+   "entity": 511,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400512,
+   "role": 400,
+   "entity": 512,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400513,
+   "role": 400,
+   "entity": 513,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400514,
+   "role": 400,
+   "entity": 514,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400515,
+   "role": 400,
+   "entity": 515,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400516,
+   "role": 400,
+   "entity": 516,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400320,
+   "role": 400,
+   "entity": 320,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 300507,
+   "role": 300,
+   "entity": 507,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 400517,
+   "role": 400,
+   "entity": 517,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400518,
+   "role": 400,
+   "entity": 518,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 200513,
+   "role": 200,
+   "entity": 513,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-16 19:13:36.079805"
+  },
+  {
+   "id": 300509,
+   "role": 300,
+   "entity": 509,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300511,
+   "role": 300,
+   "entity": 511,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300512,
+   "role": 300,
+   "entity": 512,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300513,
+   "role": 300,
+   "entity": 513,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300514,
+   "role": 300,
+   "entity": 514,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300552,
+   "role": 300,
+   "entity": 552,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300553,
+   "role": 300,
+   "entity": 553,
+   "types": "{SELECT,UPDATE}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 200514,
+   "role": 200,
+   "entity": 514,
+   "types": "{SELECT}",
+   "timestamp": "2023-11-11 12:40:05.788279"
+  },
+  {
+   "id": 300554,
+   "role": 300,
+   "entity": 554,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 200560,
+   "role": 200,
+   "entity": 560,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-09 15:33:12.825308"
+  },
+  {
+   "id": 300601,
+   "role": 300,
+   "entity": 601,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300602,
+   "role": 300,
+   "entity": 602,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300603,
+   "role": 300,
+   "entity": 603,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 400321,
+   "role": 400,
+   "entity": 321,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 200807,
+   "role": 200,
+   "entity": 807,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200808,
+   "role": 200,
+   "entity": 808,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 300604,
+   "role": 300,
+   "entity": 604,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300605,
+   "role": 300,
+   "entity": 605,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300607,
+   "role": 300,
+   "entity": 607,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300608,
+   "role": 300,
+   "entity": 608,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300801,
+   "role": 300,
+   "entity": 801,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300802,
+   "role": 300,
+   "entity": 802,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300804,
+   "role": 300,
+   "entity": 804,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300805,
+   "role": 300,
+   "entity": 805,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300807,
+   "role": 300,
+   "entity": 807,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300808,
+   "role": 300,
+   "entity": 808,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 300814,
+   "role": 300,
+   "entity": 814,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:53:26.028116"
+  },
+  {
+   "id": 300815,
+   "role": 300,
+   "entity": 815,
+   "types": "{SELECT}",
+   "timestamp": "2024-01-19 16:53:26.028116"
+  },
+  {
+   "id": 300515,
+   "role": 300,
+   "entity": 515,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-09 15:28:17.505864"
+  },
+  {
+   "id": 300517,
+   "role": 300,
+   "entity": 517,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-09 15:28:17.505864"
+  },
+  {
+   "id": 300516,
+   "role": 300,
+   "entity": 516,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-09 15:28:17.505864"
+  },
+  {
+   "id": 300519,
+   "role": 300,
+   "entity": 519,
+   "types": "{SELECT,INSERT}",
+   "timestamp": "2026-09-09 15:28:17.505864"
+  },
+  {
+   "id": 400520,
+   "role": 400,
+   "entity": 520,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400552,
+   "role": 400,
+   "entity": 552,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400554,
+   "role": 400,
+   "entity": 554,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400555,
+   "role": 400,
+   "entity": 555,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400561,
+   "role": 400,
+   "entity": 561,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400562,
+   "role": 400,
+   "entity": 562,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400563,
+   "role": 400,
+   "entity": 563,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400564,
+   "role": 400,
+   "entity": 564,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400601,
+   "role": 400,
+   "entity": 601,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400602,
+   "role": 400,
+   "entity": 602,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400603,
+   "role": 400,
+   "entity": 603,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400604,
+   "role": 400,
+   "entity": 604,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400605,
+   "role": 400,
+   "entity": 605,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400606,
+   "role": 400,
+   "entity": 606,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400607,
+   "role": 400,
+   "entity": 607,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400608,
+   "role": 400,
+   "entity": 608,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400801,
+   "role": 400,
+   "entity": 801,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400802,
+   "role": 400,
+   "entity": 802,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400803,
+   "role": 400,
+   "entity": 803,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400804,
+   "role": 400,
+   "entity": 804,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400805,
+   "role": 400,
+   "entity": 805,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400806,
+   "role": 400,
+   "entity": 806,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400807,
+   "role": 400,
+   "entity": 807,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400808,
+   "role": 400,
+   "entity": 808,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400809,
+   "role": 400,
+   "entity": 809,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400810,
+   "role": 400,
+   "entity": 810,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400811,
+   "role": 400,
+   "entity": 811,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400812,
+   "role": 400,
+   "entity": 812,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400813,
+   "role": 400,
+   "entity": 813,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400814,
+   "role": 400,
+   "entity": 814,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400815,
+   "role": 400,
+   "entity": 815,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400816,
+   "role": 400,
+   "entity": 816,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400817,
+   "role": 400,
+   "entity": 817,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400818,
+   "role": 400,
+   "entity": 818,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400901,
+   "role": 400,
+   "entity": 901,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400902,
+   "role": 400,
+   "entity": 902,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 400903,
+   "role": 400,
+   "entity": 903,
+   "types": "{SELECT}",
+   "timestamp": "2025-07-22 10:02:13.821692"
+  },
+  {
+   "id": 200101,
+   "role": 200,
+   "entity": 101,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200102,
+   "role": 200,
+   "entity": 102,
+   "types": "{SELECT,INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200103,
+   "role": 200,
+   "entity": 103,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200104,
+   "role": 200,
+   "entity": 104,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200108,
+   "role": 200,
+   "entity": 108,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200111,
+   "role": 200,
+   "entity": 111,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200113,
+   "role": 200,
+   "entity": 113,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200203,
+   "role": 200,
+   "entity": 203,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200204,
+   "role": 200,
+   "entity": 204,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200205,
+   "role": 200,
+   "entity": 205,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200207,
+   "role": 200,
+   "entity": 207,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839000"
+  },
+  {
+   "id": 200329,
+   "role": 200,
+   "entity": 329,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-29 15:28:00.174942"
+  },
+  {
+   "id": 200561,
+   "role": 200,
+   "entity": 561,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-29 15:31:34.422470"
+  },
+  {
+   "id": 200816,
+   "role": 200,
+   "entity": 816,
+   "types": "{SELECT}",
+   "timestamp": "2026-09-29 15:33:16.326217"
+  },
+  {
+   "id": 100310,
+   "role": 100,
+   "entity": 310,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100311,
+   "role": 100,
+   "entity": 311,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100312,
+   "role": 100,
+   "entity": 312,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100313,
+   "role": 100,
+   "entity": 313,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100314,
+   "role": 100,
+   "entity": 314,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100316,
+   "role": 100,
+   "entity": 316,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100319,
+   "role": 100,
+   "entity": 319,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100320,
+   "role": 100,
+   "entity": 320,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100321,
+   "role": 100,
+   "entity": 321,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100322,
+   "role": 100,
+   "entity": 322,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100323,
+   "role": 100,
+   "entity": 323,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100324,
+   "role": 100,
+   "entity": 324,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-06-02 19:16:29.924086"
+  },
+  {
+   "id": 100325,
+   "role": 100,
+   "entity": 325,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100326,
+   "role": 100,
+   "entity": 326,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100327,
+   "role": 100,
+   "entity": 327,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100328,
+   "role": 100,
+   "entity": 328,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-11-09 12:24:26.664829"
+  },
+  {
+   "id": 100329,
+   "role": 100,
+   "entity": 329,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-08-19 17:04:52.144869"
+  },
+  {
+   "id": 100330,
+   "role": 100,
+   "entity": 330,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-06-19 16:03:45.901985"
+  },
+  {
+   "id": 100331,
+   "role": 100,
+   "entity": 331,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-06-19 16:03:45.901985"
+  },
+  {
+   "id": 100332,
+   "role": 100,
+   "entity": 332,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 100333,
+   "role": 100,
+   "entity": 333,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 100334,
+   "role": 100,
+   "entity": 334,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 100341,
+   "role": 100,
+   "entity": 341,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 100401,
+   "role": 100,
+   "entity": 401,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100402,
+   "role": 100,
+   "entity": 402,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100404,
+   "role": 100,
+   "entity": 404,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100405,
+   "role": 100,
+   "entity": 405,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-09-01 09:25:19.545761"
+  },
+  {
+   "id": 100406,
+   "role": 100,
+   "entity": 406,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-09-01 09:25:19.545761"
+  },
+  {
+   "id": 100501,
+   "role": 100,
+   "entity": 501,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100502,
+   "role": 100,
+   "entity": 502,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100503,
+   "role": 100,
+   "entity": 503,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100504,
+   "role": 100,
+   "entity": 504,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100505,
+   "role": 100,
+   "entity": 505,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100506,
+   "role": 100,
+   "entity": 506,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-05-30 11:14:38.642885"
+  },
+  {
+   "id": 100508,
+   "role": 100,
+   "entity": 508,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100509,
+   "role": 100,
+   "entity": 509,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100510,
+   "role": 100,
+   "entity": 510,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-01-25 17:08:32.383691"
+  },
+  {
+   "id": 100511,
+   "role": 100,
+   "entity": 511,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100512,
+   "role": 100,
+   "entity": 512,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100513,
+   "role": 100,
+   "entity": 513,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-01-14 15:14:09.249958"
+  },
+  {
+   "id": 100514,
+   "role": 100,
+   "entity": 514,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-08-30 16:45:49.315960"
+  },
+  {
+   "id": 100515,
+   "role": 100,
+   "entity": 515,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-11-30 09:07:04.312397"
+  },
+  {
+   "id": 100516,
+   "role": 100,
+   "entity": 516,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-01-14 15:14:09.249958"
+  },
+  {
+   "id": 100517,
+   "role": 100,
+   "entity": 517,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-01-14 15:14:09.249958"
+  },
+  {
+   "id": 100518,
+   "role": 100,
+   "entity": 518,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-02-07 09:47:22.961447"
+  },
+  {
+   "id": 100519,
+   "role": 100,
+   "entity": 519,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-04-30 14:40:04.982615"
+  },
+  {
+   "id": 100520,
+   "role": 100,
+   "entity": 520,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100521,
+   "role": 100,
+   "entity": 521,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 100522,
+   "role": 100,
+   "entity": 522,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 100552,
+   "role": 100,
+   "entity": 552,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 100558,
+   "role": 100,
+   "entity": 558,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 100606,
+   "role": 100,
+   "entity": 606,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100607,
+   "role": 100,
+   "entity": 607,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100608,
+   "role": 100,
+   "entity": 608,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100708,
+   "role": 100,
+   "entity": 708,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100709,
+   "role": 100,
+   "entity": 709,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100710,
+   "role": 100,
+   "entity": 710,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100711,
+   "role": 100,
+   "entity": 711,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100712,
+   "role": 100,
+   "entity": 712,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 200322,
+   "role": 200,
+   "entity": 322,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200326,
+   "role": 200,
+   "entity": 326,
+   "types": "{SELECT}",
+   "timestamp": "2023-11-11 12:29:57.479335"
+  },
+  {
+   "id": 200401,
+   "role": 200,
+   "entity": 401,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200402,
+   "role": 200,
+   "entity": 402,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200502,
+   "role": 200,
+   "entity": 502,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200503,
+   "role": 200,
+   "entity": 503,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200504,
+   "role": 200,
+   "entity": 504,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200507,
+   "role": 200,
+   "entity": 507,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200508,
+   "role": 200,
+   "entity": 508,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200509,
+   "role": 200,
+   "entity": 509,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200511,
+   "role": 200,
+   "entity": 511,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200552,
+   "role": 200,
+   "entity": 552,
+   "types": "{SELECT}",
+   "timestamp": "2023-10-31 18:18:08.911931"
+  },
+  {
+   "id": 200553,
+   "role": 200,
+   "entity": 553,
+   "types": "{SELECT}",
+   "timestamp": "2023-10-31 18:18:08.911931"
+  },
+  {
+   "id": 200554,
+   "role": 200,
+   "entity": 554,
+   "types": "{SELECT}",
+   "timestamp": "2023-10-31 18:18:08.911931"
+  },
+  {
+   "id": 200601,
+   "role": 200,
+   "entity": 601,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200602,
+   "role": 200,
+   "entity": 602,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200603,
+   "role": 200,
+   "entity": 603,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200604,
+   "role": 200,
+   "entity": 604,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200605,
+   "role": 200,
+   "entity": 605,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200606,
+   "role": 200,
+   "entity": 606,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200607,
+   "role": 200,
+   "entity": 607,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200608,
+   "role": 200,
+   "entity": 608,
+   "types": "{SELECT,MENU}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200801,
+   "role": 200,
+   "entity": 801,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200802,
+   "role": 200,
+   "entity": 802,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200804,
+   "role": 200,
+   "entity": 804,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200805,
+   "role": 200,
+   "entity": 805,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200806,
+   "role": 200,
+   "entity": 806,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 100113,
+   "role": 100,
+   "entity": 113,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100114,
+   "role": 100,
+   "entity": 114,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 100115,
+   "role": 100,
+   "entity": 115,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-01-07 16:05:56.631487"
+  },
+  {
+   "id": 100201,
+   "role": 100,
+   "entity": 201,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100202,
+   "role": 100,
+   "entity": 202,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100203,
+   "role": 100,
+   "entity": 203,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100204,
+   "role": 100,
+   "entity": 204,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100205,
+   "role": 100,
+   "entity": 205,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100206,
+   "role": 100,
+   "entity": 206,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-11-15 10:07:21.356868"
+  },
+  {
+   "id": 100207,
+   "role": 100,
+   "entity": 207,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 100210,
+   "role": 100,
+   "entity": 210,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100301,
+   "role": 100,
+   "entity": 301,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100302,
+   "role": 100,
+   "entity": 302,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100303,
+   "role": 100,
+   "entity": 303,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100304,
+   "role": 100,
+   "entity": 304,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100305,
+   "role": 100,
+   "entity": 305,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100306,
+   "role": 100,
+   "entity": 306,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100307,
+   "role": 100,
+   "entity": 307,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 200315,
+   "role": 200,
+   "entity": 315,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200317,
+   "role": 200,
+   "entity": 317,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200318,
+   "role": 200,
+   "entity": 318,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200319,
+   "role": 200,
+   "entity": 319,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200320,
+   "role": 200,
+   "entity": 320,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200321,
+   "role": 200,
+   "entity": 321,
+   "types": "{SELECT}",
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 100308,
+   "role": 100,
+   "entity": 308,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100309,
+   "role": 100,
+   "entity": 309,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100713,
+   "role": 100,
+   "entity": 713,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100720,
+   "role": 100,
+   "entity": 720,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100721,
+   "role": 100,
+   "entity": 721,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100722,
+   "role": 100,
+   "entity": 722,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100507,
+   "role": 100,
+   "entity": 507,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100701,
+   "role": 100,
+   "entity": 701,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100702,
+   "role": 100,
+   "entity": 702,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100703,
+   "role": 100,
+   "entity": 703,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100704,
+   "role": 100,
+   "entity": 704,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100705,
+   "role": 100,
+   "entity": 705,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100706,
+   "role": 100,
+   "entity": 706,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100707,
+   "role": 100,
+   "entity": 707,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100723,
+   "role": 100,
+   "entity": 723,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100724,
+   "role": 100,
+   "entity": 724,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100725,
+   "role": 100,
+   "entity": 725,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100726,
+   "role": 100,
+   "entity": 726,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100727,
+   "role": 100,
+   "entity": 727,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 100728,
+   "role": 100,
+   "entity": 728,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-02-19 16:04:39.153598"
+  },
+  {
+   "id": 100729,
+   "role": 100,
+   "entity": 729,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 100730,
+   "role": 100,
+   "entity": 730,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100801,
+   "role": 100,
+   "entity": 801,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100802,
+   "role": 100,
+   "entity": 802,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100803,
+   "role": 100,
+   "entity": 803,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-07-25 15:29:09.349950"
+  },
+  {
+   "id": 100804,
+   "role": 100,
+   "entity": 804,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100805,
+   "role": 100,
+   "entity": 805,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100317,
+   "role": 100,
+   "entity": 317,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100318,
+   "role": 100,
+   "entity": 318,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100340,
+   "role": 100,
+   "entity": 340,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 100553,
+   "role": 100,
+   "entity": 553,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 100554,
+   "role": 100,
+   "entity": 554,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 100555,
+   "role": 100,
+   "entity": 555,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100556,
+   "role": 100,
+   "entity": 556,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100557,
+   "role": 100,
+   "entity": 557,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 100560,
+   "role": 100,
+   "entity": 560,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100561,
+   "role": 100,
+   "entity": 561,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100562,
+   "role": 100,
+   "entity": 562,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100563,
+   "role": 100,
+   "entity": 563,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100564,
+   "role": 100,
+   "entity": 564,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100601,
+   "role": 100,
+   "entity": 601,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100602,
+   "role": 100,
+   "entity": 602,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100603,
+   "role": 100,
+   "entity": 603,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100604,
+   "role": 100,
+   "entity": 604,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100605,
+   "role": 100,
+   "entity": 605,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100806,
+   "role": 100,
+   "entity": 806,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100807,
+   "role": 100,
+   "entity": 807,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100808,
+   "role": 100,
+   "entity": 808,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100809,
+   "role": 100,
+   "entity": 809,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100810,
+   "role": 100,
+   "entity": 810,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100811,
+   "role": 100,
+   "entity": 811,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100812,
+   "role": 100,
+   "entity": 812,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100813,
+   "role": 100,
+   "entity": 813,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 100814,
+   "role": 100,
+   "entity": 814,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-11-30 09:07:04.312397"
+  },
+  {
+   "id": 100815,
+   "role": 100,
+   "entity": 815,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-11-30 09:07:04.312397"
+  },
+  {
+   "id": 100816,
+   "role": 100,
+   "entity": 816,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100817,
+   "role": 100,
+   "entity": 817,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 100818,
+   "role": 100,
+   "entity": 818,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2025-01-21 12:35:14.055765"
+  },
+  {
+   "id": 100819,
+   "role": 100,
+   "entity": 819,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-09-09 15:20:57.886620"
+  },
+  {
+   "id": 100901,
+   "role": 100,
+   "entity": 901,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100902,
+   "role": 100,
+   "entity": 902,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100903,
+   "role": 100,
+   "entity": 903,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100904,
+   "role": 100,
+   "entity": 904,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 101101,
+   "role": 101,
+   "entity": 101,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101102,
+   "role": 101,
+   "entity": 102,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101103,
+   "role": 101,
+   "entity": 103,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101104,
+   "role": 101,
+   "entity": 104,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101105,
+   "role": 101,
+   "entity": 105,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101108,
+   "role": 101,
+   "entity": 108,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101109,
+   "role": 101,
+   "entity": 109,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101110,
+   "role": 101,
+   "entity": 110,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101111,
+   "role": 101,
+   "entity": 111,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101112,
+   "role": 101,
+   "entity": 112,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101113,
+   "role": 101,
+   "entity": 113,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101114,
+   "role": 101,
+   "entity": 114,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 101115,
+   "role": 101,
+   "entity": 115,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-01-07 16:05:56.631487"
+  },
+  {
+   "id": 101201,
+   "role": 101,
+   "entity": 201,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101202,
+   "role": 101,
+   "entity": 202,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101203,
+   "role": 101,
+   "entity": 203,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101204,
+   "role": 101,
+   "entity": 204,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101205,
+   "role": 101,
+   "entity": 205,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101206,
+   "role": 101,
+   "entity": 206,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-11-15 10:07:21.356868"
+  },
+  {
+   "id": 101210,
+   "role": 101,
+   "entity": 210,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101301,
+   "role": 101,
+   "entity": 301,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101302,
+   "role": 101,
+   "entity": 302,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101303,
+   "role": 101,
+   "entity": 303,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101304,
+   "role": 101,
+   "entity": 304,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101305,
+   "role": 101,
+   "entity": 305,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101306,
+   "role": 101,
+   "entity": 306,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101307,
+   "role": 101,
+   "entity": 307,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101308,
+   "role": 101,
+   "entity": 308,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101309,
+   "role": 101,
+   "entity": 309,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101310,
+   "role": 101,
+   "entity": 310,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101311,
+   "role": 101,
+   "entity": 311,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101312,
+   "role": 101,
+   "entity": 312,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101313,
+   "role": 101,
+   "entity": 313,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101314,
+   "role": 101,
+   "entity": 314,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101315,
+   "role": 101,
+   "entity": 315,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101316,
+   "role": 101,
+   "entity": 316,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101317,
+   "role": 101,
+   "entity": 317,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101318,
+   "role": 101,
+   "entity": 318,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101319,
+   "role": 101,
+   "entity": 319,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101320,
+   "role": 101,
+   "entity": 320,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101321,
+   "role": 101,
+   "entity": 321,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101322,
+   "role": 101,
+   "entity": 322,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101323,
+   "role": 101,
+   "entity": 323,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101324,
+   "role": 101,
+   "entity": 324,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-06-12 11:49:19.955100"
+  },
+  {
+   "id": 101326,
+   "role": 101,
+   "entity": 326,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101327,
+   "role": 101,
+   "entity": 327,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101328,
+   "role": 101,
+   "entity": 328,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-11-09 12:24:26.664829"
+  },
+  {
+   "id": 101329,
+   "role": 101,
+   "entity": 329,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-08-19 17:04:52.144869"
+  },
+  {
+   "id": 101330,
+   "role": 101,
+   "entity": 330,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-06-19 16:03:45.901985"
+  },
+  {
+   "id": 101331,
+   "role": 101,
+   "entity": 331,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-06-19 16:03:45.901985"
+  },
+  {
+   "id": 101332,
+   "role": 101,
+   "entity": 332,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 101333,
+   "role": 101,
+   "entity": 333,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 101334,
+   "role": 101,
+   "entity": 334,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 101340,
+   "role": 101,
+   "entity": 340,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 101341,
+   "role": 101,
+   "entity": 341,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 101401,
+   "role": 101,
+   "entity": 401,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101402,
+   "role": 101,
+   "entity": 402,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101404,
+   "role": 101,
+   "entity": 404,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-05-02 18:17:22.358559"
+  },
+  {
+   "id": 101405,
+   "role": 101,
+   "entity": 405,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-09-01 09:25:19.545761"
+  },
+  {
+   "id": 101406,
+   "role": 101,
+   "entity": 406,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-09-01 09:25:19.545761"
+  },
+  {
+   "id": 101503,
+   "role": 101,
+   "entity": 503,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101325,
+   "role": 101,
+   "entity": 325,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101504,
+   "role": 101,
+   "entity": 504,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101505,
+   "role": 101,
+   "entity": 505,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101506,
+   "role": 101,
+   "entity": 506,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-05-30 11:14:38.642885"
+  },
+  {
+   "id": 101507,
+   "role": 101,
+   "entity": 507,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101508,
+   "role": 101,
+   "entity": 508,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101509,
+   "role": 101,
+   "entity": 509,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101510,
+   "role": 101,
+   "entity": 510,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-01-31 17:15:02.807552"
+  },
+  {
+   "id": 101511,
+   "role": 101,
+   "entity": 511,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101512,
+   "role": 101,
+   "entity": 512,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101520,
+   "role": 101,
+   "entity": 520,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101521,
+   "role": 101,
+   "entity": 521,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 101522,
+   "role": 101,
+   "entity": 522,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 101552,
+   "role": 101,
+   "entity": 552,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 101553,
+   "role": 101,
+   "entity": 553,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 101555,
+   "role": 101,
+   "entity": 555,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 101556,
+   "role": 101,
+   "entity": 556,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 101557,
+   "role": 101,
+   "entity": 557,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 101608,
+   "role": 101,
+   "entity": 608,
+   "types": "{UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101701,
+   "role": 101,
+   "entity": 701,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101702,
+   "role": 101,
+   "entity": 702,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101703,
+   "role": 101,
+   "entity": 703,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101704,
+   "role": 101,
+   "entity": 704,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101706,
+   "role": 101,
+   "entity": 706,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101707,
+   "role": 101,
+   "entity": 707,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101708,
+   "role": 101,
+   "entity": 708,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101709,
+   "role": 101,
+   "entity": 709,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101710,
+   "role": 101,
+   "entity": 710,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101712,
+   "role": 101,
+   "entity": 712,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101713,
+   "role": 101,
+   "entity": 713,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101720,
+   "role": 101,
+   "entity": 720,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101721,
+   "role": 101,
+   "entity": 721,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101722,
+   "role": 101,
+   "entity": 722,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101723,
+   "role": 101,
+   "entity": 723,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101724,
+   "role": 101,
+   "entity": 724,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101725,
+   "role": 101,
+   "entity": 725,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101726,
+   "role": 101,
+   "entity": 726,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101727,
+   "role": 101,
+   "entity": 727,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101728,
+   "role": 101,
+   "entity": 728,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-02-19 16:04:39.153598"
+  },
+  {
+   "id": 101730,
+   "role": 101,
+   "entity": 730,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 101801,
+   "role": 101,
+   "entity": 801,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101802,
+   "role": 101,
+   "entity": 802,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101803,
+   "role": 101,
+   "entity": 803,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2024-07-25 15:29:09.349950"
+  },
+  {
+   "id": 101804,
+   "role": 101,
+   "entity": 804,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101805,
+   "role": 101,
+   "entity": 805,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101806,
+   "role": 101,
+   "entity": 806,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101807,
+   "role": 101,
+   "entity": 807,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100101,
+   "role": 100,
+   "entity": 101,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100102,
+   "role": 100,
+   "entity": 102,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100103,
+   "role": 100,
+   "entity": 103,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100104,
+   "role": 100,
+   "entity": 104,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100105,
+   "role": 100,
+   "entity": 105,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100106,
+   "role": 100,
+   "entity": 106,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100107,
+   "role": 100,
+   "entity": 107,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100108,
+   "role": 100,
+   "entity": 108,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100109,
+   "role": 100,
+   "entity": 109,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100110,
+   "role": 100,
+   "entity": 110,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100111,
+   "role": 100,
+   "entity": 111,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100112,
+   "role": 100,
+   "entity": 112,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101808,
+   "role": 101,
+   "entity": 808,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101809,
+   "role": 101,
+   "entity": 809,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101810,
+   "role": 101,
+   "entity": 810,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101811,
+   "role": 101,
+   "entity": 811,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101812,
+   "role": 101,
+   "entity": 812,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101814,
+   "role": 101,
+   "entity": 814,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-11-30 09:07:04.312397"
+  },
+  {
+   "id": 101815,
+   "role": 101,
+   "entity": 815,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-11-30 09:07:04.312397"
+  },
+  {
+   "id": 101817,
+   "role": 101,
+   "entity": 817,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 101818,
+   "role": 101,
+   "entity": 818,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-01-31 11:02:41.545112"
+  },
+  {
+   "id": 101819,
+   "role": 101,
+   "entity": 819,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2026-09-09 15:20:57.886620"
+  },
+  {
+   "id": 101901,
+   "role": 101,
+   "entity": 901,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101902,
+   "role": 101,
+   "entity": 902,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102104,
+   "role": 102,
+   "entity": 104,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102105,
+   "role": 102,
+   "entity": 105,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102108,
+   "role": 102,
+   "entity": 108,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102112,
+   "role": 102,
+   "entity": 112,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102201,
+   "role": 102,
+   "entity": 201,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102210,
+   "role": 102,
+   "entity": 210,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102302,
+   "role": 102,
+   "entity": 302,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102303,
+   "role": 102,
+   "entity": 303,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102556,
+   "role": 102,
+   "entity": 556,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 102557,
+   "role": 102,
+   "entity": 557,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 102560,
+   "role": 102,
+   "entity": 560,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 102561,
+   "role": 102,
+   "entity": 561,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 102562,
+   "role": 102,
+   "entity": 562,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 102563,
+   "role": 102,
+   "entity": 563,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 102564,
+   "role": 102,
+   "entity": 564,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 102605,
+   "role": 102,
+   "entity": 605,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102606,
+   "role": 102,
+   "entity": 606,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-04-29 19:12:39.925634"
+  },
+  {
+   "id": 102608,
+   "role": 102,
+   "entity": 608,
+   "types": "{MENU,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102802,
+   "role": 102,
+   "entity": 802,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102809,
+   "role": 102,
+   "entity": 809,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 104104,
+   "role": 104,
+   "entity": 104,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100315,
+   "role": 100,
+   "entity": 315,
+   "types": "{SELECT,EXPORT}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101207,
+   "role": 101,
+   "entity": 207,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 101513,
+   "role": 101,
+   "entity": 513,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2024-01-14 15:14:09.249958"
+  },
+  {
+   "id": 101514,
+   "role": 101,
+   "entity": 514,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-08-30 16:45:49.315960"
+  },
+  {
+   "id": 101515,
+   "role": 101,
+   "entity": 515,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-11-30 09:07:04.312397"
+  },
+  {
+   "id": 101516,
+   "role": 101,
+   "entity": 516,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2024-02-07 09:47:22.961447"
+  },
+  {
+   "id": 101517,
+   "role": 101,
+   "entity": 517,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-07 09:47:22.961447"
+  },
+  {
+   "id": 101518,
+   "role": 101,
+   "entity": 518,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-02-07 09:47:22.961447"
+  },
+  {
+   "id": 101554,
+   "role": 101,
+   "entity": 554,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 101558,
+   "role": 101,
+   "entity": 558,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 101560,
+   "role": 101,
+   "entity": 560,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 101561,
+   "role": 101,
+   "entity": 561,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 101562,
+   "role": 101,
+   "entity": 562,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 101563,
+   "role": 101,
+   "entity": 563,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 101564,
+   "role": 101,
+   "entity": 564,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 101601,
+   "role": 101,
+   "entity": 601,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101602,
+   "role": 101,
+   "entity": 602,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101603,
+   "role": 101,
+   "entity": 603,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101604,
+   "role": 101,
+   "entity": 604,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101605,
+   "role": 101,
+   "entity": 605,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101606,
+   "role": 101,
+   "entity": 606,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 101607,
+   "role": 101,
+   "entity": 607,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102309,
+   "role": 102,
+   "entity": 309,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102502,
+   "role": 102,
+   "entity": 502,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102503,
+   "role": 102,
+   "entity": 503,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102504,
+   "role": 102,
+   "entity": 504,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102505,
+   "role": 102,
+   "entity": 505,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102506,
+   "role": 102,
+   "entity": 506,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-05-30 11:14:38.642885"
+  },
+  {
+   "id": 102507,
+   "role": 102,
+   "entity": 507,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102508,
+   "role": 102,
+   "entity": 508,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102509,
+   "role": 102,
+   "entity": 509,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102510,
+   "role": 102,
+   "entity": 510,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-01-31 17:15:02.807552"
+  },
+  {
+   "id": 102511,
+   "role": 102,
+   "entity": 511,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102512,
+   "role": 102,
+   "entity": 512,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102513,
+   "role": 102,
+   "entity": 513,
+   "types": "{MENU}",
+   "timestamp": "2024-01-14 15:14:09.249958"
+  },
+  {
+   "id": 102514,
+   "role": 102,
+   "entity": 514,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-08-30 16:45:49.315960"
+  },
+  {
+   "id": 102520,
+   "role": 102,
+   "entity": 520,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 102552,
+   "role": 102,
+   "entity": 552,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 102553,
+   "role": 102,
+   "entity": 553,
+   "types": "{UPDATE}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 102554,
+   "role": 102,
+   "entity": 554,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 102555,
+   "role": 102,
+   "entity": 555,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-10-02 07:55:32.321927"
+  },
+  {
+   "id": 104210,
+   "role": 104,
+   "entity": 210,
+   "types": "{INSERT}",
+   "timestamp": "2024-02-19 16:04:39.153598"
+  },
+  {
+   "id": 104303,
+   "role": 104,
+   "entity": 303,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 104309,
+   "role": 104,
+   "entity": 309,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 104317,
+   "role": 104,
+   "entity": 317,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 104318,
+   "role": 104,
+   "entity": 318,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 104502,
+   "role": 104,
+   "entity": 502,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 104506,
+   "role": 104,
+   "entity": 506,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-05-30 11:14:38.642885"
+  },
+  {
+   "id": 104507,
+   "role": 104,
+   "entity": 507,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-04-01 10:42:14.751078"
+  },
+  {
+   "id": 104516,
+   "role": 104,
+   "entity": 516,
+   "types": "{MENU}",
+   "timestamp": "2024-04-01 10:42:14.751078"
+  },
+  {
+   "id": 104552,
+   "role": 104,
+   "entity": 552,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 104553,
+   "role": 104,
+   "entity": 553,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-02-26 13:47:10.113921"
+  },
+  {
+   "id": 104901,
+   "role": 104,
+   "entity": 901,
+   "types": "{INSERT,MENU}",
+   "timestamp": "2024-04-23 15:35:33.124748"
+  },
+  {
+   "id": 101502,
+   "role": 101,
+   "entity": 502,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103104,
+   "role": 103,
+   "entity": 104,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103301,
+   "role": 103,
+   "entity": 301,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103302,
+   "role": 103,
+   "entity": 302,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103303,
+   "role": 103,
+   "entity": 303,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103304,
+   "role": 103,
+   "entity": 304,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2025-05-02 18:17:22.358559"
+  },
+  {
+   "id": 103305,
+   "role": 103,
+   "entity": 305,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2025-05-02 18:17:22.358559"
+  },
+  {
+   "id": 103306,
+   "role": 103,
+   "entity": 306,
+   "types": "{UPDATE}",
+   "timestamp": "2025-05-02 18:17:22.358559"
+  },
+  {
+   "id": 103307,
+   "role": 103,
+   "entity": 307,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2025-05-02 18:17:22.358559"
+  },
+  {
+   "id": 103308,
+   "role": 103,
+   "entity": 308,
+   "types": "{UPDATE}",
+   "timestamp": "2025-05-02 18:17:22.358559"
+  },
+  {
+   "id": 103309,
+   "role": 103,
+   "entity": 309,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103311,
+   "role": 103,
+   "entity": 311,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103312,
+   "role": 103,
+   "entity": 312,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103314,
+   "role": 103,
+   "entity": 314,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103316,
+   "role": 103,
+   "entity": 316,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103319,
+   "role": 103,
+   "entity": 319,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103322,
+   "role": 103,
+   "entity": 322,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103323,
+   "role": 103,
+   "entity": 323,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103324,
+   "role": 103,
+   "entity": 324,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-06-12 11:49:19.955100"
+  },
+  {
+   "id": 103325,
+   "role": 103,
+   "entity": 325,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103331,
+   "role": 103,
+   "entity": 331,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 103332,
+   "role": 103,
+   "entity": 332,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 103333,
+   "role": 103,
+   "entity": 333,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 103334,
+   "role": 103,
+   "entity": 334,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2026-04-19 21:11:53.021584"
+  },
+  {
+   "id": 103405,
+   "role": 103,
+   "entity": 405,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-09-01 09:25:19.545761"
+  },
+  {
+   "id": 103406,
+   "role": 103,
+   "entity": 406,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-09-01 09:25:19.545761"
+  },
+  {
+   "id": 103727,
+   "role": 103,
+   "entity": 727,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103728,
+   "role": 103,
+   "entity": 728,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2024-02-20 08:32:05.656847"
+  },
+  {
+   "id": 103730,
+   "role": 103,
+   "entity": 730,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103802,
+   "role": 103,
+   "entity": 802,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103809,
+   "role": 103,
+   "entity": 809,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 105101,
+   "role": 105,
+   "entity": 101,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 105104,
+   "role": 105,
+   "entity": 104,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 105111,
+   "role": 105,
+   "entity": 111,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-11-22 12:53:59.071133"
+  },
+  {
+   "id": 105205,
+   "role": 105,
+   "entity": 205,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 105206,
+   "role": 105,
+   "entity": 206,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 105303,
+   "role": 105,
+   "entity": 303,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 105502,
+   "role": 105,
+   "entity": 502,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 105552,
+   "role": 105,
+   "entity": 552,
+   "types": "{MENU}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 105560,
+   "role": 105,
+   "entity": 560,
+   "types": "{MENU}",
+   "timestamp": "2025-04-29 19:12:39.925634"
+  },
+  {
+   "id": 105561,
+   "role": 105,
+   "entity": 561,
+   "types": "{MENU}",
+   "timestamp": "2025-04-29 19:12:39.925634"
+  },
+  {
+   "id": 105601,
+   "role": 105,
+   "entity": 601,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-29 19:12:39.925634"
+  },
+  {
+   "id": 105602,
+   "role": 105,
+   "entity": 602,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-29 19:12:39.925634"
+  },
+  {
+   "id": 105605,
+   "role": 105,
+   "entity": 605,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 105606,
+   "role": 105,
+   "entity": 606,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 105608,
+   "role": 105,
+   "entity": 608,
+   "types": "{UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 105809,
+   "role": 105,
+   "entity": 809,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-29 19:12:39.925634"
+  },
+  {
+   "id": 105902,
+   "role": 105,
+   "entity": 902,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 106101,
+   "role": 106,
+   "entity": 101,
+   "types": "{UPDATE,MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106104,
+   "role": 106,
+   "entity": 104,
+   "types": "{INSERT,UPDATE,MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106105,
+   "role": 106,
+   "entity": 105,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-06-12 11:49:19.955100"
+  },
+  {
+   "id": 101705,
+   "role": 101,
+   "entity": 705,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-09-04 10:00:39.551906"
+  },
+  {
+   "id": 106111,
+   "role": 106,
+   "entity": 111,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106205,
+   "role": 106,
+   "entity": 205,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106206,
+   "role": 106,
+   "entity": 206,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106303,
+   "role": 106,
+   "entity": 303,
+   "types": "{MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106502,
+   "role": 106,
+   "entity": 502,
+   "types": "{MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106552,
+   "role": 106,
+   "entity": 552,
+   "types": "{MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106560,
+   "role": 106,
+   "entity": 560,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106561,
+   "role": 106,
+   "entity": 561,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-05-06 10:33:11.493146"
+  },
+  {
+   "id": 106562,
+   "role": 106,
+   "entity": 562,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-05-06 10:33:11.493146"
+  },
+  {
+   "id": 106563,
+   "role": 106,
+   "entity": 563,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-05-06 10:33:11.493146"
+  },
+  {
+   "id": 106564,
+   "role": 106,
+   "entity": 564,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-05-06 10:33:11.493146"
+  },
+  {
+   "id": 106601,
+   "role": 106,
+   "entity": 601,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106602,
+   "role": 106,
+   "entity": 602,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106605,
+   "role": 106,
+   "entity": 605,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106606,
+   "role": 106,
+   "entity": 606,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106608,
+   "role": 106,
+   "entity": 608,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106809,
+   "role": 106,
+   "entity": 809,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 106817,
+   "role": 106,
+   "entity": 817,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-05-06 10:33:11.493146"
+  },
+  {
+   "id": 106902,
+   "role": 106,
+   "entity": 902,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 103326,
+   "role": 103,
+   "entity": 326,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103327,
+   "role": 103,
+   "entity": 327,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103404,
+   "role": 103,
+   "entity": 404,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2025-05-02 18:17:22.358559"
+  },
+  {
+   "id": 103502,
+   "role": 103,
+   "entity": 502,
+   "types": "{MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103552,
+   "role": 103,
+   "entity": 552,
+   "types": "{MENU}",
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 103701,
+   "role": 103,
+   "entity": 701,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103702,
+   "role": 103,
+   "entity": 702,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103703,
+   "role": 103,
+   "entity": 703,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103704,
+   "role": 103,
+   "entity": 704,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103705,
+   "role": 103,
+   "entity": 705,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103706,
+   "role": 103,
+   "entity": 706,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103707,
+   "role": 103,
+   "entity": 707,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103708,
+   "role": 103,
+   "entity": 708,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103709,
+   "role": 103,
+   "entity": 709,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103710,
+   "role": 103,
+   "entity": 710,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103712,
+   "role": 103,
+   "entity": 712,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103713,
+   "role": 103,
+   "entity": 713,
+   "types": "{INSERT,UPDATE,DELETE,MENU}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103720,
+   "role": 103,
+   "entity": 720,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103721,
+   "role": 103,
+   "entity": 721,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103722,
+   "role": 103,
+   "entity": 722,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103723,
+   "role": 103,
+   "entity": 723,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103724,
+   "role": 103,
+   "entity": 724,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103725,
+   "role": 103,
+   "entity": 725,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 103726,
+   "role": 103,
+   "entity": 726,
+   "types": "{INSERT,UPDATE,DELETE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  }
+ ],
+ "EntityAttributePermission": [
+  {
+   "id": 10150354,
+   "role": 101,
+   "attribute": 50354,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-10-13 13:05:35.835564"
+  },
+  {
+   "id": 10250354,
+   "role": 102,
+   "attribute": 50354,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-10-13 13:05:35.835564"
+  },
+  {
+   "id": 10250355,
+   "role": 102,
+   "attribute": 50355,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-10-13 13:05:35.835564"
+  },
+  {
+   "id": 10450354,
+   "role": 104,
+   "attribute": 50354,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-10-13 13:05:35.835564"
+  },
+  {
+   "id": 10450355,
+   "role": 104,
+   "attribute": 50355,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-10-13 13:05:35.835564"
+  },
+  {
+   "id": 30050239,
+   "role": 300,
+   "attribute": 50239,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050240,
+   "role": 300,
+   "attribute": 50240,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050248,
+   "role": 300,
+   "attribute": 50248,
+   "types": "{UPDATE}",
+   "timestamp": "2024-01-19 16:51:26.796103"
+  },
+  {
+   "id": 30050296,
+   "role": 300,
+   "attribute": 50296,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050298,
+   "role": 300,
+   "attribute": 50298,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050299,
+   "role": 300,
+   "attribute": 50299,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050506,
+   "role": 300,
+   "attribute": 50506,
+   "types": "{UPDATE}",
+   "timestamp": "2026-09-09 15:28:17.505864"
+  },
+  {
+   "id": 30050596,
+   "role": 300,
+   "attribute": 50596,
+   "types": "{UPDATE}",
+   "timestamp": "2026-09-09 15:28:17.505864"
+  },
+  {
+   "id": 30050598,
+   "role": 300,
+   "attribute": 50598,
+   "types": "{UPDATE}",
+   "timestamp": "2026-09-09 15:28:17.505864"
+  },
+  {
+   "id": 30050599,
+   "role": 300,
+   "attribute": 50599,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 10150205,
+   "role": 101,
+   "attribute": 50205,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150277,
+   "role": 101,
+   "attribute": 50277,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10150278,
+   "role": 101,
+   "attribute": 50278,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10150279,
+   "role": 101,
+   "attribute": 50279,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10150298,
+   "role": 101,
+   "attribute": 50298,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10230921,
+   "role": 102,
+   "attribute": 30921,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10250200,
+   "role": 102,
+   "attribute": 50200,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250201,
+   "role": 102,
+   "attribute": 50201,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250202,
+   "role": 102,
+   "attribute": 50202,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250223,
+   "role": 102,
+   "attribute": 50223,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250224,
+   "role": 102,
+   "attribute": 50224,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250225,
+   "role": 102,
+   "attribute": 50225,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250226,
+   "role": 102,
+   "attribute": 50226,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250227,
+   "role": 102,
+   "attribute": 50227,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250228,
+   "role": 102,
+   "attribute": 50228,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250229,
+   "role": 102,
+   "attribute": 50229,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250230,
+   "role": 102,
+   "attribute": 50230,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250231,
+   "role": 102,
+   "attribute": 50231,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250232,
+   "role": 102,
+   "attribute": 50232,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250233,
+   "role": 102,
+   "attribute": 50233,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250234,
+   "role": 102,
+   "attribute": 50234,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250235,
+   "role": 102,
+   "attribute": 50235,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 30010403,
+   "role": 300,
+   "attribute": 10403,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010404,
+   "role": 300,
+   "attribute": 10404,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010405,
+   "role": 300,
+   "attribute": 10405,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 10150280,
+   "role": 101,
+   "attribute": 50280,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-01-21 12:35:14.055765"
+  },
+  {
+   "id": 10150281,
+   "role": 101,
+   "attribute": 50281,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-02-14 11:04:28.707315"
+  },
+  {
+   "id": 10150282,
+   "role": 101,
+   "attribute": 50282,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-02-14 11:04:28.707315"
+  },
+  {
+   "id": 10250204,
+   "role": 102,
+   "attribute": 50204,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250205,
+   "role": 102,
+   "attribute": 50205,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250206,
+   "role": 102,
+   "attribute": 50206,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250207,
+   "role": 102,
+   "attribute": 50207,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250208,
+   "role": 102,
+   "attribute": 50208,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250209,
+   "role": 102,
+   "attribute": 50209,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250210,
+   "role": 102,
+   "attribute": 50210,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250211,
+   "role": 102,
+   "attribute": 50211,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250212,
+   "role": 102,
+   "attribute": 50212,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250213,
+   "role": 102,
+   "attribute": 50213,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-03-11 11:16:39.235886"
+  },
+  {
+   "id": 10250214,
+   "role": 102,
+   "attribute": 50214,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250215,
+   "role": 102,
+   "attribute": 50215,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250216,
+   "role": 102,
+   "attribute": 50216,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250217,
+   "role": 102,
+   "attribute": 50217,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 30010406,
+   "role": 300,
+   "attribute": 10406,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010409,
+   "role": 300,
+   "attribute": 10409,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010410,
+   "role": 300,
+   "attribute": 10410,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 10250218,
+   "role": 102,
+   "attribute": 50218,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250219,
+   "role": 102,
+   "attribute": 50219,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250220,
+   "role": 102,
+   "attribute": 50220,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250221,
+   "role": 102,
+   "attribute": 50221,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250222,
+   "role": 102,
+   "attribute": 50222,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250236,
+   "role": 102,
+   "attribute": 50236,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250237,
+   "role": 102,
+   "attribute": 50237,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250238,
+   "role": 102,
+   "attribute": 50238,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250239,
+   "role": 102,
+   "attribute": 50239,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250240,
+   "role": 102,
+   "attribute": 50240,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250241,
+   "role": 102,
+   "attribute": 50241,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250252,
+   "role": 102,
+   "attribute": 50252,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250253,
+   "role": 102,
+   "attribute": 50253,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250254,
+   "role": 102,
+   "attribute": 50254,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250255,
+   "role": 102,
+   "attribute": 50255,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250256,
+   "role": 102,
+   "attribute": 50256,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250257,
+   "role": 102,
+   "attribute": 50257,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250258,
+   "role": 102,
+   "attribute": 50258,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250259,
+   "role": 102,
+   "attribute": 50259,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250260,
+   "role": 102,
+   "attribute": 50260,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 30050282,
+   "role": 300,
+   "attribute": 50282,
+   "types": "{UPDATE}",
+   "timestamp": "2026-07-22 08:32:00.197799"
+  },
+  {
+   "id": 30050283,
+   "role": 300,
+   "attribute": 50283,
+   "types": "{UPDATE}",
+   "timestamp": "2026-07-22 08:32:00.197799"
+  },
+  {
+   "id": 10250242,
+   "role": 102,
+   "attribute": 50242,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250243,
+   "role": 102,
+   "attribute": 50243,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250244,
+   "role": 102,
+   "attribute": 50244,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250245,
+   "role": 102,
+   "attribute": 50245,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250246,
+   "role": 102,
+   "attribute": 50246,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 30010416,
+   "role": 300,
+   "attribute": 10416,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 10250247,
+   "role": 102,
+   "attribute": 50247,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250248,
+   "role": 102,
+   "attribute": 50248,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250249,
+   "role": 102,
+   "attribute": 50249,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250261,
+   "role": 102,
+   "attribute": 50261,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10250262,
+   "role": 102,
+   "attribute": 50262,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10250263,
+   "role": 102,
+   "attribute": 50263,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10250264,
+   "role": 102,
+   "attribute": 50264,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10250265,
+   "role": 102,
+   "attribute": 50265,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 30010417,
+   "role": 300,
+   "attribute": 10417,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010418,
+   "role": 300,
+   "attribute": 10418,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010433,
+   "role": 300,
+   "attribute": 10433,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010496,
+   "role": 300,
+   "attribute": 10496,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010498,
+   "role": 300,
+   "attribute": 10498,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010499,
+   "role": 300,
+   "attribute": 10499,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050216,
+   "role": 300,
+   "attribute": 50216,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050217,
+   "role": 300,
+   "attribute": 50217,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050229,
+   "role": 300,
+   "attribute": 50229,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050236,
+   "role": 300,
+   "attribute": 50236,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050237,
+   "role": 300,
+   "attribute": 50237,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30050238,
+   "role": 300,
+   "attribute": 50238,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010411,
+   "role": 300,
+   "attribute": 10411,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010412,
+   "role": 300,
+   "attribute": 10412,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010413,
+   "role": 300,
+   "attribute": 10413,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010415,
+   "role": 300,
+   "attribute": 10415,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 10250266,
+   "role": 102,
+   "attribute": 50266,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-04-01 10:42:14.751078"
+  },
+  {
+   "id": 10250268,
+   "role": 102,
+   "attribute": 50268,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-12 22:22:56.567036"
+  },
+  {
+   "id": 10250269,
+   "role": 102,
+   "attribute": 50269,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10250270,
+   "role": 102,
+   "attribute": 50270,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10250271,
+   "role": 102,
+   "attribute": 50271,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10250272,
+   "role": 102,
+   "attribute": 50272,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250273,
+   "role": 102,
+   "attribute": 50273,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250274,
+   "role": 102,
+   "attribute": 50274,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250275,
+   "role": 102,
+   "attribute": 50275,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250276,
+   "role": 102,
+   "attribute": 50276,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250277,
+   "role": 102,
+   "attribute": 50277,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250278,
+   "role": 102,
+   "attribute": 50278,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250279,
+   "role": 102,
+   "attribute": 50279,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250280,
+   "role": 102,
+   "attribute": 50280,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-01-21 12:35:14.055765"
+  },
+  {
+   "id": 10250281,
+   "role": 102,
+   "attribute": 50281,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-02-14 11:04:28.707315"
+  },
+  {
+   "id": 10250282,
+   "role": 102,
+   "attribute": 50282,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-02-14 11:04:28.707315"
+  },
+  {
+   "id": 10250283,
+   "role": 102,
+   "attribute": 50283,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-06-02 19:16:29.924086"
+  },
+  {
+   "id": 30010419,
+   "role": 300,
+   "attribute": 10419,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010420,
+   "role": 300,
+   "attribute": 10420,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010421,
+   "role": 300,
+   "attribute": 10421,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010422,
+   "role": 300,
+   "attribute": 10422,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010423,
+   "role": 300,
+   "attribute": 10423,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010427,
+   "role": 300,
+   "attribute": 10427,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010428,
+   "role": 300,
+   "attribute": 10428,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010436,
+   "role": 300,
+   "attribute": 10436,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010437,
+   "role": 300,
+   "attribute": 10437,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010438,
+   "role": 300,
+   "attribute": 10438,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010439,
+   "role": 300,
+   "attribute": 10439,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010440,
+   "role": 300,
+   "attribute": 10440,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010441,
+   "role": 300,
+   "attribute": 10441,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010442,
+   "role": 300,
+   "attribute": 10442,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010443,
+   "role": 300,
+   "attribute": 10443,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010444,
+   "role": 300,
+   "attribute": 10444,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010445,
+   "role": 300,
+   "attribute": 10445,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010446,
+   "role": 300,
+   "attribute": 10446,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010447,
+   "role": 300,
+   "attribute": 10447,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010448,
+   "role": 300,
+   "attribute": 10448,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010449,
+   "role": 300,
+   "attribute": 10449,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010450,
+   "role": 300,
+   "attribute": 10450,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010451,
+   "role": 300,
+   "attribute": 10451,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30050272,
+   "role": 300,
+   "attribute": 50272,
+   "types": "{UPDATE}",
+   "timestamp": "2024-11-07 18:29:24.983651"
+  },
+  {
+   "id": 30050273,
+   "role": 300,
+   "attribute": 50273,
+   "types": "{UPDATE}",
+   "timestamp": "2024-11-07 18:29:24.983651"
+  },
+  {
+   "id": 30050274,
+   "role": 300,
+   "attribute": 50274,
+   "types": "{UPDATE}",
+   "timestamp": "2024-11-07 18:29:24.983651"
+  },
+  {
+   "id": 30050276,
+   "role": 300,
+   "attribute": 50276,
+   "types": "{UPDATE}",
+   "timestamp": "2024-12-24 10:49:50.750570"
+  },
+  {
+   "id": 30010429,
+   "role": 300,
+   "attribute": 10429,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010430,
+   "role": 300,
+   "attribute": 10430,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 30010434,
+   "role": 300,
+   "attribute": 10434,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 30010435,
+   "role": 300,
+   "attribute": 10435,
+   "types": "{UPDATE}",
+   "timestamp": "2024-02-14 12:37:23.106032"
+  },
+  {
+   "id": 10150290,
+   "role": 101,
+   "attribute": 50290,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10150291,
+   "role": 101,
+   "attribute": 50291,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10150292,
+   "role": 101,
+   "attribute": 50292,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10150294,
+   "role": 101,
+   "attribute": 50294,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10150350,
+   "role": 101,
+   "attribute": 50350,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10150299,
+   "role": 101,
+   "attribute": 50299,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250250,
+   "role": 102,
+   "attribute": 50250,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250251,
+   "role": 102,
+   "attribute": 50251,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-01-03 12:28:58.036628"
+  },
+  {
+   "id": 10250284,
+   "role": 102,
+   "attribute": 50284,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-06-02 19:16:29.924086"
+  },
+  {
+   "id": 10250285,
+   "role": 102,
+   "attribute": 50285,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-06-02 19:16:29.924086"
+  },
+  {
+   "id": 10250286,
+   "role": 102,
+   "attribute": 50286,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-07-25 14:20:37.306821"
+  },
+  {
+   "id": 10250287,
+   "role": 102,
+   "attribute": 50287,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 10250288,
+   "role": 102,
+   "attribute": 50288,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-01-15 10:49:28.658744"
+  },
+  {
+   "id": 10250289,
+   "role": 102,
+   "attribute": 50289,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-01-16 11:10:31.103509"
+  },
+  {
+   "id": 10250290,
+   "role": 102,
+   "attribute": 50290,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10250291,
+   "role": 102,
+   "attribute": 50291,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10250292,
+   "role": 102,
+   "attribute": 50292,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10250293,
+   "role": 102,
+   "attribute": 50293,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:37:57.077874"
+  },
+  {
+   "id": 10250294,
+   "role": 102,
+   "attribute": 50294,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10250350,
+   "role": 102,
+   "attribute": 50350,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10250295,
+   "role": 102,
+   "attribute": 50295,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250296,
+   "role": 102,
+   "attribute": 50296,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250297,
+   "role": 102,
+   "attribute": 50297,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250298,
+   "role": 102,
+   "attribute": 50298,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250299,
+   "role": 102,
+   "attribute": 50299,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150204,
+   "role": 101,
+   "attribute": 50204,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150213,
+   "role": 101,
+   "attribute": 50213,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-03-11 11:16:39.235886"
+  },
+  {
+   "id": 10150214,
+   "role": 101,
+   "attribute": 50214,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150215,
+   "role": 101,
+   "attribute": 50215,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150216,
+   "role": 101,
+   "attribute": 50216,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150217,
+   "role": 101,
+   "attribute": 50217,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150218,
+   "role": 101,
+   "attribute": 50218,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150219,
+   "role": 101,
+   "attribute": 50219,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150220,
+   "role": 101,
+   "attribute": 50220,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150221,
+   "role": 101,
+   "attribute": 50221,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150222,
+   "role": 101,
+   "attribute": 50222,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150223,
+   "role": 101,
+   "attribute": 50223,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150224,
+   "role": 101,
+   "attribute": 50224,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150225,
+   "role": 101,
+   "attribute": 50225,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150226,
+   "role": 101,
+   "attribute": 50226,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150227,
+   "role": 101,
+   "attribute": 50227,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150200,
+   "role": 101,
+   "attribute": 50200,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150201,
+   "role": 101,
+   "attribute": 50201,
+   "types": "{UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150202,
+   "role": 101,
+   "attribute": 50202,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150203,
+   "role": 101,
+   "attribute": 50203,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150234,
+   "role": 101,
+   "attribute": 50234,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150235,
+   "role": 101,
+   "attribute": 50235,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150236,
+   "role": 101,
+   "attribute": 50236,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150237,
+   "role": 101,
+   "attribute": 50237,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150238,
+   "role": 101,
+   "attribute": 50238,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150239,
+   "role": 101,
+   "attribute": 50239,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150240,
+   "role": 101,
+   "attribute": 50240,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150241,
+   "role": 101,
+   "attribute": 50241,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150242,
+   "role": 101,
+   "attribute": 50242,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150243,
+   "role": 101,
+   "attribute": 50243,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150244,
+   "role": 101,
+   "attribute": 50244,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150245,
+   "role": 101,
+   "attribute": 50245,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150246,
+   "role": 101,
+   "attribute": 50246,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150247,
+   "role": 101,
+   "attribute": 50247,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150248,
+   "role": 101,
+   "attribute": 50248,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150249,
+   "role": 101,
+   "attribute": 50249,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150250,
+   "role": 101,
+   "attribute": 50250,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150251,
+   "role": 101,
+   "attribute": 50251,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150252,
+   "role": 101,
+   "attribute": 50252,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150253,
+   "role": 101,
+   "attribute": 50253,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150254,
+   "role": 101,
+   "attribute": 50254,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150255,
+   "role": 101,
+   "attribute": 50255,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150275,
+   "role": 101,
+   "attribute": 50275,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10150276,
+   "role": 101,
+   "attribute": 50276,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10250351,
+   "role": 102,
+   "attribute": 50351,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10250352,
+   "role": 102,
+   "attribute": 50352,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10250353,
+   "role": 102,
+   "attribute": 50353,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10450200,
+   "role": 104,
+   "attribute": 50200,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150206,
+   "role": 101,
+   "attribute": 50206,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150207,
+   "role": 101,
+   "attribute": 50207,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150208,
+   "role": 101,
+   "attribute": 50208,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150209,
+   "role": 101,
+   "attribute": 50209,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150210,
+   "role": 101,
+   "attribute": 50210,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150211,
+   "role": 101,
+   "attribute": 50211,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150212,
+   "role": 101,
+   "attribute": 50212,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150228,
+   "role": 101,
+   "attribute": 50228,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150229,
+   "role": 101,
+   "attribute": 50229,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150230,
+   "role": 101,
+   "attribute": 50230,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150231,
+   "role": 101,
+   "attribute": 50231,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150232,
+   "role": 101,
+   "attribute": 50232,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150233,
+   "role": 101,
+   "attribute": 50233,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150256,
+   "role": 101,
+   "attribute": 50256,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150257,
+   "role": 101,
+   "attribute": 50257,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150258,
+   "role": 101,
+   "attribute": 50258,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150259,
+   "role": 101,
+   "attribute": 50259,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150260,
+   "role": 101,
+   "attribute": 50260,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150261,
+   "role": 101,
+   "attribute": 50261,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150262,
+   "role": 101,
+   "attribute": 50262,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150263,
+   "role": 101,
+   "attribute": 50263,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150352,
+   "role": 101,
+   "attribute": 50352,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10150264,
+   "role": 101,
+   "attribute": 50264,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150265,
+   "role": 101,
+   "attribute": 50265,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10150266,
+   "role": 101,
+   "attribute": 50266,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-04-01 10:42:14.751078"
+  },
+  {
+   "id": 10150268,
+   "role": 101,
+   "attribute": 50268,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-12 22:22:56.567036"
+  },
+  {
+   "id": 10150269,
+   "role": 101,
+   "attribute": 50269,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10150270,
+   "role": 101,
+   "attribute": 50270,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10150271,
+   "role": 101,
+   "attribute": 50271,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10150272,
+   "role": 101,
+   "attribute": 50272,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10150273,
+   "role": 101,
+   "attribute": 50273,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10150274,
+   "role": 101,
+   "attribute": 50274,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10150283,
+   "role": 101,
+   "attribute": 50283,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-07-25 14:20:37.306821"
+  },
+  {
+   "id": 10150284,
+   "role": 101,
+   "attribute": 50284,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-07-25 14:20:37.306821"
+  },
+  {
+   "id": 10150285,
+   "role": 101,
+   "attribute": 50285,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-07-25 14:20:37.306821"
+  },
+  {
+   "id": 10150286,
+   "role": 101,
+   "attribute": 50286,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-07-25 14:20:37.306821"
+  },
+  {
+   "id": 10150287,
+   "role": 101,
+   "attribute": 50287,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 10150288,
+   "role": 101,
+   "attribute": 50288,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-01-15 10:49:28.658744"
+  },
+  {
+   "id": 10150289,
+   "role": 101,
+   "attribute": 50289,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-01-16 11:10:31.103509"
+  },
+  {
+   "id": 10150293,
+   "role": 101,
+   "attribute": 50293,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:37:57.077874"
+  },
+  {
+   "id": 10150351,
+   "role": 101,
+   "attribute": 50351,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10150353,
+   "role": 101,
+   "attribute": 50353,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10150295,
+   "role": 101,
+   "attribute": 50295,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150296,
+   "role": 101,
+   "attribute": 50296,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10150297,
+   "role": 101,
+   "attribute": 50297,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10250203,
+   "role": 102,
+   "attribute": 50203,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 10450201,
+   "role": 104,
+   "attribute": 50201,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450202,
+   "role": 104,
+   "attribute": 50202,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450203,
+   "role": 104,
+   "attribute": 50203,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450204,
+   "role": 104,
+   "attribute": 50204,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450205,
+   "role": 104,
+   "attribute": 50205,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450206,
+   "role": 104,
+   "attribute": 50206,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450207,
+   "role": 104,
+   "attribute": 50207,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450208,
+   "role": 104,
+   "attribute": 50208,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450209,
+   "role": 104,
+   "attribute": 50209,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450210,
+   "role": 104,
+   "attribute": 50210,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450211,
+   "role": 104,
+   "attribute": 50211,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450212,
+   "role": 104,
+   "attribute": 50212,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450213,
+   "role": 104,
+   "attribute": 50213,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-03-11 11:16:39.235886"
+  },
+  {
+   "id": 10450214,
+   "role": 104,
+   "attribute": 50214,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450215,
+   "role": 104,
+   "attribute": 50215,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450281,
+   "role": 104,
+   "attribute": 50281,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-02-14 11:04:28.707315"
+  },
+  {
+   "id": 10450282,
+   "role": 104,
+   "attribute": 50282,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-02-14 11:04:28.707315"
+  },
+  {
+   "id": 10450283,
+   "role": 104,
+   "attribute": 50283,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-03-11 11:16:39.235886"
+  },
+  {
+   "id": 10450284,
+   "role": 104,
+   "attribute": 50284,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-06-02 19:16:29.924086"
+  },
+  {
+   "id": 10450285,
+   "role": 104,
+   "attribute": 50285,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-06-02 19:16:29.924086"
+  },
+  {
+   "id": 10450286,
+   "role": 104,
+   "attribute": 50286,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-07-25 14:20:37.306821"
+  },
+  {
+   "id": 10450287,
+   "role": 104,
+   "attribute": 50287,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-12-15 13:40:02.545161"
+  },
+  {
+   "id": 10450288,
+   "role": 104,
+   "attribute": 50288,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-01-15 10:49:28.658744"
+  },
+  {
+   "id": 10450289,
+   "role": 104,
+   "attribute": 50289,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-01-16 11:10:31.103509"
+  },
+  {
+   "id": 10450290,
+   "role": 104,
+   "attribute": 50290,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10450291,
+   "role": 104,
+   "attribute": 50291,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10450216,
+   "role": 104,
+   "attribute": 50216,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450217,
+   "role": 104,
+   "attribute": 50217,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450218,
+   "role": 104,
+   "attribute": 50218,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450219,
+   "role": 104,
+   "attribute": 50219,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450220,
+   "role": 104,
+   "attribute": 50220,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450221,
+   "role": 104,
+   "attribute": 50221,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450222,
+   "role": 104,
+   "attribute": 50222,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450223,
+   "role": 104,
+   "attribute": 50223,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450224,
+   "role": 104,
+   "attribute": 50224,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450225,
+   "role": 104,
+   "attribute": 50225,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450226,
+   "role": 104,
+   "attribute": 50226,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450260,
+   "role": 104,
+   "attribute": 50260,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450261,
+   "role": 104,
+   "attribute": 50261,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450262,
+   "role": 104,
+   "attribute": 50262,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450263,
+   "role": 104,
+   "attribute": 50263,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450264,
+   "role": 104,
+   "attribute": 50264,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450265,
+   "role": 104,
+   "attribute": 50265,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450266,
+   "role": 104,
+   "attribute": 50266,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-04-01 10:42:14.751078"
+  },
+  {
+   "id": 10450268,
+   "role": 104,
+   "attribute": 50268,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-12 22:22:56.567036"
+  },
+  {
+   "id": 10450269,
+   "role": 104,
+   "attribute": 50269,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10450270,
+   "role": 104,
+   "attribute": 50270,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10450271,
+   "role": 104,
+   "attribute": 50271,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-08-17 11:13:18.156363"
+  },
+  {
+   "id": 10450272,
+   "role": 104,
+   "attribute": 50272,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10450273,
+   "role": 104,
+   "attribute": 50273,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10450274,
+   "role": 104,
+   "attribute": 50274,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10450275,
+   "role": 104,
+   "attribute": 50275,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10450276,
+   "role": 104,
+   "attribute": 50276,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10450277,
+   "role": 104,
+   "attribute": 50277,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10450278,
+   "role": 104,
+   "attribute": 50278,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10450279,
+   "role": 104,
+   "attribute": 50279,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-12-24 10:50:46.193008"
+  },
+  {
+   "id": 10450280,
+   "role": 104,
+   "attribute": 50280,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2025-01-21 12:35:14.055765"
+  },
+  {
+   "id": 10450292,
+   "role": 104,
+   "attribute": 50292,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10450293,
+   "role": 104,
+   "attribute": 50293,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:37:57.077874"
+  },
+  {
+   "id": 10450294,
+   "role": 104,
+   "attribute": 50294,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10450350,
+   "role": 104,
+   "attribute": 50350,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-04-07 18:31:52.119217"
+  },
+  {
+   "id": 10450351,
+   "role": 104,
+   "attribute": 50351,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10450352,
+   "role": 104,
+   "attribute": 50352,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10450353,
+   "role": 104,
+   "attribute": 50353,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 10450295,
+   "role": 104,
+   "attribute": 50295,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450296,
+   "role": 104,
+   "attribute": 50296,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450297,
+   "role": 104,
+   "attribute": 50297,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450298,
+   "role": 104,
+   "attribute": 50298,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450299,
+   "role": 104,
+   "attribute": 50299,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450227,
+   "role": 104,
+   "attribute": 50227,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450228,
+   "role": 104,
+   "attribute": 50228,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450229,
+   "role": 104,
+   "attribute": 50229,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450230,
+   "role": 104,
+   "attribute": 50230,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450231,
+   "role": 104,
+   "attribute": 50231,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450232,
+   "role": 104,
+   "attribute": 50232,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450233,
+   "role": 104,
+   "attribute": 50233,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450234,
+   "role": 104,
+   "attribute": 50234,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450235,
+   "role": 104,
+   "attribute": 50235,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450236,
+   "role": 104,
+   "attribute": 50236,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450237,
+   "role": 104,
+   "attribute": 50237,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450238,
+   "role": 104,
+   "attribute": 50238,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450239,
+   "role": 104,
+   "attribute": 50239,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450240,
+   "role": 104,
+   "attribute": 50240,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450241,
+   "role": 104,
+   "attribute": 50241,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450242,
+   "role": 104,
+   "attribute": 50242,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450243,
+   "role": 104,
+   "attribute": 50243,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450244,
+   "role": 104,
+   "attribute": 50244,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450245,
+   "role": 104,
+   "attribute": 50245,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450246,
+   "role": 104,
+   "attribute": 50246,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450247,
+   "role": 104,
+   "attribute": 50247,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450248,
+   "role": 104,
+   "attribute": 50248,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450249,
+   "role": 104,
+   "attribute": 50249,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450250,
+   "role": 104,
+   "attribute": 50250,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450251,
+   "role": 104,
+   "attribute": 50251,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450252,
+   "role": 104,
+   "attribute": 50252,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450253,
+   "role": 104,
+   "attribute": 50253,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450254,
+   "role": 104,
+   "attribute": 50254,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450255,
+   "role": 104,
+   "attribute": 50255,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450256,
+   "role": 104,
+   "attribute": 50256,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450257,
+   "role": 104,
+   "attribute": 50257,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450258,
+   "role": 104,
+   "attribute": 50258,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  },
+  {
+   "id": 10450259,
+   "role": 104,
+   "attribute": 50259,
+   "types": "{INSERT,UPDATE}",
+   "timestamp": "2024-02-08 17:33:38.998600"
+  }
+ ],
+ "ExternalEntityPermission": [
+  {
+   "id": 18,
+   "role": 101,
+   "externalEntity": 7,
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 19,
+   "role": 102,
+   "externalEntity": 7,
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 20,
+   "role": 104,
+   "externalEntity": 7,
+   "timestamp": "2026-06-25 09:46:54.938320"
+  },
+  {
+   "id": 100,
+   "role": 200,
+   "externalEntity": 2,
+   "timestamp": "2026-09-09 15:33:12.825308"
+  },
+  {
+   "id": 1,
+   "role": 100,
+   "externalEntity": 2,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 2,
+   "role": 101,
+   "externalEntity": 1,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 3,
+   "role": 101,
+   "externalEntity": 3,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 4,
+   "role": 101,
+   "externalEntity": 4,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 5,
+   "role": 101,
+   "externalEntity": 5,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 6,
+   "role": 101,
+   "externalEntity": 6,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 7,
+   "role": 102,
+   "externalEntity": 1,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 8,
+   "role": 102,
+   "externalEntity": 3,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 9,
+   "role": 102,
+   "externalEntity": 4,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 10,
+   "role": 102,
+   "externalEntity": 5,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 11,
+   "role": 102,
+   "externalEntity": 6,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 12,
+   "role": 104,
+   "externalEntity": 1,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 13,
+   "role": 104,
+   "externalEntity": 3,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 14,
+   "role": 104,
+   "externalEntity": 4,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 15,
+   "role": 105,
+   "externalEntity": 5,
+   "timestamp": "2025-04-30 13:17:57.552537"
+  },
+  {
+   "id": 16,
+   "role": 105,
+   "externalEntity": 6,
+   "timestamp": "2025-04-30 14:40:04.982615"
+  },
+  {
+   "id": 17,
+   "role": 106,
+   "externalEntity": 5,
+   "timestamp": "2025-04-30 14:40:04.982615"
+  }
+ ],
+ "RowLevelPermission": [
+  {
+   "id": 200101,
+   "entity": 101,
+   "name": "Provider_Provider",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"User_name\" = CURRENT_USER",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200102,
+   "entity": 102,
+   "name": "Provider_Provider_contact",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Provider_id\" = (SELECT id FROM \"Provider\".\"Provider\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200104,
+   "entity": 104,
+   "name": "Provider_Customer",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "id IN (SELECT DISTINCT \"Customer_id\" FROM \"Booking\".\"Booking\" WHERE \"Resource_id\" IN (SELECT id FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER)))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200205,
+   "entity": 205,
+   "name": "Provider_Provider_template",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Provider_id\" = (SELECT id FROM \"Provider\".\"Provider\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 300101,
+   "entity": 101,
+   "name": "Customer_Provider",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300104,
+   "entity": 104,
+   "name": "Customer_Customer",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"User_name\" = CURRENT_USER",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300105,
+   "entity": 105,
+   "name": "Customer_Customer_contact",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300201,
+   "entity": 201,
+   "name": "Customer_Customer_doc",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300210,
+   "entity": 210,
+   "name": "Customer_Customer_email",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300303,
+   "entity": 303,
+   "name": "Customer_Building",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300309,
+   "entity": 309,
+   "name": "Customer_Resource",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "id IN (SELECT DISTINCT \"Resource_id\" FROM \"Booking\".\"Booking\" WHERE \"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300502,
+   "entity": 502,
+   "name": "Customer_Booking",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300505,
+   "entity": 505,
+   "name": "Customer_Booking_option",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Booking_id\" IN (SELECT id FROM \"Booking\".\"Booking\" WHERE \"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 200303,
+   "entity": 303,
+   "name": "Provider_Building",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "id IN (SELECT DISTINCT \"Building_id\" FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200502,
+   "entity": 502,
+   "name": "Provider_Booking",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Resource_id\" IN (SELECT id FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200507,
+   "entity": 507,
+   "name": "Provider_Booking_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Booking_id\" IN (SELECT id FROM \"Booking\".\"Booking\" WHERE \"Resource_id\" IN (SELECT id FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER)))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 300507,
+   "entity": 507,
+   "name": "Customer_Booking_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Booking_id\" IN (SELECT id FROM \"Booking\".\"Booking\" WHERE \"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 100105,
+   "entity": 105,
+   "name": "Cotown_Booking_group_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 300552,
+   "entity": 552,
+   "name": "Customer_Booking_group",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Payer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-10-31 18:17:35.799419"
+  },
+  {
+   "id": 200552,
+   "entity": 552,
+   "name": "Provider_Booking_group",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Building_id\" IN (SELECT DISTINCT \"Building_id\" FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-10-31 18:18:08.911931"
+  },
+  {
+   "id": 100324,
+   "entity": 324,
+   "name": "Cotown_Resource_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-06-13 14:04:20.230949"
+  },
+  {
+   "id": 100554,
+   "entity": 554,
+   "name": "Cotown_Booking_option",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 100605,
+   "entity": 605,
+   "name": "Cotown_Booking_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100606,
+   "entity": 606,
+   "name": "Cotown_Booking_group",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100608,
+   "entity": 608,
+   "name": "Cotown_Booking_rooming",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 1105,
+   "entity": 105,
+   "name": "Admin_Admin_contact",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 1,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:39:28.138748"
+  },
+  {
+   "id": 1210,
+   "entity": 210,
+   "name": "Admin_Admin_email",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 1,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:39:28.138748"
+  },
+  {
+   "id": 1502,
+   "entity": 502,
+   "name": "Admin_Booking",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 1,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:39:28.138748"
+  },
+  {
+   "id": 200553,
+   "entity": 553,
+   "name": "Provider_Booking_rooming",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Booking_id\" IN (SELECT id FROM \"Booking\".\"Booking_group\" WHERE \"Building_id\" IN (SELECT DISTINCT \"Building_id\" FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER)))",
+   "checkExpression": null,
+   "timestamp": "2023-10-31 18:18:08.911931"
+  },
+  {
+   "id": 1605,
+   "entity": 605,
+   "name": "Admin_Invoice",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 1,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:39:28.138748"
+  },
+  {
+   "id": 1608,
+   "entity": 608,
+   "name": "Admin_Payment",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 1,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:39:28.138748"
+  },
+  {
+   "id": 200608,
+   "entity": 608,
+   "name": "Provider_Payment",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 100316,
+   "entity": 316,
+   "name": "Cotown_Building",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100319,
+   "entity": 319,
+   "name": "Cotown_Resource",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 1101,
+   "entity": 101,
+   "name": "Admin_Provider",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 1,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:39:28.138748"
+  },
+  {
+   "id": 1104,
+   "entity": 104,
+   "name": "Admin_Customer",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 1,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:39:28.138748"
+  },
+  {
+   "id": 100322,
+   "entity": 322,
+   "name": "Cotown_Resource_amenity",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 200309,
+   "entity": 309,
+   "name": "Provider_Resource",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200314,
+   "entity": 314,
+   "name": "Provider_Resource_amenity",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Resource_id\" IN (SELECT id FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200316,
+   "entity": 316,
+   "name": "Provider_Resource_doc",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Resource_id\" IN (SELECT id FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200319,
+   "entity": 319,
+   "name": "Provider_Resource_inventory",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Resource_id\" IN (SELECT id FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200322,
+   "entity": 322,
+   "name": "Provider_Resource_availability",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Resource_id\" IN (SELECT id FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200402,
+   "entity": 402,
+   "name": "Provider_Pricing_detail",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Building_id\" IN (SELECT DISTINCT \"Building_id\" FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200554,
+   "entity": 554,
+   "name": "Provider_Booking_group_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Booking_id\" IN (SELECT id FROM \"Booking\".\"Booking_group\" WHERE \"Building_id\" IN (SELECT DISTINCT \"Building_id\" FROM \"Resource\".\"Resource\" r WHERE r.\"Owner_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER)))",
+   "checkExpression": null,
+   "timestamp": "2023-10-31 18:18:08.911931"
+  },
+  {
+   "id": 200605,
+   "entity": 605,
+   "name": "Provider_Invoice",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Provider_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 200606,
+   "entity": 606,
+   "name": "Provider_Invoice_line",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 200,
+   "expression": "\"Invoice_id\" IN (SELECT id FROM \"Billing\".\"Invoice\" WHERE \"Provider_id\" = (SELECT id FROM \"Provider\".\"Provider\" p WHERE p.\"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:41:33.839999"
+  },
+  {
+   "id": 100101,
+   "entity": 101,
+   "name": "Cotown_Provider",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100102,
+   "entity": 102,
+   "name": "Cotown_Cotown_contact",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100104,
+   "entity": 104,
+   "name": "Cotown_Customer",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100201,
+   "entity": 201,
+   "name": "Cotown_Invoice",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100205,
+   "entity": 205,
+   "name": "Cotown_Customer",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100210,
+   "entity": 210,
+   "name": "Cotown_Invoice_line",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100303,
+   "entity": 303,
+   "name": "Cotown_Customer_doc",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100309,
+   "entity": 309,
+   "name": "Cotown_Cotown_template",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100314,
+   "entity": 314,
+   "name": "Cotown_Cotown_template",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100402,
+   "entity": 402,
+   "name": "Cotown_Resource_doc",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100502,
+   "entity": 502,
+   "name": "Cotown_Resource_inventory",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100505,
+   "entity": 505,
+   "name": "Cotown_Payment",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100507,
+   "entity": 507,
+   "name": "Cotown_Resource_availability",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:11.247451"
+  },
+  {
+   "id": 100552,
+   "entity": 552,
+   "name": "Cotown_Pricing_detail",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 100553,
+   "entity": 553,
+   "name": "Cotown_Booking",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 100,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2023-10-23 13:08:15.071802"
+  },
+  {
+   "id": 300553,
+   "entity": 553,
+   "name": "Customer_Booking_rooming",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Booking_id\" IN (SELECT id FROM \"Booking\".\"Booking_group\" WHERE \"Payer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-10-31 18:17:35.799419"
+  },
+  {
+   "id": 300554,
+   "entity": 554,
+   "name": "Customer_Booking_group_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Booking_id\" IN (SELECT id FROM \"Booking\".\"Booking_group\" WHERE \"Payer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-10-31 18:17:35.799419"
+  },
+  {
+   "id": 300605,
+   "entity": 605,
+   "name": "Customer_Invoice",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 300606,
+   "entity": 606,
+   "name": "Customer_Invoice_line",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Invoice_id\" IN (SELECT id FROM \"Billing\".\"Invoice\" WHERE \"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER))",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 400101,
+   "entity": 101,
+   "name": "External_Provider",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400102,
+   "entity": 102,
+   "name": "External_External_contact",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400104,
+   "entity": 104,
+   "name": "External_Customer",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400105,
+   "entity": 105,
+   "name": "External_Booking_group_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 300608,
+   "entity": 608,
+   "name": "Customer_Payment",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 300,
+   "expression": "\"Customer_id\" = (SELECT id FROM \"Customer\".\"Customer\" WHERE \"User_name\" = CURRENT_USER)",
+   "checkExpression": null,
+   "timestamp": "2023-07-27 18:40:47.821131"
+  },
+  {
+   "id": 400201,
+   "entity": 201,
+   "name": "External_Invoice",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400205,
+   "entity": 205,
+   "name": "External_Customer",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400210,
+   "entity": 210,
+   "name": "External_Invoice_line",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400303,
+   "entity": 303,
+   "name": "External_Customer_doc",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400309,
+   "entity": 309,
+   "name": "External_External_template",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400314,
+   "entity": 314,
+   "name": "External_External_template",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400316,
+   "entity": 316,
+   "name": "External_Building",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400319,
+   "entity": 319,
+   "name": "External_Resource",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400322,
+   "entity": 322,
+   "name": "External_Resource_amenity",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400324,
+   "entity": 324,
+   "name": "External_Resource_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400402,
+   "entity": 402,
+   "name": "External_Resource_doc",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400502,
+   "entity": 502,
+   "name": "External_Resource_inventory",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400505,
+   "entity": 505,
+   "name": "External_Payment",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400507,
+   "entity": 507,
+   "name": "External_Resource_availability",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400552,
+   "entity": 552,
+   "name": "External_Pricing_detail",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400553,
+   "entity": 553,
+   "name": "External_Booking",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400554,
+   "entity": 554,
+   "name": "External_Booking_option",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400605,
+   "entity": 605,
+   "name": "External_Booking_price",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400606,
+   "entity": 606,
+   "name": "External_Booking_group",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  },
+  {
+   "id": 400608,
+   "entity": 608,
+   "name": "External_Booking_rooming",
+   "as": "PERMISSIVE",
+   "for": "ALL",
+   "role": 400,
+   "expression": "TRUE",
+   "checkExpression": null,
+   "timestamp": "2025-07-22 09:16:02.599300"
+  }
+ ]
+}
