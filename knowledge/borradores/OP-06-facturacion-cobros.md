@@ -18,7 +18,7 @@ Este capítulo explica qué se factura, quién lo emite, cuándo lo hace el sist
 | **Medio de pago** | Cómo paga el cliente. El de sus cobros sale de su ficha (por defecto, tarjeta); en grupos, transferencia. |
 | **Terminal (TPV)** | Terminal de Redsys por el que se cobra con tarjeta: el del propietario, *Cotown*, *Vandor* o *delegado* (cuando un cobro reúne renta y servicios de emisores con terminales distintos). |
 | **Producto** | Concepto facturable, con su tipo (renta, servicios mensuales, servicios adicionales, refacturación, fee, garantía) y su IVA. |
-| **Management fee** | Comisión de Cotown sobre cada línea que facturan los propietarios. Su porcentaje sale del recurso según la frecuencia de limpieza de la reserva, o el de marketplace si la reserva viene de uno. |
+| **Management fee** | Comisión de Cotown sobre cada línea que facturan los propietarios. Su porcentaje sale del recurso según la frecuencia de limpieza de la reserva; las reservas de marketplace llevan la frecuencia *marketplace*. |
 
 ### Medios de pago
 
@@ -133,14 +133,14 @@ En el detalle de precios de la reserva, cada mes puede llevar un **descuento** s
 
 | Caso | Porcentaje del recurso que se aplica |
 |---|---|
-| Reserva de marketplace | *Marketplace* |
 | Sin servicios de limpieza | *Sin servicios* |
 | Limpieza semanal | *Servicio premium* |
 | Limpieza quincenal (o sin indicar) | *Servicio estándar* |
 | Limpieza mensual | *Servicio mensual* |
 | Sin limpieza (*sin*) | *0 % Management fee* |
+| Frecuencia *marketplace* | *Marketplace* |
 
-**Qué hacer**: mantener los porcentajes en cada piso (ver *Inventario y precios*) y la frecuencia de limpieza en cada reserva. Los management fees del mes se consultan en el informe de **management fees** y SAP los obtiene por la integración contable.
+**Qué hacer**: mantener los porcentajes en cada piso (ver *Inventario y precios*) y la frecuencia de limpieza en cada reserva: en las reservas de marketplace, poner la frecuencia *marketplace* (el sistema no la pone solo; que la reserva tenga marketplace no cambia el porcentaje). Los management fees del mes se consultan en el informe de **management fees** y SAP los obtiene por la integración contable.
 
 ### Envío y archivo de facturas
 

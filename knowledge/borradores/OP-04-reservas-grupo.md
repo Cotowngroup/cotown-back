@@ -43,7 +43,7 @@ Cada residente de la rooming list tiene su propio estado: **check-in**, **in hou
 
 **Qué informar**:
 
-- **Pagador** (cliente empresa) y, si lo hay, **marketplace**. En los grupos de marketplace, el management fee de las facturas usa el porcentaje *marketplace* del recurso.
+- **Pagador** (cliente empresa) y, si lo hay, **marketplace**. En los grupos de marketplace, poner la frecuencia de limpieza *marketplace* para que el management fee use el porcentaje *marketplace* del recurso.
 - **Edificio**, fechas y **número de plazas**.
 - **Plazas**: códigos de los recursos reservados. Si es un piso completo, marcar *Piso completo*.
 - **Precio por plaza**: renta y servicios mensuales, garantía, membership fee y limpieza final.

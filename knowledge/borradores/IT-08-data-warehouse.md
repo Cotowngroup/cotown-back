@@ -60,7 +60,7 @@ Carga propietarios, tipologías, localidades, productos, edificios, valoraciones
 
 ### Booking
 
-- Una fila por reserva B2C con sus datos comerciales, importes y el porcentaje de management fee que le corresponde (por marketplace o por frecuencia de limpieza).
+- Una fila por reserva B2C con sus datos comerciales, importes y el porcentaje de management fee que le corresponde (según la frecuencia de limpieza, incluida la frecuencia *marketplace*).
 - Coste de marketplaces: cada factura de un marketplace se reparte a partes iguales entre las reservas que trajo en el periodo.
 
 ### Income (ingresos)

@@ -54,7 +54,7 @@ Se ejecuta en este orden:
 
 - **Numeración**: al marcar la factura como emitida, el trigger asigna el número según el patrón del emisor (facturas, recibos, rectificativas y sus variantes LAU) y un contador por emisor y año, y fija la fecha de emisión. Una factura emitida no se puede modificar ni borrar.
 - **Rectificativas**: al marcar una factura como rectificada, el trigger crea automáticamente la rectificativa con las líneas en negativo.
-- **Total y management fee**: cada línea recalcula el total de la factura y, si el emisor no es Cotown, el management fee de la línea según la frecuencia de limpieza de la reserva (o la comisión del marketplace).
+- **Total y management fee**: cada línea recalcula el total de la factura y, si el emisor no es Cotown, el management fee de la línea según la frecuencia de limpieza de la reserva (la frecuencia `marketplace` usa el porcentaje de marketplace del recurso).
 
 ## 4.4 PDF de facturas
 

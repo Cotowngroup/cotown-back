@@ -98,7 +98,7 @@ Las webs tienen un chatbot de un proveedor externo. El propio proveedor envía s
 - Al asignar recurso, la reserva pasa directamente a **confirmada**, sin esperar al pago del membership fee.
 - No se exige documentación: con la garantía pagada (o sin garantía), pasa a **firma de contrato**.
 
-**Comisión**: en la facturación, el management fee de las reservas de marketplace usa el porcentaje *marketplace* del recurso, no el de la frecuencia de limpieza.
+**Management fee**: al registrar la reserva, poner la frecuencia de limpieza *marketplace* para que la facturación use el porcentaje *marketplace* del recurso. El sistema no la pone solo: indicar el marketplace no cambia el porcentaje.
 
 **Datos del marketplace** (*Propietarios › Marketplaces*): tipo (comisionista, referral, cuota mensual o anual), forma de cobro de la comisión (de la primera renta, por domiciliación o por transferencia), porcentaje o importe, contacto y facturas recibidas. Ningún proceso los usa: son la referencia para revisar a mano las facturas que emiten los marketplaces.
 

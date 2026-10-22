@@ -1141,7 +1141,7 @@ Reservas y peticiones de reserva de los activos de Cotown.
 | `Billing_type_last` | Facturación último mes | Lista de valores |  | mes, quincena, proporcional, na |
 | `Tax_id` | IVA | Entero |  | → `Billing.Tax` |
 | `Link_id` | Reserva relacionada | Entero |  | → `Booking.Booking` |
-| `Cleaning_freq` | Frecuencia de limpieza | Lista de valores |  | no, semanal, quincenal, mensual, sin |
+| `Cleaning_freq` | Frecuencia de limpieza | Lista de valores |  | no, semanal, quincenal, mensual, sin, marketplace |
 | `Lock` | No cambiar asignación | Sí/No | ● |  |
 | `Second_resident` | Segundo residente | Sí/No | ● |  |
 | `Invoice_comment` | Nota en factura | Texto |  |  |
@@ -1346,7 +1346,7 @@ Reservas de grupo de los activos de Cotown.
 | `Incasol_reg` | Nº registro | Texto |  |  |
 | `Incasol_type` | Estado INCASOL | Lista de valores |  | pendiente, depositada, reclamada, devuelta |
 | `Final_cleaning` | Limpieza final (x plaza) | Decimal |  |  |
-| `Cleaning_freq` | Frecuencia de limpieza | Lista de valores |  | no, semanal, quincenal, mensual, sin |
+| `Cleaning_freq` | Frecuencia de limpieza | Lista de valores |  | no, semanal, quincenal, mensual, sin, marketplace |
 | `Tax` | No aplica IVA (indicar inquilinos en la rooming list) | Sí/No | ● |  |
 | `Customer` | Cliente | Texto |  |  |
 
