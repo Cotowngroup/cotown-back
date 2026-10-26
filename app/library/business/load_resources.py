@@ -193,6 +193,9 @@ def load_resources(dbClient, con, data):
       id = cur.fetchone()[0]
       cur.close()
 
+      # Add to cache so rooms/places in later rows can find their flat/room
+      resources[record['Code']] = id
+
       # Extras
       dbClient.execute(con, 'DELETE FROM "Resource"."Resource_amenity" WHERE "Resource_id" = %s', (id,))
       for u_res in extras:
