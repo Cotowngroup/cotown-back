@@ -51,6 +51,7 @@ FROM "Booking"."Booking" b
       SUM(
 		CASE 
         	WHEN b."Cleaning_freq" = 'marketplace' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_marketplace" / 100
+        	WHEN b."Cleaning_freq" = 'other' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_other" / 100
         	WHEN b."Cleaning_freq" = 'no' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_no_cleaning" / 100
         	WHEN b."Cleaning_freq" = 'semanal' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_weekly" / 100
         	WHEN b."Cleaning_freq" = 'quincenal' THEN bp."Rent" / (1 + COALESCE(t."Value", 0) / 100) * r."Management_fee_biweekly" / 100

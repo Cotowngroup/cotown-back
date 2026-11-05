@@ -42,6 +42,7 @@ SELECT
   COALESCE(b."Booking_fee_actual", 0) AS "booking_fee",
   CASE 
     WHEN b."Cleaning_freq" = 'marketplace' THEN r."Management_fee_marketplace" / 100
+    WHEN b."Cleaning_freq" = 'other' THEN r."Management_fee_other" / 100
     WHEN b."Cleaning_freq" = 'no' THEN r."Management_fee_no_cleaning" / 100
     WHEN b."Cleaning_freq" = 'semanal' THEN r."Management_fee_weekly" / 100
     WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee_biweekly" / 100

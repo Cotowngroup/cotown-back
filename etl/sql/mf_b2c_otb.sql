@@ -22,6 +22,7 @@ SELECT
     *
     CASE 
       WHEN b."Cleaning_freq" = 'marketplace' THEN COALESCE(r."Management_fee_marketplace", 0) / 100 
+      WHEN b."Cleaning_freq" = 'other' THEN COALESCE(r."Management_fee_other", 0) / 100 
       WHEN b."Cleaning_freq" = 'no' THEN COALESCE(r."Management_fee_no_cleaning", 0) / 100 
       WHEN b."Cleaning_freq" = 'semanal' THEN COALESCE(r."Management_fee_weekly", 0) / 100 
       WHEN b."Cleaning_freq" = 'quincenal' THEN COALESCE(r."Management_fee_biweekly", 0) / 100 

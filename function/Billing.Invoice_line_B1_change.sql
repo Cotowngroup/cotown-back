@@ -65,6 +65,7 @@ BEGIN
       SELECT
         CASE
           WHEN b."Cleaning_freq" = 'marketplace' THEN r."Management_fee_marketplace"
+          WHEN b."Cleaning_freq" = 'other'       THEN r."Management_fee_other"
           WHEN b."Cleaning_freq" = 'no'        THEN r."Management_fee_no_cleaning"
           WHEN b."Cleaning_freq" = 'semanal'   THEN r."Management_fee_weekly"
           WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee_biweekly"
@@ -81,6 +82,7 @@ BEGIN
       SELECT
         CASE
           WHEN b."Cleaning_freq" = 'marketplace' THEN r."Management_fee_marketplace"
+          WHEN b."Cleaning_freq" = 'other'       THEN r."Management_fee_other"
           WHEN b."Cleaning_freq" = 'no'        THEN r."Management_fee_no_cleaning"
           WHEN b."Cleaning_freq" = 'semanal'   THEN r."Management_fee_weekly"
           WHEN b."Cleaning_freq" = 'quincenal' THEN r."Management_fee_biweekly"

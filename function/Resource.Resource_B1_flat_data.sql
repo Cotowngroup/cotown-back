@@ -32,7 +32,8 @@ BEGIN
       "Management_fee_weekly" = NEW."Management_fee_weekly",
       "Management_fee_biweekly" = NEW."Management_fee_biweekly",
       "Management_fee_monthly" = NEW."Management_fee_monthly",
-      "Management_fee_marketplace" = NEW."Management_fee_marketplace"
+      "Management_fee_marketplace" = NEW."Management_fee_marketplace",
+      "Management_fee_other" = NEW."Management_fee_other"
     WHERE "Flat_id" = NEW.id
       AND id <> NEW.id
       AND (
@@ -47,7 +48,8 @@ BEGIN
         "Management_fee_weekly" IS DISTINCT FROM NEW."Management_fee_weekly" OR
         "Management_fee_biweekly" IS DISTINCT FROM NEW."Management_fee_biweekly" OR
         "Management_fee_monthly" IS DISTINCT FROM NEW."Management_fee_monthly" OR
-        "Management_fee_marketplace" IS DISTINCT FROM NEW."Management_fee_marketplace"
+        "Management_fee_marketplace" IS DISTINCT FROM NEW."Management_fee_marketplace" OR
+        "Management_fee_other" IS DISTINCT FROM NEW."Management_fee_other"
       );
     EXECUTE 'SET ROLE "' || curr_user || '"';
     RETURN NEW;
