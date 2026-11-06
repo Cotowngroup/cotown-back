@@ -96,6 +96,7 @@ def bill_payments(dbClient, con):
       LEFT JOIN "Billing"."Invoice" i ON i."Payment_id" = p.id
     WHERE i.id IS NULL
       AND ("Payment_date" IS NOT NULL OR "Payment_type" IN ('checkin', 'checkout'))
+      AND NOT (COALESCE(pr."Receipt", false) AND p."Payment_type" NOT IN ('booking', 'deposito', 'checkin', 'checkout'))
     ORDER BY p."Booking_id"
     ''')
   data = cur.fetchall()
@@ -132,7 +133,7 @@ def bill_payments(dbClient, con):
         RETURNING id
         ''',
         (
-          'recibo' if item['Payment_type'] not in ('booking','checkin','checkout') and (item['Payment_type'] == 'deposito' or item['Receipt']) else 'factura',
+          'recibo' if item['Payment_type'] == 'deposito' else 'factura',
           False,
           False,
           datetime.now(),
