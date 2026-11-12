@@ -313,7 +313,7 @@ def get_open_lead_id(person_id):
     return items[0]["id"]
 
 
-def get_open_deal_id(person_id):
+def get_open_deal(person_id):
     response = requests.get(
         f"{CRM_URL}/persons/{person_id}/deals",
         headers=CRM_HEADERS,
@@ -323,7 +323,7 @@ def get_open_deal_id(person_id):
     items = response.json().get("data") or []
     if not items:
         return None
-    return items[0]["id"]
+    return items[0]
 
 
 def upsert_lead(data):
@@ -340,13 +340,20 @@ def upsert_lead(data):
 
 
 def upsert_deal(data):
-    deal_id = get_open_deal_id(data["person_id"])
+    deal = get_open_deal(data["person_id"])
     payload = prepare_deal(data)
-    if deal_id:
-        # No se mueve el negocio de embudo/etapa ni se cambia su canal de origen
-        for key in ("channel", "pipeline_id", "stage_id"):
+    if deal:
+        # No se cambia el canal de origen ni el embudo. La etapa solo avanza
+        # de "Lead entrante" a "Reserva pendiente" (solicitud de reserva de
+        # alguien que ya había rellenado otro formulario); el resto no se toca
+        advance = (
+            payload.get("stage_id") == STAGE_BOOKING
+            and deal.get("pipeline_id") == payload.get("pipeline_id")
+            and deal.get("stage_id") == STAGE_LEAD
+        )
+        for key in ("channel", "pipeline_id") if advance else ("channel", "pipeline_id", "stage_id"):
             payload.pop(key, None)
-        response = requests.put(f"{CRM_URL}/deals/{deal_id}", headers=CRM_HEADERS, json=payload)
+        response = requests.put(f"{CRM_URL}/deals/{deal['id']}", headers=CRM_HEADERS, json=payload)
     else:
         response = requests.post(f"{CRM_URL}/deals", headers=CRM_HEADERS, json=payload)
     check(response)
