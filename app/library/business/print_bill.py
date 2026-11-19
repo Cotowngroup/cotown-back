@@ -189,41 +189,53 @@ def do_bill(apiClient, id, emails=[]):
     oid = response.content
 
 
-    # Email B2B bill
-    if context.get('Booking_group_id') and (context['Customer_bill_email_to'] or context['Booking_bill_email_to']):
-      logger.info('Send B2B bill to ' + context['Customer_bill_email_to'])
-      to = context['Booking_bill_email_to'] or context['Customer_bill_email_to']
+    # Email B2B bill: to the booking billing address, or the customer's if the booking has none
+    to = context.get('Booking_bill_email_to') or context.get('Customer_bill_email_to')
+    if context.get('Booking_group_id') and not to:
+      logger.warning('Factura B2B %s (id %s) sin email de facturación en reserva ni cliente: no se envía', context['Bill_code'], id)
+    if context.get('Booking_group_id') and to:
       cc = [(context['Booking_bill_email_cc'] or context['Customer_bill_email_cc'])] + emails
       cc = list(filter(bool, cc))
       if cc == []:
         cc = None
+      logger.info('Envío factura B2B %s (id %s) a %s, cc %s', context['Bill_code'], id, to, cc)
       file.filename = context['Bill_code'] + '.pdf'
       try:
-        smtp_mail(
+        refused = smtp_mail(
           to,
-          context['Bill_type'] + ': ' + context['Bill_code'] + ' - ' + context['Bill_concept'] + ' ' + context['Bill_issued_date'], 
-          'Adjuntamos ' + context['Bill_type'].lower() + ' ' + context['Bill_concept'].lower() + ' ' + context['Bill_issued_date'], 
+          context['Bill_type'] + ': ' + context['Bill_code'] + ' - ' + context['Bill_concept'] + ' ' + context['Bill_issued_date'],
+          'Adjuntamos ' + context['Bill_type'].lower() + ' ' + context['Bill_concept'].lower() + ' ' + context['Bill_issued_date'],
           cc=cc,
           file=file,
           from_type='cotown'
         )
+
+        # The server may accept the message but refuse some recipients without raising
+        if refused:
+          logger.error('Factura B2B %s (id %s): destinatarios rechazados %s', context['Bill_code'], id, refused)
       except Exception as error:
-        logger.error(error)
+        logger.error('Error enviando factura B2B %s (id %s): %s', context['Bill_code'], id, error)
 
     # Email LAU bill
+    if context.get('Send_bill') and not context['Customer_email']:
+      logger.warning('Factura LAU %s (id %s) sin email del cliente: no se envía', context['Bill_code'], id)
     if context.get('Send_bill') and context['Customer_email']:
-      logger.info('Send LAU bill to ' + context['Customer_email'])
+      logger.info('Envío factura LAU %s (id %s) a %s', context['Bill_code'], id, context['Customer_email'])
       file.filename = context['Bill_code'] + '.pdf'
       try:
-        smtp_mail(
+        refused = smtp_mail(
           context['Customer_email'],
-          context['Bill_code'] + ' - ' + context['Bill_concept'] + ' ' + context['Bill_issued_date'], 
-          'Adjuntamos factura ' + context['Bill_concept'].lower() + ' ' + context['Bill_issued_date'], 
+          context['Bill_code'] + ' - ' + context['Bill_concept'] + ' ' + context['Bill_issued_date'],
+          'Adjuntamos factura ' + context['Bill_concept'].lower() + ' ' + context['Bill_issued_date'],
           file=file,
           from_type='vandor'
         )
+
+        # The server may accept the message but refuse some recipients without raising
+        if refused:
+          logger.error('Factura LAU %s (id %s): destinatarios rechazados %s', context['Bill_code'], id, refused)
       except Exception as error:
-        logger.error(error)
+        logger.error('Error enviando factura LAU %s (id %s): %s', context['Bill_code'], id, error)
 
     # Update query
     query = '''
