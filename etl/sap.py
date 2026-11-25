@@ -9,13 +9,15 @@ import re
 import json
 from datetime import datetime, timezone
 
+from library.services.config import settings
+
 
 # ###################################################
 # Connection params
 # ###################################################
 
 # URL
-url = 'https://my429724.businessbydesign.cloud.sap/sap/byd/odata/ana_businessanalytics_analytics.svc/RPFINGLAU02_Q0001QueryResults'
+url = settings.SAPURL_LAU
 
 # Query string
 params = {
@@ -24,9 +26,9 @@ params = {
 '$format': "json"
 }
 
-# Auth
-username = 'lorumdesarrollo'
-password = 'Vandor12345678912'
+# Auth (.settings.toml / .secrets.toml)
+username = settings.SAPUSER
+password = settings.SAPPASS
 
 
 # ###################################################
