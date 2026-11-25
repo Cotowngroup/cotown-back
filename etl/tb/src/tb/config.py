@@ -20,6 +20,17 @@ class Category(NamedTuple):
     ccaa2: str
 
 
+# Account + service + asset: the part of TB!K that decides the category
+class Combination(NamedTuple):
+    cuenta: str
+    servicio: str
+    asset: str
+
+    # As it appears at the start of TB!K and in messages: cuenta servicio asset
+    def __str__(self) -> str:
+        return f'{self.cuenta} {self.servicio} {self.asset}'
+
+
 # Tables of the master workbook that the transformation uses
 @dataclass(frozen=True)
 class Config:
@@ -28,3 +39,5 @@ class Config:
     digitos_numero: int
     equivalencias: dict[str, str]
     mapping: dict[str, Category]
+    categorias: dict[Combination, str]
+    referencia: dict[Combination, list[Category]]

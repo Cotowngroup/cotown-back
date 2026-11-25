@@ -18,7 +18,7 @@ from typing import BinaryIO
 import pandas as pd
 
 # Application libraries
-from tb.config import Category, Config
+from tb.config import Category, Combination, Config
 from tb.errors import ReadError
 
 # Columns the transformation needs from each sheet; other columns (motivo, descripcion) are informative
@@ -26,6 +26,8 @@ REQUIRED_COLUMNS = {
     'Reglas': ['patron_edificio', 'digitos_numero'],
     'Equivalencias': ['centro_beneficio', 'asset'],
     'Mapping': ['servicio', *Category._fields],
+    'Categorias': [*Combination._fields, 'categoria'],
+    'Referencia': [*Combination._fields, *Category._fields],
 }
 
 
@@ -53,6 +55,11 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
     mapping = sheets['Mapping'].dropna(subset=['servicio'])
     equivalences['centro_beneficio'] = equivalences['centro_beneficio'].str.strip()
     mapping['servicio'] = mapping['servicio'].str.strip()
+    categories_sheet = sheets['Categorias'].dropna(how='all', subset=REQUIRED_COLUMNS['Categorias'])
+    reference_sheet = sheets['Referencia'].dropna(how='all', subset=REQUIRED_COLUMNS['Referencia'])
+    for sheet in (categories_sheet, reference_sheet):
+        for column in Combination._fields:
+            sheet[column] = sheet[column].str.strip()
 
     # Reglas: a single row with the building pattern and the number length
     if len(rules) != 1:
@@ -79,8 +86,35 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
         errors.append(f'Mapping: al servicio {service} le falta categoria, ccaa1 o ccaa2.')
     for service in mapping.loc[mapping['servicio'].duplicated(), 'servicio'].unique():
         errors.append(f'Mapping: el servicio {service} está repetido. Deja una sola fila.')
+
+    # Categorias: one complete row per combination
+    incomplete = categories_sheet[REQUIRED_COLUMNS['Categorias']].isna().any(axis=1)
+    for row in categories_sheet[incomplete].fillna('(vacío)').itertuples():
+        errors.append(
+            f'Categorias: fila incompleta ({row.cuenta} {row.servicio} {row.asset}, categoria {row.categoria}).'
+        )
+    for row in categories_sheet[categories_sheet.duplicated(subset=list(Combination._fields))].itertuples():
+        errors.append(
+            f'Categorias: la combinación {row.cuenta} {row.servicio} {row.asset} está repetida. Deja una sola fila.'
+        )
+
+    # Referencia: complete rows, one per combination and category
+    incomplete = reference_sheet[REQUIRED_COLUMNS['Referencia']].isna().any(axis=1)
+    for row in reference_sheet[incomplete].fillna('(vacío)').itertuples():
+        errors.append(f'Referencia: fila incompleta ({row.cuenta} {row.servicio} {row.asset} {row.categoria}).')
+    for row in reference_sheet[reference_sheet.duplicated(subset=[*Combination._fields, 'categoria'])].itertuples():
+        errors.append(
+            f'Referencia: la combinación {row.cuenta} {row.servicio} {row.asset} con categoría "{row.categoria}" '
+            f'está repetida. Deja una sola fila.'
+        )
     if errors:
         raise ReadError(errors)
+
+    # Referencia grouped by combination, keeping the order of the sheet
+    reference_categories: dict[Combination, list[Category]] = {}
+    for row in reference_sheet.itertuples(index=False):
+        combination = Combination(row.cuenta, row.servicio, row.asset)
+        reference_categories.setdefault(combination, []).append(Category(row.categoria, row.ccaa1, row.ccaa2))
 
     # Configuration of the company
     return Config(
@@ -92,4 +126,9 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
             row.servicio: Category(row.categoria, row.ccaa1, row.ccaa2)
             for row in mapping.itertuples(index=False)
         },
+        categorias={
+            Combination(row.cuenta, row.servicio, row.asset): row.categoria
+            for row in categories_sheet.itertuples(index=False)
+        },
+        referencia=reference_categories,
     )

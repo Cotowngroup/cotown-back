@@ -7,12 +7,15 @@
 # Copyright Oimbra Technology 2026
 # ==============================================================================
 
+# Standard libraries
+from dataclasses import replace
+
 # Third-party libraries
 import pandas as pd
 import pytest
 
 # Application libraries
-from tb.config import Category, Config
+from tb.config import Category, Combination, Config
 from tb.transform import TransformResult, transform
 
 # Building centre pattern of CTS00, as in the Reglas sheet of the master workbook
@@ -39,20 +42,21 @@ def build_export(*lines: list[dict]) -> pd.DataFrame:
     return pd.DataFrame([row for rows in lines for row in rows])
 
 
-# CTS00 configuration with a small Mapping and Equivalencias; tests override what they need
+# CTS00 configuration with a small Mapping and Equivalencias and no Categorias or Referencia; tests override them
 def build_config(**overrides) -> Config:
-    fields = {
-        'empresa': 'CTS00',
-        'patron_edificio': CTS00_PATTERN,
-        'digitos_numero': 4,
-        'equivalencias': {'CTS01': 'Manco', 'CTSBCNCON0012': 'CCD0012', 'CTSMADDCT075': 'DCT075'},
-        'mapping': {
+    config = Config(
+        empresa='CTS00',
+        patron_edificio=CTS00_PATTERN,
+        digitos_numero=4,
+        equivalencias={'CTS01': 'Manco', 'CTSBCNCON0012': 'CCD0012', 'CTSMADDCT075': 'DCT075'},
+        mapping={
             'S_70504': Category('Checkout Cleaning Services (Final cleaning)', 'PL', 'Revenue'),
             '629000': Category('Other expenses', 'PL', 'External Services'),
         },
-    }
-    fields.update(overrides)
-    return Config(**fields)
+        categorias={},
+        referencia={},
+    )
+    return replace(config, **overrides)
 
 
 # Output rows as plain dicts, to compare against literal expectations
@@ -232,3 +236,91 @@ def test_several_companies_with_zero_line_is_error():
     assert result.rows.empty
     assert len(result.errors) == 1
     assert 'CTS01' in result.errors[0]
+
+
+# Combination of the default line (705000 S_70504 in BAI0033)
+BAI0033_CLEANING = Combination('705000', 'S_70504', 'BAI0033')
+
+
+# A combination with a single category in Referencia takes it, with its CCAA, over Mapping
+def test_single_category_in_reference():
+    config = build_config(referencia={BAI0033_CLEANING: [Category('Cleaning', 'PL', 'Other revenue')]})
+
+    result = transform(build_export(build_line()), config)
+
+    assert result.errors == []
+    assert result.new_combinations == []
+    assert [(row['categoria'], row['ccaa1'], row['ccaa2'], row['clave']) for row in to_records(result)] == [
+        ('Cleaning', 'PL', 'Other revenue', '705000 S_70504 BAI0033 Cleaning'),
+    ]
+
+
+# A combination missing from Referencia takes the category of its service in Mapping and is listed as new
+def test_mapping_marks_combination_as_new():
+    other = Combination('705000', 'S_70504', 'BAI0034')
+    config = build_config(referencia={other: [Category('Cleaning', 'PL', 'Other revenue')]})
+
+    result = transform(build_export(build_line()), config)
+
+    assert result.errors == []
+    assert result.new_combinations == [BAI0033_CLEANING]
+    assert to_records(result)[0]['categoria'] == 'Checkout Cleaning Services (Final cleaning)'
+
+
+# Two categories in Referencia and no manual entry: error that names the combination and its categories, no choice
+def test_ambiguous_combination_is_error():
+    reference = [Category('Cleaning', 'PL', 'Other revenue'), Category('Cleaning building', 'PL', 'Other revenue')]
+    config = build_config(referencia={BAI0033_CLEANING: reference})
+
+    result = transform(build_export(build_line()), config)
+
+    assert result.rows.empty
+    assert len(result.errors) == 1
+    for text in ('705000 S_70504 BAI0033', '"Cleaning"', '"Cleaning building"', 'Categorias'):
+        assert text in result.errors[0], text
+
+
+# A manual entry settles an ambiguous combination; its CCAA come from the Referencia row with that category
+def test_manual_category_settles_ambiguity():
+    reference = [Category('Cleaning', 'PL', 'Other revenue'), Category('Cleaning building', 'PL', 'Building revenue')]
+    config = build_config(
+        categorias={BAI0033_CLEANING: 'Cleaning building'},
+        referencia={BAI0033_CLEANING: reference},
+    )
+
+    result = transform(build_export(build_line()), config)
+
+    assert result.errors == []
+    assert result.new_combinations == []
+    assert [(row['categoria'], row['ccaa1'], row['ccaa2']) for row in to_records(result)] == [
+        ('Cleaning building', 'PL', 'Building revenue'),
+    ]
+
+
+# A manual entry wins over a single category in Referencia; without that category there, the CCAA come from Mapping
+def test_manual_category_over_single_reference():
+    config = build_config(
+        categorias={BAI0033_CLEANING: 'Final cleaning'},
+        referencia={BAI0033_CLEANING: [Category('Cleaning', 'BS', 'Other revenue')]},
+    )
+
+    result = transform(build_export(build_line()), config)
+
+    assert result.errors == []
+    assert result.new_combinations == []
+    assert [(row['categoria'], row['ccaa1'], row['ccaa2']) for row in to_records(result)] == [
+        ('Final cleaning', 'PL', 'Revenue'),
+    ]
+
+
+# A manual category that neither Referencia nor Mapping can give CCAA to is an error on its service
+def test_manual_category_without_ccaa_is_error():
+    combination = Combination('705000', 'S_99999', 'BAI0033')
+    config = build_config(categorias={combination: 'Final cleaning'})
+
+    result = transform(build_export(build_line(producto='S_99999')), config)
+
+    assert result.rows.empty
+    assert len(result.errors) == 1
+    assert 'S_99999' in result.errors[0]
+    assert 'Mapping' in result.errors[0]

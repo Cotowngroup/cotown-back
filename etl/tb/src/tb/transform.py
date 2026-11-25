@@ -18,7 +18,7 @@ from dataclasses import dataclass
 import pandas as pd
 
 # Application libraries
-from tb.config import Category, Config
+from tb.config import Category, Combination, Config
 from tb.schema import NATURAL_KEY, OUTPUT_COLUMNS
 
 # Prefix that some profit centres carry in SAP and the TB ignores
@@ -30,6 +30,7 @@ AT_PREFIX = 'AT-'
 class TransformResult:
     rows: pd.DataFrame
     errors: list[str]
+    new_combinations: list[Combination]
 
 
 # Transform the canonical export with the company configuration
@@ -77,22 +78,60 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
             )
     lines['asset'] = lines['centro_beneficio'].map(assets)
 
-    # Category and annual-accounts grouping from Mapping, by service
-    for service in lines['servicio'].unique():
-        if service not in config.mapping:
-            service_lines = lines[lines['servicio'] == service]
-            accounts = ', '.join(sorted(service_lines['cuenta'].unique()))
+    # Category and annual-accounts grouping per account + service + asset (spec decision 18)
+    lines['combinacion'] = list(map(Combination._make, lines[list(Combination._fields)].itertuples(index=False)))
+    categories: dict[Combination, Category] = {}
+    new_combinations = []
+    unmapped: set[Combination] = set()
+    for combination in lines['combinacion'].unique():
+        reference = config.referencia.get(combination, [])
+        manual = config.categorias.get(combination)
+        mapped = config.mapping.get(combination.servicio)
+
+        # 1. Categorias: the manual category, with the CCAA of its Referencia row or, without one, of Mapping
+        if manual is not None:
+            manual_reference = next((category for category in reference if category.categoria == manual), None)
+            if manual_reference is not None:
+                categories[combination] = manual_reference
+            elif mapped is not None:
+                categories[combination] = mapped._replace(categoria=manual)
+            else:
+                unmapped.add(combination)
+
+        # 2. Referencia with a single category; with several, the program does not choose
+        elif len(reference) == 1:
+            categories[combination] = reference[0]
+        elif reference:
+            options = ', '.join(f'"{category.categoria}"' for category in reference)
             errors.append(
-                f'Servicio sin categoría: {service} "{service_lines['descripcion'].iloc[0]}" (cuentas {accounts}). '
-                f'Añádelo a Mapping.'
+                f'Combinación con varias categorías en Referencia: {combination} ({options}). '
+                f'Añádela a Categorias con la que corresponda.'
             )
-    categories = lines['servicio'].map(config.mapping)
+
+        # 3. Mapping by service: the combination is new to the TB
+        elif mapped is not None:
+            categories[combination] = mapped
+            new_combinations.append(combination)
+        else:
+            unmapped.add(combination)
+
+    # Services that no source resolves, once per service with the accounts of its unresolved combinations
+    unresolved = lines[[combination in unmapped for combination in lines['combinacion']]]
+    for service in unresolved['servicio'].unique():
+        service_lines = unresolved[unresolved['servicio'] == service]
+        accounts = ', '.join(sorted(service_lines['cuenta'].unique()))
+        errors.append(
+            f'Servicio sin categoría: {service} "{service_lines['descripcion'].iloc[0]}" (cuentas {accounts}). '
+            f'Añádelo a Mapping.'
+        )
+
+    # Category columns of every line
     for column in Category._fields:
-        lines[column] = categories.map(lambda category, field=column: getattr(category, field, None))
+        lines[column] = [getattr(categories.get(combination), column, None) for combination in lines['combinacion']]
 
     # Nothing is output when anything could not be resolved
     if errors:
-        return TransformResult(rows=pd.DataFrame(columns=OUTPUT_COLUMNS), errors=errors)
+        return TransformResult(rows=pd.DataFrame(columns=OUTPUT_COLUMNS), errors=errors, new_combinations=[])
 
     # Key identical to TB!K
     lines['clave'] = lines['cuenta'] + ' ' + lines['servicio'] + ' ' + lines['asset'] + ' ' + lines['categoria']
@@ -109,4 +148,4 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
     rows['importe'] = rows['importe'].round(2)
     rows = rows[rows['importe'] != 0].reset_index(drop=True)
     rows['budget'] = None
-    return TransformResult(rows=rows[OUTPUT_COLUMNS], errors=errors)
+    return TransformResult(rows=rows[OUTPUT_COLUMNS], errors=errors, new_combinations=new_combinations)

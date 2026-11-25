@@ -4,8 +4,8 @@
 # Command line: python -m tb <export.xlsx> --maestro maestro_tb_<empresa>.xlsx
 # [--csv salida.csv]. Reads the SAP export and the company's master workbook,
 # transforms, validates and either writes the CSV or prints a summary (rows,
-# keys, total per month). On any error nothing is written, every error goes
-# to stderr and the exit code is 1.
+# keys, total per month); both list the new combinations. On any error nothing
+# is written, every error goes to stderr and the exit code is 1.
 #
 # Copyright Oimbra Technology 2026
 # ==============================================================================
@@ -86,12 +86,17 @@ def main(argv: list[str] | None = None) -> int:
     if args.csv:
         write_csv(rows, args.csv)
         print(f'{len(rows)} filas escritas en {args.csv}.')
-        return 0
-    print(f'Filas: {len(rows)}')
-    print(f'Claves: {rows['clave'].nunique()}')
-    print('Total por mes:')
-    for month, total in rows.groupby('mes')['importe'].sum().round(2).items():
-        print(f'  {month}: {total + 0:.2f}'.replace('.', ','))
+    else:
+        print(f'Filas: {len(rows)}')
+        print(f'Claves: {rows['clave'].nunique()}')
+        print('Total por mes:')
+        for month, total in rows.groupby('mes')['importe'].sum().round(2).items():
+            print(f'  {month}: {total + 0:.2f}'.replace('.', ','))
+
+    # New combinations, in both cases: their category comes from Mapping and should be reviewed
+    print(f'Combinaciones nuevas (categoría de Mapping): {len(result.new_combinations)}')
+    for combination in result.new_combinations:
+        print(f'  {combination}')
     return 0
 
 

@@ -219,7 +219,8 @@ Sustituye al BUSCARV contra la columna K de la TB.
 |---|---|
 | Centro de beneficio sin asset | Añadirlo a `Equivalencias` o revisar si es un error de SAP |
 | Combinación con varias categorías | Añadir la fila a `Categorias`. El mensaje lista las categorías posibles |
-| Servicio sin categoría | Añadir el servicio a `Mapping` |
+| Servicio sin categoría | Añadir el servicio a `Mapping`. También sale si una fila de `Categorias` pone una categoría que no está en `Referencia` y el servicio no está en `Mapping`: de ahí salen CCAA 1 y CCAA 2 |
+| Fila incompleta o repetida en `Categorias` o `Referencia` | Completar la fila o dejar una sola por combinación (en `Referencia`, una por combinación y categoría) |
 | Cuenta excluida que no neta 0 | Revisar en SAP. Si debe pasar a la TB, quitarla de `Excluidas` |
 | Reclasificación en conflicto | Dos filas iguales para la misma línea: dejar una |
 | Varias empresas en el export | Exportar de SAP una sola sociedad |
