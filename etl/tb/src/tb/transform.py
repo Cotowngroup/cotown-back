@@ -78,6 +78,28 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
             )
     lines['asset'] = lines['centro_beneficio'].map(assets)
 
+    # Reclasificaciones: target services per account + SAP service + centre (None for the rows without centre)
+    targets: dict[tuple[str, str, str | None], list[str]] = {}
+    for row in config.reclasificaciones:
+        targets.setdefault((row.cuenta, row.servicio_sap, row.centro_beneficio), []).append(row.servicio_tb)
+
+    # Row level that applies to each line: its centre when a row names it, otherwise the general one
+    line_keys = list(zip(lines['cuenta'], lines['servicio'], lines['centro_beneficio'], strict=True))
+    row_keys = {key: key if key in targets else (*key[:2], None) for key in dict.fromkeys(line_keys)}
+
+    # Two rows of the same level for a line are a conflict, reported once per row key
+    for account, service, centre in dict.fromkeys(row_keys.values()):
+        services = targets.get((account, service, centre), [])
+        if len(services) > 1:
+            where = f' del centro {centre}' if centre is not None else ''
+            errors.append(
+                f'Reclasificación en conflicto: {account} {service}{where} tiene {len(services)} filas en '
+                f'Reclasificaciones ({', '.join(services)}). Deja una sola.'
+            )
+
+    # New service of each line, or its own service (key[1]) when no row applies
+    lines['servicio'] = [targets.get(row_keys[key], [key[1]])[0] for key in line_keys]
+
     # Category and annual-accounts grouping per account + service + asset (spec decision 18)
     lines['combinacion'] = list(map(Combination._make, lines[list(Combination._fields)].itertuples(index=False)))
     categories: dict[Combination, Category] = {}

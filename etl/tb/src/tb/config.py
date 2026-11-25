@@ -31,6 +31,14 @@ class Combination(NamedTuple):
         return f'{self.cuenta} {self.servicio} {self.asset}'
 
 
+# Row of Reclasificaciones: lines of cuenta + servicio_sap (and centre, when given) take servicio_tb
+class Reclassification(NamedTuple):
+    cuenta: str
+    servicio_sap: str
+    centro_beneficio: str | None
+    servicio_tb: str
+
+
 # Tables of the master workbook that the transformation uses
 @dataclass(frozen=True)
 class Config:
@@ -38,6 +46,7 @@ class Config:
     patron_edificio: str
     digitos_numero: int
     equivalencias: dict[str, str]
+    reclasificaciones: list[Reclassification]
     mapping: dict[str, Category]
     categorias: dict[Combination, str]
     referencia: dict[Combination, list[Category]]

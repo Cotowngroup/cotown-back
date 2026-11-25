@@ -15,7 +15,7 @@ import pandas as pd
 import pytest
 
 # Application libraries
-from tb.config import Category, Combination, Config
+from tb.config import Category, Combination, Config, Reclassification
 from tb.transform import TransformResult, transform
 
 # Building centre pattern of CTS00, as in the Reglas sheet of the master workbook
@@ -42,16 +42,18 @@ def build_export(*lines: list[dict]) -> pd.DataFrame:
     return pd.DataFrame([row for rows in lines for row in rows])
 
 
-# CTS00 configuration with a small Mapping and Equivalencias and no Categorias or Referencia; tests override them
+# CTS00 configuration with a small Mapping and Equivalencias, and no Reclasificaciones, Categorias or Referencia
 def build_config(**overrides) -> Config:
     config = Config(
         empresa='CTS00',
         patron_edificio=CTS00_PATTERN,
         digitos_numero=4,
         equivalencias={'CTS01': 'Manco', 'CTSBCNCON0012': 'CCD0012', 'CTSMADDCT075': 'DCT075'},
+        reclasificaciones=[],
         mapping={
             'S_70504': Category('Checkout Cleaning Services (Final cleaning)', 'PL', 'Revenue'),
             '629000': Category('Other expenses', 'PL', 'External Services'),
+            'S_70505': Category('Cleaning Services', 'PL', 'Revenue'),
         },
         categorias={},
         referencia={},
@@ -324,3 +326,77 @@ def test_manual_category_without_ccaa_is_error():
     assert len(result.errors) == 1
     assert 'S_99999' in result.errors[0]
     assert 'Mapping' in result.errors[0]
+
+
+# A general reclassification changes the service of every line of its account and SAP service
+def test_general_reclassification():
+    config = build_config(reclasificaciones=[Reclassification('705000', 'S_70504', None, 'S_70505')])
+    lines = build_export(build_line(), build_line(centro_beneficio='CTSBCNBAI0034'))
+
+    result = transform(lines, config)
+
+    assert result.errors == []
+    assert [(row['servicio'], row['asset'], row['categoria']) for row in to_records(result)] == [
+        ('S_70505', 'BAI0033', 'Cleaning Services'),
+        ('S_70505', 'BAI0034', 'Cleaning Services'),
+    ]
+
+
+# A reclassification by profit centre (clean, without AT-) only changes the lines of that centre
+def test_reclassification_by_centre():
+    config = build_config(reclasificaciones=[Reclassification('705000', 'S_70504', 'CTSBCNBAI0034', 'S_70505')])
+    lines = build_export(build_line(), build_line(centro_beneficio='AT-CTSBCNBAI0034'))
+
+    result = transform(lines, config)
+
+    assert result.errors == []
+    assert [(row['servicio'], row['asset']) for row in to_records(result)] == [
+        ('S_70504', 'BAI0033'),
+        ('S_70505', 'BAI0034'),
+    ]
+
+
+# A row with centre wins over a general row of the same account and service
+def test_reclassification_by_centre_wins_over_general():
+    config = build_config(
+        reclasificaciones=[
+            Reclassification('705000', 'S_70504', None, '629000'),
+            Reclassification('705000', 'S_70504', 'CTSBCNBAI0034', 'S_70505'),
+        ],
+    )
+    lines = build_export(build_line(), build_line(centro_beneficio='CTSBCNBAI0034'))
+
+    result = transform(lines, config)
+
+    assert result.errors == []
+    assert [(row['servicio'], row['asset']) for row in to_records(result)] == [
+        ('629000', 'BAI0033'),
+        ('S_70505', 'BAI0034'),
+    ]
+
+
+# Two rows of the same level for the same line: error that names the line and the target services, no choice
+def test_reclassification_conflict_is_error():
+    config = build_config(
+        reclasificaciones=[
+            Reclassification('705000', 'S_70504', 'CTSBCNBAI0033_04.01', 'S_70505'),
+            Reclassification('705000', 'S_70504', 'CTSBCNBAI0033_04.01', '629000'),
+        ],
+    )
+
+    result = transform(build_export(build_line()), config)
+
+    assert result.rows.empty
+    assert len(result.errors) == 1
+    for text in ('705000', 'S_70504', 'CTSBCNBAI0033_04.01', 'S_70505', '629000', 'Reclasificaciones'):
+        assert text in result.errors[0], text
+
+
+# A line whose account and service are in no row keeps its service, even if a row matches its service elsewhere
+def test_line_without_reclassification():
+    config = build_config(reclasificaciones=[Reclassification('629000', 'S_70504', None, 'S_70505')])
+
+    result = transform(build_export(build_line()), config)
+
+    assert result.errors == []
+    assert [row['servicio'] for row in to_records(result)] == ['S_70504']

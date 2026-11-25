@@ -222,7 +222,8 @@ Sustituye al BUSCARV contra la columna K de la TB.
 | Servicio sin categoría | Añadir el servicio a `Mapping`. También sale si una fila de `Categorias` pone una categoría que no está en `Referencia` y el servicio no está en `Mapping`: de ahí salen CCAA 1 y CCAA 2 |
 | Fila incompleta o repetida en `Categorias` o `Referencia` | Completar la fila o dejar una sola por combinación (en `Referencia`, una por combinación y categoría) |
 | Cuenta excluida que no neta 0 | Revisar en SAP. Si debe pasar a la TB, quitarla de `Excluidas` |
-| Reclasificación en conflicto | Dos filas iguales para la misma línea: dejar una |
+| Reclasificación en conflicto | Una línea del export cae en dos filas de la misma cuenta y servicio, las dos con el mismo centro o las dos sin centro: dejar una |
+| Fila incompleta en `Reclasificaciones` | Rellenar `cuenta`, `servicio_sap` y `servicio_tb`; solo `centro_beneficio` es opcional |
 | Varias empresas en el export | Exportar de SAP una sola sociedad |
 | La hoja maestra debe llamarse `maestro_tb_<empresa>.xlsx` | Renombrar el fichero: de su nombre sale la empresa |
 | Periodo que no es un mes (`013.2026`…`016.2026`) | Exportar de SAP solo los periodos mensuales `001`-`012` |
