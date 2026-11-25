@@ -24,6 +24,7 @@ from tb.errors import ReadError
 # Columns the transformation needs from each sheet; other columns (motivo, descripcion) are informative
 REQUIRED_COLUMNS = {
     'Reglas': ['patron_edificio', 'digitos_numero'],
+    'Excluidas': ['cuenta'],
     'Equivalencias': ['centro_beneficio', 'asset'],
     'Reclasificaciones': list(Reclassification._fields),
     'Mapping': ['servicio', *Category._fields],
@@ -56,6 +57,7 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
 
     # Codes without surrounding spaces; texts (categories) stay exactly as written, since they are part of TB!K
     rules = sheets['Reglas'].dropna(how='all')
+    excluded = sheets['Excluidas']['cuenta'].dropna().str.strip()
     equivalences = sheets['Equivalencias'].dropna(subset=['centro_beneficio', 'asset'], how='all')
     reclassifications = sheets['Reclasificaciones'].dropna(subset=REQUIRED_COLUMNS['Reclasificaciones'], how='all')
     mapping = sheets['Mapping'].dropna(subset=['servicio'])
@@ -81,6 +83,10 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
                 errors.append('patron_edificio de la pestaña Reglas debe tener los grupos edificio y numero.')
         except re.error as error:
             errors.append(f'patron_edificio de la pestaña Reglas no es una expresión regular válida: {error}.')
+
+    # Excluidas: each account once
+    for account in excluded[excluded.duplicated()].unique():
+        errors.append(f'Excluidas: la cuenta {account} está repetida. Deja una sola fila.')
 
     # Equivalencias: one asset per profit centre
     incomplete = equivalences[equivalences[['centro_beneficio', 'asset']].isna().any(axis=1)]
@@ -137,6 +143,7 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
         empresa=empresa,
         patron_edificio=rules['patron_edificio'].iloc[0],
         digitos_numero=int(rules['digitos_numero'].iloc[0]),
+        excluidas=list(excluded),
         equivalencias=dict(zip(equivalences['centro_beneficio'], equivalences['asset'], strict=True)),
         # An empty centre (NaN, or only spaces before the strip) means a general row
         reclasificaciones=[

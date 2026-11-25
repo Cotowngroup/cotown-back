@@ -21,7 +21,7 @@ from tb.csv_writer import write_csv
 from tb.errors import ReadError
 from tb.export import read_export
 from tb.maestro import read_maestro
-from tb.schema import validate_output
+from tb.schema import format_amount, validate_balance, validate_output
 from tb.transform import transform
 
 # File name of a master workbook; the company comes from it
@@ -69,10 +69,14 @@ def main(argv: list[str] | None = None) -> int:
         except OSError as error:
             errors.append(f'No se puede leer la hoja maestra {args.maestro}: {error}.')
 
-    # Transform and validate the output schema
+    # Transform, then validate the output schema and the balance
     if export is not None and config is not None:
         result = transform(export, config)
-        errors.extend(result.errors or validate_output(result.rows))
+        errors.extend(
+            result.errors
+            or validate_output(result.rows)
+            or validate_balance(result.rows, result.export_totals),
+        )
 
     # Any error: report them all and write nothing
     if errors:
@@ -91,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f'Claves: {rows['clave'].nunique()}')
         print('Total por mes:')
         for month, total in rows.groupby('mes')['importe'].sum().round(2).items():
-            print(f'  {month}: {total + 0:.2f}'.replace('.', ','))
+            print(f'  {month}: {format_amount(total)}')
 
     # New combinations, in both cases: their category comes from Mapping and should be reviewed
     print(f'Combinaciones nuevas (categoría de Mapping): {len(result.new_combinations)}')

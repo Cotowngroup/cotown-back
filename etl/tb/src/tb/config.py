@@ -45,6 +45,7 @@ class Config:
     empresa: str
     patron_edificio: str
     digitos_numero: int
+    excluidas: list[str]
     equivalencias: dict[str, str]
     reclasificaciones: list[Reclassification]
     mapping: dict[str, Category]

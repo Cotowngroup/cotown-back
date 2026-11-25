@@ -19,7 +19,7 @@ import pandas as pd
 
 # Application libraries
 from tb.config import Category, Combination, Config
-from tb.schema import NATURAL_KEY, OUTPUT_COLUMNS
+from tb.schema import BALANCE_TOLERANCE, NATURAL_KEY, OUTPUT_COLUMNS, format_amount
 
 # Prefix that some profit centres carry in SAP and the TB ignores
 AT_PREFIX = 'AT-'
@@ -31,6 +31,7 @@ class TransformResult:
     rows: pd.DataFrame
     errors: list[str]
     new_combinations: list[Combination]
+    export_totals: dict[str, float]
 
 
 # Transform the canonical export with the company configuration
@@ -49,6 +50,19 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
 
     # Drop zero amounts: a line with every period at 0 disappears, and the sums do not change
     lines = export[export['importe'] != 0].copy()
+
+    # Excluded accounts must net 0 every month: dropping them must not unbalance the TB
+    is_excluded = lines['cuenta'].isin(config.excluidas)
+    for (account, month), total in lines[is_excluded].groupby(['cuenta', 'mes'])['importe'].sum().items():
+        if abs(total) > BALANCE_TOLERANCE:
+            errors.append(
+                f'Cuenta excluida que no neta 0: {account} en {month} suma {format_amount(total)}. '
+                f'Revísala en SAP o, si debe pasar a la TB, quítala de Excluidas.'
+            )
+
+    # Drop the accounts of Excluidas; what is left is the export after the filter, the total the output must keep
+    lines = lines[~is_excluded].copy()
+    export_totals = lines.groupby('mes')['importe'].sum().to_dict()
 
     # Service: the S_ product code, otherwise the account
     is_service = lines['producto'].str.startswith('S_')
@@ -153,7 +167,12 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
 
     # Nothing is output when anything could not be resolved
     if errors:
-        return TransformResult(rows=pd.DataFrame(columns=OUTPUT_COLUMNS), errors=errors, new_combinations=[])
+        return TransformResult(
+            rows=pd.DataFrame(columns=OUTPUT_COLUMNS),
+            errors=errors,
+            new_combinations=[],
+            export_totals={},
+        )
 
     # Key identical to TB!K
     lines['clave'] = lines['cuenta'] + ' ' + lines['servicio'] + ' ' + lines['asset'] + ' ' + lines['categoria']
@@ -170,4 +189,9 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
     rows['importe'] = rows['importe'].round(2)
     rows = rows[rows['importe'] != 0].reset_index(drop=True)
     rows['budget'] = None
-    return TransformResult(rows=rows[OUTPUT_COLUMNS], errors=errors, new_combinations=new_combinations)
+    return TransformResult(
+        rows=rows[OUTPUT_COLUMNS],
+        errors=errors,
+        new_combinations=new_combinations,
+        export_totals=export_totals,
+    )

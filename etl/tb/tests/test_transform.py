@@ -42,12 +42,13 @@ def build_export(*lines: list[dict]) -> pd.DataFrame:
     return pd.DataFrame([row for rows in lines for row in rows])
 
 
-# CTS00 configuration with a small Mapping and Equivalencias, and no Reclasificaciones, Categorias or Referencia
+# CTS00 configuration with a small Mapping and Equivalencias; no Excluidas, Reclasificaciones, Categorias or Referencia
 def build_config(**overrides) -> Config:
     config = Config(
         empresa='CTS00',
         patron_edificio=CTS00_PATTERN,
         digitos_numero=4,
+        excluidas=[],
         equivalencias={'CTS01': 'Manco', 'CTSBCNCON0012': 'CCD0012', 'CTSMADDCT075': 'DCT075'},
         reclasificaciones=[],
         mapping={
@@ -400,3 +401,35 @@ def test_line_without_reclassification():
 
     assert result.errors == []
     assert [row['servicio'] for row in to_records(result)] == ['S_70504']
+
+
+# An excluded account that nets 0 every month disappears, and its service needs no category
+def test_excluded_account_is_dropped():
+    config = build_config(excluidas=['570000'])
+    lines = build_export(
+        build_line(),
+        build_line(cuenta='570000', producto='#', amounts={'2026-08': 50.0, '2026-09': 314.04}),
+        build_line(cuenta='570000', producto='#', amounts={'2026-08': -50.0, '2026-09': -314.04}),
+    )
+
+    result = transform(lines, config)
+
+    assert result.errors == []
+    assert [row['cuenta'] for row in to_records(result)] == ['705000']
+
+
+# An excluded account that does not net 0 in a month is an error with the account, the month and the amount
+def test_excluded_account_not_netting_is_error():
+    config = build_config(excluidas=['570000'])
+    lines = build_export(
+        build_line(),
+        build_line(cuenta='570000', producto='#', amounts={'2026-08': 50.0, '2026-09': 314.04}),
+        build_line(cuenta='570000', producto='#', amounts={'2026-08': -50.0, '2026-09': -14.04}),
+    )
+
+    result = transform(lines, config)
+
+    assert result.rows.empty
+    assert len(result.errors) == 1
+    for text in ('570000', '2026-09', '300,00', 'Excluidas'):
+        assert text in result.errors[0], text
