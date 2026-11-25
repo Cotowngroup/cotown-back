@@ -1,0 +1,27 @@
+Listado Trial Balance SAP
+[ ] Documento
+
+Centro beneficio
+-------------------------------
+- Fijo
+- Ciudad
+- Edificio (mapa de SAP a Cotown, 4 edificios)
+	Concordia 12
+	Facultades 
+	Avenida Madrid 110
+	Corsega 396
+- Piso
+[ ] Ejemplo
+
+Categoría de producto
+-------------------------------
+- Cuenta+Servicio+Asset	-> BuscarV, salvo servicios nuevos
+[ ] Tabla busqueda
+
+Budget
+-------------------------------
+A cada servicio un budget, algunos manuales
+
+Cuentas anuales
+-------------------------------
+[ ] Mapa
