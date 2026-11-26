@@ -1,0 +1,26 @@
+[default]
+
+# Log level: CRITICAL=50, ERROR=40, WARNING=30, INFO=20, DEBUG=10
+LOGLEVEL=10
+
+# Airflows API (GraphQL): uploads and master workbooks
+GQLUSER='modelsadmin'
+
+# Airflows DB: taking and saving the TB uploads
+DBHOST='core.cotown.com'
+DBUSER='postgres'
+DBNAME='niledb'
+SSHUSER='partner'
+
+# DW: gold.tb
+DWDBHOST='localhost'
+DWDBUSER='cotown'
+DWDBNAME='dw'
+
+# SAP: general ledger report (OData) and set of books of each company, for the TB from SAP (sap.py)
+SAPUSER = 'LORUMDESARROLLO'
+SAPURL_GL='https://my429724.businessbydesign.cloud.sap/sap/byd/odata/ana_businessanalytics_analytics.svc/RPZ21F81EB4A311D9FEF77A31QueryResults'
+SAPBOOKS = { CTS00 = 'ES02' }
+SAPBOOKNAMES = { ES02 = 'Sistema Contable Gestora ES' }
+
+# Secrets in .secrets.toml (not in git): GQLPASS, DBPASS, SSHPKEY (path of the SSH key of DBHOST), DWDBPASS, SAPPASS
