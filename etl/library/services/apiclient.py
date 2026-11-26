@@ -72,3 +72,12 @@ class APIClient:
     result = requests.get(url, headers=headers)
     return result
 
+
+  # Put file: store the content of a document field; the response body is the oid of the stored file
+  def putFile(self, id, entity, field, data, type):
+
+    # Store file in Airflows (id 0 for a record not created yet)
+    url = 'https://' + self.server + '/document/' + entity + '/' + str(id) + '/' + field + '/contents?access_token=' + self.token
+    result = requests.post(url, data=data, headers={ 'Content-Type': type })
+    return result
+

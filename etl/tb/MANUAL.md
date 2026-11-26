@@ -30,6 +30,25 @@ El proceso solo acepta exports de Trial Balance: comprueba que el fichero tenga 
 
 Dos ejecuciones a la vez no procesan la misma carga: cada una toma la suya de forma atómica. El registro del proceso queda en `back/etl/log/batch_tb.log`.
 
+## Cargas desde SAP, sin export manual
+
+`back/etl/sap_tb.py` genera el export de Trial Balance directamente desde el libro mayor de SAP (informe OData `SAPURL_GL`) y lo sube como carga. El fichero tiene el mismo formato que el export hecho a mano, así que la carga se procesa igual y guarda el fichero exacto que se transformó. Para agosto y septiembre de 2026 da el mismo TB, al céntimo, que el export manual (test de oro con los apuntes de SAP guardados en `data/sap_gl_CTS00_2026-0*.json`).
+
+Desde `back/etl`:
+
+```
+python sap_tb.py --empresa CTS00 --meses 2026-08 --subir
+python sap_tb.py --empresa CTS00 --meses 2026-08 2026-09 --xlsx "TB - CTS00.xlsx"
+```
+
+- `--subir` crea la carga en Airflows (`TB - <empresa> - <meses> (SAP).xlsx`), en `pendiente`. `--xlsx` guarda el fichero en disco para revisarlo. Se puede usar uno de los dos o ambos.
+- La sociedad tiene que estar en `SAPBOOKS` de `back/etl/.settings.toml`, con su libro contable (`CTS00 = 'ES02'`).
+- El código de producto sale de `CPRODUCT_UUID` y los textos se piden en español (`sap-language=ES`), como en el export manual.
+- Se excluye el arrastre de saldos de apertura del ejercicio (tipo de documento `00058`, «Ejecución de transferencia de saldos»): no va a la TB.
+- Si SAP no tiene apuntes de algún mes pedido, o la respuesta llega incompleta, no se genera nada y se informa del error.
+
+Sirve también para el mes en curso antes del cierre. El TB de un mes abierto cambiará cuando se contabilice el resto: se vuelve a lanzar cuando haga falta.
+
 ## Uso en local
 
 Para pruebas, o para revisar un export sin subirlo. Desde `back/etl/tb`, con el paquete instalado en el venv (`pip install -e .`):

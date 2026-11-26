@@ -44,6 +44,12 @@ DIMENSIONS = [
 ]
 
 
+# Period column header of a month: AAAA-MM becomes NNN.AAAA, the inverse of PERIOD_PATTERN
+def period_header(month: str) -> str:
+    year, period = month.split('-')
+    return f'{int(period):03d}.{year}'
+
+
 # Turn a code or text cell into a string: integers without .0, None as empty
 def _as_text(value: object) -> str:
     if value is None:
