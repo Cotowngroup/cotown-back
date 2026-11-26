@@ -72,10 +72,15 @@ SAP_LINES = [
 
 
 # Export workbook in memory: SAP title rows, the header row and one row per line with its period amounts
-def build_sap_export(periods: list[str], amounts: list[list], header: tuple[str, ...] = SAP_HEADER) -> BytesIO:
+def build_sap_export(
+    periods: list[str],
+    amounts: list[list],
+    header: tuple[str, ...] = SAP_HEADER,
+    title: str = 'Trial Balance',
+) -> BytesIO:
     book = openpyxl.Workbook()
     sheet = book.active
-    sheet.append([None, 'Trial Balance'])
+    sheet.append([None, title])
     sheet.append([])
     sheet.append([None, 'Empresa', 'CTS00 (COTOWN SHARING LIFE S.L.)'])
     sheet.append([None, '', '', '', 'Importe en moneda de empresa'])
@@ -176,4 +181,16 @@ def test_missing_header_row_is_reported():
 
     assert raised.value.errors == [
         'No se encuentra la fila de cabecera con "Cuenta de mayor": no parece un export de SAP.',
+    ]
+
+
+# An SAP export of another report (not the Trial Balance) is rejected with a clear message
+def test_export_of_another_report_is_rejected():
+    stream = build_sap_export(['009.2026'], [[-314.04], [None]], title='Saldos de cuentas de mayor')
+
+    with pytest.raises(ReadError) as raised:
+        read_export(stream)
+
+    assert raised.value.errors == [
+        'El fichero no es un export de Trial Balance de SAP: falta el título "Trial Balance" encima de la cabecera.',
     ]

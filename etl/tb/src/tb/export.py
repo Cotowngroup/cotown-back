@@ -5,8 +5,10 @@
 # returns the canonical input of the transformation: one row per line and
 # month (spec decision 7). The file is read by column name: the header row is
 # the one with "Cuenta de mayor", a dimension's text is the unnamed column
-# after its code, and the periods are the NNN.AAAA columns. Takes a binary
-# stream, so the file can come from disk or from Airflows.
+# after its code, and the periods are the NNN.AAAA columns. The title
+# "Trial Balance" above the header tells it apart from other SAP reports
+# (spec decision F2). Takes a binary stream, so the file can come from disk
+# or from Airflows.
 #
 # Copyright Oimbra Technology 2026
 # ==============================================================================
@@ -24,6 +26,9 @@ from tb.errors import ReadError
 
 # Header cell that identifies the column header row of the export
 HEADER_MARK = 'Cuenta de mayor'
+
+# Title cell that SAP writes above the header of a Trial Balance export
+TITLE_MARK = 'Trial Balance'
 
 # Period column header: NNN.AAAA, e.g. 008.2026
 PERIOD_PATTERN = re.compile(r'^(?P<period>\d{3})\.(?P<year>\d{4})$')
@@ -59,6 +64,13 @@ def read_export(source: BinaryIO) -> pd.DataFrame:
     header_index = next((i for i, row in enumerate(cells) if HEADER_MARK in [_as_text(v) for v in row]), None)
     if header_index is None:
         raise ReadError([f'No se encuentra la fila de cabecera con "{HEADER_MARK}": no parece un export de SAP.'])
+    if not any(TITLE_MARK in [_as_text(v) for v in row] for row in cells[:header_index]):
+        raise ReadError(
+            [
+                f'El fichero no es un export de Trial Balance de SAP: '
+                f'falta el título "{TITLE_MARK}" encima de la cabecera.',
+            ],
+        )
     header = [_as_text(value) for value in cells[header_index]]
     errors = []
 

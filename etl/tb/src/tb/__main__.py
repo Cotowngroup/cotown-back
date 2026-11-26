@@ -21,8 +21,7 @@ from tb.csv_writer import write_csv
 from tb.errors import ReadError
 from tb.export import read_export
 from tb.maestro import read_maestro
-from tb.schema import format_amount, validate_balance, validate_output
-from tb.transform import transform
+from tb.run import error_lines, new_combination_lines, summary_lines, transform_and_validate
 
 # File name of a master workbook; the company comes from it
 MAESTRO_NAME = re.compile(r'^maestro_tb_(?P<empresa>[^.]+)\.xlsx$', re.IGNORECASE)
@@ -71,36 +70,23 @@ def main(argv: list[str] | None = None) -> int:
 
     # Transform, then validate the output schema and the balance
     if export is not None and config is not None:
-        result = transform(export, config)
-        errors.extend(
-            result.errors
-            or validate_output(result.rows)
-            or validate_balance(result.rows, result.export_totals),
-        )
+        result, run_errors = transform_and_validate(export, config)
+        errors.extend(run_errors)
 
     # Any error: report them all and write nothing
     if errors:
-        print(f'{len(errors)} errores; no se ha escrito nada:', file=sys.stderr)
-        for message in errors:
-            print(f'- {message}', file=sys.stderr)
+        print('\n'.join(error_lines(errors, 'no se ha escrito nada')), file=sys.stderr)
         return 1
 
     # Write the CSV, or print the summary
-    rows = result.rows
     if args.csv:
-        write_csv(rows, args.csv)
-        print(f'{len(rows)} filas escritas en {args.csv}.')
+        write_csv(result.rows, args.csv)
+        print(f'{len(result.rows)} filas escritas en {args.csv}.')
     else:
-        print(f'Filas: {len(rows)}')
-        print(f'Claves: {rows['clave'].nunique()}')
-        print('Total por mes:')
-        for month, total in rows.groupby('mes')['importe'].sum().round(2).items():
-            print(f'  {month}: {format_amount(total)}')
+        print('\n'.join(summary_lines(result)))
 
-    # New combinations, in both cases: their category comes from Mapping and should be reviewed
-    print(f'Combinaciones nuevas (categoría de Mapping): {len(result.new_combinations)}')
-    for combination in result.new_combinations:
-        print(f'  {combination}')
+    # New combinations, in both cases
+    print('\n'.join(new_combination_lines(result)))
     return 0
 
 

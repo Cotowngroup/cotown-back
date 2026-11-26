@@ -5,14 +5,15 @@
 # per configuration table, every cell read as text. Sheets whose name starts
 # with _ are notes and are ignored. Takes a binary stream, so the workbook can
 # come from disk or from Airflows (Admin.Files). The company is not in the
-# workbook: the caller passes it.
+# workbook: the caller passes it. In Airflows, the workbook of a company is
+# the single Admin.Files record named "Maestro TB <empresa>" (decision F3).
 #
 # Copyright Oimbra Technology 2026
 # ==============================================================================
 
 # Standard libraries
 import re
-from typing import BinaryIO
+from typing import BinaryIO, NamedTuple
 
 # Third-party libraries
 import pandas as pd
@@ -35,6 +36,37 @@ REQUIRED_COLUMNS = {
 
 # Placeholder for an empty cell in the messages about incomplete rows
 EMPTY = '(vacío)'
+
+# Where the master workbooks live in Airflows, as the messages name it
+FILES_ENTITY = 'Ficheros (Admin.Files) de Airflows'
+
+
+# Admin.Files record holding the master workbook of a company, with the date of its last change
+class MaestroFile(NamedTuple):
+    id: int
+    modified: str
+
+
+# Name of the Admin.Files record of a company's master workbook
+def maestro_name(empresa: str) -> str:
+    return f'Maestro TB {empresa}'
+
+
+# Choose the master workbook of a company among Admin.Files records (id, Name, Created_at, Updated_at)
+def select_maestro(records: list[dict], empresa: str) -> MaestroFile:
+    name = maestro_name(empresa)
+    matching = [record for record in records if record['Name'] == name]
+
+    # Exactly one record: none means no configuration, several are ambiguous
+    if not matching:
+        raise ReadError([f'No hay hoja maestra para {empresa}: falta el fichero "{name}" en {FILES_ENTITY}.'])
+    if len(matching) > 1:
+        ids = ', '.join(str(record['id']) for record in matching)
+        raise ReadError([f'Hay {len(matching)} ficheros "{name}" en {FILES_ENTITY} (ids {ids}): deja solo uno.'])
+
+    # Dated by its last update; a record never changed only has its creation date
+    record = matching[0]
+    return MaestroFile(id=record['id'], modified=record['Updated_at'] or record['Created_at'])
 
 
 # Read the master workbook of a company into its configuration

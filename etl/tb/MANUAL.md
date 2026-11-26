@@ -6,9 +6,33 @@ Todo lo que es una decisión contable (cómo se llama cada edificio, qué línea
 
 Especificación técnica: `.backlog/tb/transformacion-tb.md` del repo de documentación `cotown`.
 
-## Uso
+## Cargas en Airflows
 
-Desde `back/etl/tb`, con el paquete instalado en el venv (`pip install -e .`):
+Es la forma normal de uso. Cada export de SAP se sube a Airflows como una **carga del TB** (entidad `Batch.Tb_upload`, «Carga TB»), y un proceso del ETL la transforma y deja el resultado en la propia carga.
+
+1. Exportar de SAP el Trial Balance de una sociedad, con uno o varios periodos mensuales, y no tocar el fichero.
+2. En Airflows, crear una carga del TB y adjuntar el fichero en `File`. La carga nace en `pendiente`.
+3. El proceso (`back/etl/batch_tb.py`) se ejecuta cada pocos minutos. Pone la carga en `procesando`, la transforma con la hoja maestra de su empresa y la deja en `ok` o en `error`.
+4. Revisar la carga:
+   - `Status`: `ok` si todo ha ido bien; `error` si hay algún problema.
+   - `Log`: en `ok`, el resumen (hoja maestra usada y su fecha, filas, claves, total de cada mes y combinaciones nuevas, que conviene revisar). En `error`, **todos** los errores a la vez y, si se llegó a leer, la hoja maestra usada.
+   - `Company`, `Months`, `Rows`, `Totals` y `Processed_at`: empresa, meses del export, filas de salida, total de cada mes (debe ser 0) y cuándo se procesó.
+
+Si sale `error`, se corrige la hoja maestra (o el export) y se **reprocesa**: se vuelve a poner la carga en `pendiente`. Lo mismo si una carga se queda en `procesando` porque el proceso se cayó a medias.
+
+El proceso solo acepta exports de Trial Balance: comprueba que el fichero tenga el título «Trial Balance» y la fila «Cuenta de mayor».
+
+**Instalación** (máquina del ETL, data.cotown.com): el script usa la configuración del ETL (`.settings.toml` y `.secrets.toml` de `back/etl`) y el paquete `tb` desde `back/etl/tb/src`, sin instalarlo. Se ejecuta desde `back/etl` con un cron, por ejemplo cada 5 minutos:
+
+```
+*/5 * * * * cd <ruta>/back/etl && python batch_tb.py
+```
+
+Dos ejecuciones a la vez no procesan la misma carga: cada una toma la suya de forma atómica. El registro del proceso queda en `back/etl/log/batch_tb.log`.
+
+## Uso en local
+
+Para pruebas, o para revisar un export sin subirlo. Desde `back/etl/tb`, con el paquete instalado en el venv (`pip install -e .`):
 
 ```
 python -m tb "TB - CTS - SEP.xlsx" --maestro maestro_tb_CTS00.xlsx --csv salida.csv
@@ -75,13 +99,15 @@ Las cabeceras en turquesa son columnas que usa el proceso. Las grises (`motivo` 
 
 Los códigos (cuentas, servicios, centros, assets) tienen que ser celdas de texto: `0026` tiene que seguir siendo `0026`, y `705000` no puede convertirse en `705000.0`.
 
-**Cómo se cambia la configuración** (cuando el proceso funcione en Airflows):
+En Airflows, la hoja maestra de cada empresa está en **Ficheros** (`Admin.Files`), en el registro llamado `Maestro TB <empresa>` (por ejemplo, `Maestro TB CTS00`). El proceso la lee en cada carga. En local se pasa con `--maestro`.
 
-1. En Airflows, en **Ficheros** (`Admin.Files`), descargar el fichero de la empresa, llamado `TB maestro <empresa>` (por ejemplo, `TB maestro CTS00`).
+**Cómo se cambia la configuración:**
+
+1. En Airflows, en **Ficheros** (`Admin.Files`), descargar el fichero del registro `Maestro TB <empresa>`.
 2. Editarlo.
 3. Sustituir el fichero en ese mismo registro. Tiene que haber un único registro con ese nombre.
 
-La hoja maestra no se comprueba al guardarla: si tiene algún error, aparece en el registro de la siguiente carga de un export de SAP. No se guarda historial, así que conviene conservar una copia antes de cambiarla. Cambiar la hoja maestra **no cambia** los meses ya cargados: para aplicarla a un mes, hay que volver a procesar su export (ponerlo en `pendiente` o subirlo de nuevo).
+La hoja maestra no se comprueba al guardarla: si tiene algún error, aparece en el `Log` de la siguiente carga de un export de SAP. El `Log` de cada carga anota la fecha de modificación de la hoja maestra usada. No se guarda historial, así que conviene conservar una copia antes de cambiarla. Cambiar la hoja maestra **no cambia** los meses ya cargados: para aplicarla a un mes, hay que volver a procesar su export (ponerlo en `pendiente` o subirlo de nuevo).
 
 ### Pestaña `Reglas`: patrón de los centros de beneficio de edificio
 
@@ -229,6 +255,8 @@ Sustituye al BUSCARV contra la columna K de la TB.
 | La hoja maestra debe llamarse `maestro_tb_<empresa>.xlsx` | Renombrar el fichero: de su nombre sale la empresa |
 | Periodo que no es un mes (`013.2026`…`016.2026`) | Exportar de SAP solo los periodos mensuales `001`-`012` |
 | Importe no numérico | Revisar la celda que indica el mensaje: el export no se ha tocado a mano |
-| Falta una columna o la fila «Cuenta de mayor» | El fichero no es el export de Trial Balance de SAP, o le faltan dimensiones |
-| Empresa sin configuración | Crear la hoja maestra de la empresa (`maestro_tb_<empresa>.xlsx`, o `TB maestro <empresa>` en Airflows), partiendo de la de otra empresa |
+| Falta una columna, la fila «Cuenta de mayor» o el título «Trial Balance» | El fichero no es el export de Trial Balance de SAP, o le faltan dimensiones |
+| No se puede abrir como libro Excel | El fichero adjunto no es un xlsx: subir el export tal como sale de SAP |
+| No hay hoja maestra para la empresa | Crear en Airflows el registro `Maestro TB <empresa>` en Ficheros, partiendo de la hoja maestra de otra empresa. En local, `maestro_tb_<empresa>.xlsx` |
+| Hay varios ficheros `Maestro TB <empresa>` | Dejar uno solo en Ficheros: el proceso no elige |
 | El mes no suma 0 / no cuadra con el export | Revisar el export: suele faltar alguna cuenta o un periodo está incompleto |
