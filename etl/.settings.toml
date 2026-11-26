@@ -22,3 +22,4 @@ SAPUSER = 'LORUMDESARROLLO'
 SAPURL_GL='https://my429724.businessbydesign.cloud.sap/sap/byd/odata/ana_businessanalytics_analytics.svc/RPZ21F81EB4A311D9FEF77A31QueryResults'
 # SAP set of books of each company, for the TB from the general ledger (sap_tb.py)
 SAPBOOKS = { CTS00 = 'ES02' }
+SAPBOOKNAMES = { ES02 = 'Sistema Contable Gestora ES' }

@@ -1,0 +1,1342 @@
+{
+ "categorias_producto": {
+  "S_62100": [
+   "S_ARYC",
+   "Arrendamientos y canones"
+  ],
+  "S_62101": [
+   "S_ARYC",
+   "Arrendamientos y canones"
+  ],
+  "S_62201": [
+   "S_RYC",
+   "Reparacion y conservacion"
+  ],
+  "S_62203": [
+   "S_RYC",
+   "Reparacion y conservacion"
+  ],
+  "S_62209": [
+   "S_RYC",
+   "Reparacion y conservacion"
+  ],
+  "S_62211": [
+   "S_RYC",
+   "Reparacion y conservacion"
+  ],
+  "S_62213": [
+   "S_RYC",
+   "Reparacion y conservacion"
+  ],
+  "S_62215": [
+   "S_RYC",
+   "Reparacion y conservacion"
+  ],
+  "S_62306": [
+   "S_SPEX",
+   "Servicios profesionales externos"
+  ],
+  "S_62311": [
+   "S_SPEX",
+   "Servicios profesionales externos"
+  ],
+  "S_62323": [
+   "S_SPEX",
+   "Servicios profesionales externos"
+  ],
+  "S_62325": [
+   "S_SPEX",
+   "Servicios profesionales externos"
+  ],
+  "S_62332": [
+   "S_SPEX",
+   "Servicios profesionales externos"
+  ],
+  "S_62400": [
+   "S_TRS",
+   "Servicios de transportes"
+  ],
+  "S_62701": [
+   "S_PYP",
+   "Publicidad, propaganda y relaciones publicas"
+  ],
+  "S_62702": [
+   "S_PYP",
+   "Publicidad, propaganda y relaciones publicas"
+  ],
+  "S_62703": [
+   "S_PYP",
+   "Publicidad, propaganda y relaciones publicas"
+  ],
+  "S_62704": [
+   "S_PYP",
+   "Publicidad, propaganda y relaciones publicas"
+  ],
+  "S_62709": [
+   "S_PYP",
+   "Publicidad, propaganda y relaciones publicas"
+  ],
+  "S_62710": [
+   "S_PYP",
+   "Publicidad, propaganda y relaciones publicas"
+  ],
+  "S_62713": [
+   "S_PYP",
+   "Publicidad, propaganda y relaciones publicas"
+  ],
+  "S_62801": [
+   "S_SUM",
+   "Suministros"
+  ],
+  "S_62808": [
+   "S_SUM",
+   "Suministros"
+  ],
+  "S_62901": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62902": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62904": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62910": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62911": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62913": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62926": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62928": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62929": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62944": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62945": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62946": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62948": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62951": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62954": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62955": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62956": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_62957": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64003": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64005": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64006": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64007": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64008": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64009": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64010": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64011": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64012": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64013": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64014": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64016": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64017": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64018": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64019": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642003": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642005": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642006": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642007": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642008": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642009": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642010": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642011": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642012": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642013": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642014": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642016": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642017": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642018": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_642019": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_649010": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_649017": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_64903": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_65901": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_65902": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_65903": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_65905": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_65906": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_65912": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_70501-21": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70502": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70503": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70504": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70508": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70511": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70512": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70513": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70514": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70515": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70520": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_70530": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_70531": [
+   "S_OTS",
+   "Otros servicios"
+  ],
+  "S_75204": [
+   "S_INARR",
+   "Ingresos por arrendamientos"
+  ],
+  "S_75212": [
+   "S_INARR",
+   "Ingresos por arrendamientos"
+  ],
+  "S_75901": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_75902": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_75903": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_75905": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_75907": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_75908": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_75911": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_FEE_00": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_FEE_21": [
+   "S_PS",
+   "Prestaciones de servicios"
+  ],
+  "S_OFI": [
+   "S_ARYC",
+   "Arrendamientos y canones"
+  ]
+ },
+ "unidades_responsables": {
+  "CTSBAI0033_01_01_H02_P01": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBAI0033_01_01_H03_P01": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBAI0033_PR_01_H03_P01": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNAMG0026": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_01_01": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_02_01": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_02_02": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_03_01": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_03_02": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_05_01": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_05_02": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_AT_01": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_AT_02": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_PB_01": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_PR_01": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNAMG0026_PR_02": [
+   "CTSBCNAMG0026",
+   "Amigó 26"
+  ],
+  "CTSBCNBAI0033": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_01_01": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_01_02": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_02_01": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_02_2A": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_02_2B": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_03_01": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_03_2B": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_04_01": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_04_02": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_PR_01": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBAI0033_PR_02": [
+   "CTSBCNBAI0033",
+   "Bailén 33"
+  ],
+  "CTSBCNBLM0335": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_01_01": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_01_02": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_02_02": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_02_03": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_03_01": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_03_02": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_03_03": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_AT_02": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_EN_01": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_EN_02": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_EN_03": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_PR_01": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNBLM0335_SA_02": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBCNCDC0222": [
+   "CTSBCNCDC0222",
+   "Consell de Cent 222"
+  ],
+  "CTSBCNCDC0222_01_01": [
+   "CTSBCNCDC0222",
+   "Consell de Cent 222"
+  ],
+  "CTSBCNCDC0222_02_01": [
+   "CTSBCNCDC0222",
+   "Consell de Cent 222"
+  ],
+  "CTSBCNCDC0222_EN_02": [
+   "CTSBCNCDC0222",
+   "Consell de Cent 222"
+  ],
+  "CTSBCNCDC0222_PR_01": [
+   "CTSBCNCDC0222",
+   "Consell de Cent 222"
+  ],
+  "CTSBCNCDC0222_PR_02": [
+   "CTSBCNCDC0222",
+   "Consell de Cent 222"
+  ],
+  "CTSBCNCDC0538": [
+   "CTSBCNCDC0538",
+   "Consell de Cent 538"
+  ],
+  "CTSBCNCDC0538_03_04": [
+   "CTSBCNCDC0538",
+   "Consell de Cent 538"
+  ],
+  "CTSBCNCDC0538_PB_03": [
+   "CTSBCNCDC0538",
+   "Consell de Cent 538"
+  ],
+  "CTSBCNCDC0538_PR_03": [
+   "CTSBCNCDC0538",
+   "Consell de Cent 538"
+  ],
+  "CTSBCNCON0012": [
+   "CTSBCNCON0012",
+   "Concordia 12"
+  ],
+  "CTSBCNCON0012_01_01": [
+   "CTSBCNCON0012",
+   "Concordia 12"
+  ],
+  "CTSBCNCON0012_BJ_01": [
+   "CTSBCNCON0012",
+   "Concordia 12"
+  ],
+  "CTSBCNCOR0207": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_01_01": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_01_02": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_02_01": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_02_02": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_03_01": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_03_02": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_04_01": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_04_02": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_AT_01": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_AT_02": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_PR_01": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0207_PR_02": [
+   "CTSBCNCOR0207",
+   "Córcega 207"
+  ],
+  "CTSBCNCOR0396": [
+   "CTSBCNCOR0396",
+   "Còrsega 396"
+  ],
+  "CTSBCNCOR0396_02_01": [
+   "CTSBCNCOR0396",
+   "Còrsega 396"
+  ],
+  "CTSBCNCOR0396_04_02": [
+   "CTSBCNCOR0396",
+   "Còrsega 396"
+  ],
+  "CTSBCNCOR0396_05_01": [
+   "CTSBCNCOR0396",
+   "Còrsega 396"
+  ],
+  "CTSBCNCOR0396_06_01": [
+   "CTSBCNCOR0396",
+   "Còrsega 396"
+  ],
+  "CTSBCNCOR0396_07_01": [
+   "CTSBCNCOR0396",
+   "Còrsega 396"
+  ],
+  "CTSBCNCOR0396_07_02": [
+   "CTSBCNCOR0396",
+   "Còrsega 396"
+  ],
+  "CTSBCNCOR0396_09_01": [
+   "CTSBCNCOR0396",
+   "Còrsega 396"
+  ],
+  "CTSBCNENT0069": [
+   "CTSBCNENT0069",
+   "Entença 69"
+  ],
+  "CTSBCNENT0069_04_01": [
+   "CTSBCNENT0069",
+   "Entença 69"
+  ],
+  "CTSBCNMAD0110": [
+   "CTSBCNMAD0110",
+   "Avinguda Madrid 110"
+  ],
+  "CTSBCNMAD0110_03_01": [
+   "CTSBCNMAD0110",
+   "Avinguda Madrid 110"
+  ],
+  "CTSBCNMUN0448": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448_01_01": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448_02_02": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448_03_01": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448_03_02": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448_04_01": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448_04_02": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448_05_01": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448__EN_01": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNMUN0448__EN_02": [
+   "CTSBCNMUN0448",
+   "Muntaner 448-450"
+  ],
+  "CTSBCNNAP0206": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNNAP0206_01_01": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNNAP0206_01_02": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNNAP0206_02_01": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNNAP0206_02_02": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNNAP0206_EN_01": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNNAP0206_EN_02": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNNAP0206_PR_01": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNNAP0206_PR_02": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSBCNRAL0006": [
+   "CTSBCNRAL0006",
+   "Ramón Albó 6"
+  ],
+  "CTSBCNRCF0219": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_01_01": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_01_02": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_02_01": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_02_02": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_03_02": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_04_01": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_04_02": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_05_01": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_05_02": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_PR_01": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNRCF0219_PR_02": [
+   "CTSBCNRCF0219",
+   "Rocafort 219"
+  ],
+  "CTSBCNSAR0326": [
+   "CTSBCNSAR0326",
+   "Sardenya 326"
+  ],
+  "CTSBCNSAR0326_EN_02": [
+   "CTSBCNSAR0326",
+   "Sardenya 326"
+  ],
+  "CTSBCNTDG0043": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_01_01": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_01_02": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_02_01": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_02_02": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_03_01": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_03_02": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_04_01": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_04_02": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_05_01": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_05_02": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_06_01": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBCNTDG0043_06_02": [
+   "CTSBCNTDG0043",
+   "Travesera de Gràcia 43"
+  ],
+  "CTSBILGCO0024": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_01_DC": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_01_IZ": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_02_DC": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_02_IZ": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_03_DC": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_03_IZ": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_04_DC": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_04_IZ": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_05_DC": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_05_IZ": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_06_DC": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_06_IZ": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_07_DC": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBILGCO0024_07_IZ": [
+   "CTSBILGCO0024",
+   "General Concha 24 Edificio"
+  ],
+  "CTSBLM335_EN_01_H01_P01": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSBLM335_EN_01_H01_P02": [
+   "CTSBCNBLM0335",
+   "Balmes 335"
+  ],
+  "CTSCON0012_04_AT": [
+   "CTSBCNCON0012",
+   "Concordia 12"
+  ],
+  "CTSCON0012_PR_02": [
+   "CTSBCNCON0012",
+   "Concordia 12"
+  ],
+  "CTSMADBVM0201": [
+   "CTSMADBVM0201",
+   "Bravo Murillo 201"
+  ],
+  "CTSMADBVM0201_04_DR": [
+   "CTSMADBVM0201",
+   "Bravo Murillo 201"
+  ],
+  "CTSMADDCT075": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_01_IZ": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_02_DR": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_02_IZ": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_03_DR": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_03_IZ": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_04_DR": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_04_IZ": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_05_DR": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_05_IZ": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_06_DR": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_06_IZ": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADDCT075_PB_03": [
+   "CTSMADDCT075",
+   "Donoso Cortés 75"
+  ],
+  "CTSMADGTF027_01_D": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF027_01_E": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF027_02_D": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF027_02_E": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF038": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF038_01_DR": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF038_01_IZ": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF038_02_DR": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF038_02_IZ": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF038_PB_DR": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF038_PB_IZ": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF040_01_DR": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF040_01_IZ": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF040_02_CN": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF040_02_DR": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF040_02_IZ": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF040_PB_DR": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF042_01_DR": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF042_01_IZ": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF042_02_DR": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF042_02_IZ": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_01_B": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_01_C": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_01_F": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_02_B": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_02_C": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_02_F": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_PB_A": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_PB_B": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSMADGTF046_PB_F": [
+   "CTSMADGTF038",
+   "Getafe Edificio"
+  ],
+  "CTSNAP0206_01_02_H01_P01": [
+   "CTSBCNNAP0206",
+   "Nápoles 206"
+  ],
+  "CTSVLCFAC0002": [
+   "CTSVLCFAC0002",
+   "Paseo Facultades 2"
+  ],
+  "CTSVLCFAC0002_00_H01_P02": [
+   "CTSVLCFAC0002",
+   "Paseo Facultades 2"
+  ],
+  "CTSVLCFAC0002_ES_00": [
+   "CTSVLCFAC0002",
+   "Paseo Facultades 2"
+  ],
+  "CTSVLCRDC0044": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_01_01": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_01_02": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_01_03": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_01_04": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_02_05": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_02_06": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_02_07": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_02_08": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_03_10": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_04_14": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_04_15": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_04_16": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_05_19": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_05_20": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_06_21": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_06_22": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_06_23": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_07_28": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCRDC0044_08_29": [
+   "CTSVLCRDC0044",
+   "Rodríguez de Cepeda 44"
+  ],
+  "CTSVLCSAL0046": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_01_02": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_02_03": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_02_04": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_03_05": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_03_06": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_04_07": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_04_08": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_05_09": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_05_10": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_06_12": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_07_13": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "CTSVLCSAL0046_07_14": [
+   "CTSVLCSAL0046",
+   "Salamanca 46"
+  ],
+  "": [
+   "CTSMADBVM0201",
+   "Bravo Murillo 201"
+  ]
+ }
+}

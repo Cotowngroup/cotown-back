@@ -32,17 +32,21 @@ Dos ejecuciones a la vez no procesan la misma carga: cada una toma la suya de fo
 
 ## Cargas desde SAP, sin export manual
 
-`back/etl/sap_tb.py` genera el export de Trial Balance directamente desde el libro mayor de SAP (informe OData `SAPURL_GL`) y lo sube como carga. El fichero tiene el mismo formato que el export hecho a mano, así que la carga se procesa igual y guarda el fichero exacto que se transformó. Para agosto y septiembre de 2026 da el mismo TB, al céntimo, que el export manual (test de oro con los apuntes de SAP guardados en `data/sap_gl_CTS00_2026-0*.json`).
+`back/etl/sap_tb.py` genera el export de Trial Balance directamente desde el libro mayor de SAP (informe OData `SAPURL_GL`) y lo sube como carga. El fichero tiene las mismas columnas, el mismo orden de filas y el mismo formato que el export hecho a mano (título, bloque de selección, cabecera de tres filas, celdas grises de dimensiones, importes en EUR y columna `Resultado`), así que la carga se procesa igual y guarda el fichero exacto que se transformó. Para agosto y septiembre de 2026 da el mismo TB, al céntimo, que el export manual (tests de oro con los apuntes de SAP guardados en `data/sap_gl_CTS00_2026-0*.json` y los maestros en `data/sap_maestros_2026-09.json`).
 
 Desde `back/etl`:
 
 ```
 python sap_tb.py --empresa CTS00 --meses 2026-08 --subir
+python sap_tb.py --empresa CTS00 --meses 2026-08 --subir --carga 11
 python sap_tb.py --empresa CTS00 --meses 2026-08 2026-09 --xlsx "TB - CTS00.xlsx"
 ```
 
 - `--subir` crea la carga en Airflows (`TB - <empresa> - <meses> (SAP).xlsx`), en `pendiente`. `--xlsx` guarda el fichero en disco para revisarlo. Se puede usar uno de los dos o ambos.
-- La sociedad tiene que estar en `SAPBOOKS` de `back/etl/.settings.toml`, con su libro contable (`CTS00 = 'ES02'`).
+- `--carga ID`, con `--subir`, sustituye el fichero de una carga que ya existe y la deja en `pendiente`, con `Log`, `Company`, `Months`, `Rows`, `Totals` y `Processed_at` vacíos. Sirve para regenerar un mes sin crear cargas repetidas.
+- La sociedad tiene que estar en `SAPBOOKS` de `back/etl/.settings.toml`, con su libro contable (`CTS00 = 'ES02'`). El nombre del libro, para el bloque de selección, está en `SAPBOOKNAMES`.
+- Columnas: empresa, cuenta, tipo de cuenta, producto, tarea de proyecto, centro de beneficio y centro de coste salen del libro mayor. La categoría de producto sale de los maestros de servicios y materiales (`RPSERVICE_Q0001`, `RPMATERIAL_Q0001`) y la unidad responsable de proyecto, del de tareas (`RPPROPRJU05_Q0007`). Los productos individuales (inmovilizado, como `100003019`) no están en esos maestros: su categoría sale vacía. El proceso no la usa.
+- Diferencias de forma con el export manual que no afectan: un mes sin apuntes es una celda vacía (SAP escribe un texto vacío), y la altura de alguna fila puede variar.
 - El código de producto sale de `CPRODUCT_UUID` y los textos se piden en español (`sap-language=ES`), como en el export manual.
 - Se excluye el arrastre de saldos de apertura del ejercicio (tipo de documento `00058`, «Ejecución de transferencia de saldos»): no va a la TB.
 - Si SAP no tiene apuntes de algún mes pedido, o la respuesta llega incompleta, no se genera nada y se informa del error.
