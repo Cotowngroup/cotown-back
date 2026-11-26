@@ -5,7 +5,8 @@
 # and F3), with no input/output of its own: it takes the bytes of the SAP
 # export and a function that fetches the master workbook of a company (from
 # Admin.Files in the batch), and returns what the batch writes in the upload:
-# status, Log, company, months, rows and totals. Every problem, including
+# status, Log, company, months, rows and totals, and, when it is good, its own
+# export with the TB rows in a sheet TB (ticket 09a). Every problem, including
 # those of the master workbook, is collected into the Log; nothing raises.
 #
 # Copyright Oimbra Technology 2026
@@ -26,6 +27,7 @@ from tb.errors import ReadError
 from tb.export import read_export
 from tb.maestro import maestro_name, read_maestro
 from tb.run import error_lines, month_totals, summary_lines, transform_and_validate
+from tb.workbook import add_tb_sheet
 
 # Status of an upload once processed, as in the enum Tb_upload_status
 STATUS_OK = 'ok'
@@ -44,7 +46,8 @@ class MaestroWorkbook(NamedTuple):
     modified: str
 
 
-# What the batch writes in the upload; months, rows and totals stay empty when they are not known
+# What the batch writes in the upload; months, rows and totals stay empty when they are not known, and the workbook
+# (the export with its TB sheet) is only there when the upload is good
 @dataclass(frozen=True)
 class UploadResult:
     status: str
@@ -53,6 +56,7 @@ class UploadResult:
     rows: int | None
     totals: str | None
     log: str
+    workbook: bytes | None = None
 
 
 # Process one upload: read the export, fetch the master workbook of its company, transform and validate
@@ -60,10 +64,11 @@ def process_upload(export_source: BinaryIO, fetch_maestro: Callable[[str], Maest
     errors: list[str] = []
     company = months = maestro_line = None
 
-    # The export, which also gives the company and the months
+    # The export, which also gives the company and the months; its bytes are kept to add the TB sheet
+    content = export_source.read()
     export = None
     try:
-        export = read_export(export_source)
+        export = read_export(BytesIO(content))
     except ReadError as error:
         errors.extend(error.errors)
     except NOT_A_WORKBOOK as error:
@@ -118,6 +123,7 @@ def process_upload(export_source: BinaryIO, fetch_maestro: Callable[[str], Maest
         rows=len(result.rows),
         totals='; '.join(month_totals(result.rows)),
         log='\n'.join(log),
+        workbook=add_tb_sheet(content, result.rows),
     )
 
 

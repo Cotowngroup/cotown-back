@@ -15,6 +15,7 @@ Es la forma normal de uso. Cada export de SAP se sube a Airflows como una **carg
 3. El proceso (`back/etl/batch_tb.py`) se ejecuta cada pocos minutos. Pone la carga en `procesando`, la transforma con la hoja maestra de su empresa y la deja en `ok` o en `error`.
 4. Revisar la carga:
    - `Status`: `ok` si todo ha ido bien; `error` si hay algún problema.
+   - `File`: en `ok`, el mismo fichero con una pestaña más, `TB`, con las filas del TB (las columnas de «Resultado»). Si se reprocesa, la pestaña se sustituye.
    - `Log`: en `ok`, el resumen (hoja maestra usada y su fecha, filas, claves y total de cada mes). En `error`, **todos** los errores a la vez y, si se llegó a leer, la hoja maestra usada.
    - `Company`, `Months`, `Rows`, `Totals` y `Processed_at`: empresa, meses del export, filas de salida, total de cada mes (debe ser 0) y cuándo se procesó.
 

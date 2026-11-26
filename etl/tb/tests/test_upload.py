@@ -67,6 +67,15 @@ def test_good_export_is_ok_with_summary():
     assert 'Claves: 576' in result.log
 
 
+# A good upload gives back its own export with the TB rows in a sheet TB, after the export sheet
+def test_good_export_gives_back_the_export_with_the_tb_sheet():
+    result = process_upload(BytesIO(EXPORT.read_bytes()), admin_files(MAESTRO.read_bytes()))
+
+    book = openpyxl.load_workbook(BytesIO(result.workbook), read_only=True)
+    assert book.sheetnames == ['Exportac. 21.10.2026 12.15.22', 'TB']
+    assert len(list(book['TB'].iter_rows(min_row=2, values_only=True))) == 932
+
+
 # The errors of the master workbook go to the Log of the upload, all at once and with the workbook date
 def test_master_workbook_errors_go_to_the_log():
     broken = workbook(['nada'])
@@ -78,6 +87,7 @@ def test_master_workbook_errors_go_to_the_log():
     assert 'Hoja maestra: Maestro TB CTS00, modificada el 2026-11-24T16:30:00.' in result.log
     assert 'Falta la pestaña Reglas en la hoja maestra.' in result.log
     assert 'Falta la pestaña Categorias en la hoja maestra.' in result.log
+    assert result.workbook is None
 
 
 # Without a master workbook for the company the upload is an error that names the company

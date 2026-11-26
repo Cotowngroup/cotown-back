@@ -5,8 +5,10 @@
 # each SAP Trial Balance export in 'pendiente' is
 # transformed with the master workbook of its company
 # (Admin.Files, 'Maestro TB <empresa>') and the upload
-# gets its status, log and summary. Run by cron on the
-# ETL machine. Reprocess = set the upload to 'pendiente'.
+# gets its status, log and summary; a good one also
+# gets its file back with the TB rows in a sheet TB.
+# Run by cron on the ETL machine. Reprocess = set the
+# upload to 'pendiente'.
 # ###################################################
 
 # ###################################################
@@ -53,6 +55,13 @@ WHERE id = (
 )
 RETURNING id
 '''
+
+# Media type of an xlsx file
+XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+
+# Name of the file of an upload, and the new file of an upload (its export with the TB sheet)
+QUERY_FILE = 'query ($id: Int!) { data: Batch_Tb_uploadList ( where: { id: { EQ: $id } } ) { File { name } } }'
+QUERY_SET_FILE = 'mutation ($id: Int!, $file: Models_DocumentTypeInputType!) { data: Batch_Tb_uploadUpdate ( where: { id: { EQ: $id } }, entity: { File: $file } ) { id } }'
 
 # Save the result of an upload
 SQL_SAVE = '''
@@ -103,6 +112,21 @@ def download(apiClient, id, entity):
   return response.content
 
 
+# Give an upload its export with the TB sheet, under the same file name; any failure is an error of the upload
+def storeWorkbook(apiClient, id, content):
+
+  try:
+    name = apiClient.call(QUERY_FILE, { 'id': id })['data'][0]['File']['name']
+    response = apiClient.putFile(id, 'Batch/Tb_upload', 'File', content, XLSX)
+    if response.status_code != 200:
+      raise ReadError(['No se puede guardar el TB en el fichero de la carga (HTTP {}).'.format(response.status_code)])
+    apiClient.call(QUERY_SET_FILE, { 'id': id, 'file': { 'name': name, 'oid': int(response.content), 'type': XLSX } })
+  except ReadError:
+    raise
+  except Exception as e:
+    raise ReadError(['No se puede guardar el TB en el fichero de la carga: {}.'.format(e)])
+
+
 # Master workbook of a company: the single Admin.Files record 'Maestro TB <empresa>'
 def fetchMaestro(apiClient, empresa):
 
@@ -148,6 +172,8 @@ def main():
     try:
       export = download(apiClient, id, 'Batch/Tb_upload')
       result = process_upload(io.BytesIO(export), lambda empresa: fetchMaestro(apiClient, empresa))
+      if result.workbook is not None:
+        storeWorkbook(apiClient, id, result.workbook)
     except ReadError as e:
       result = failed_upload(e.errors)
     except Exception as e:
