@@ -7,4 +7,3 @@ TRUNCATE gold.location CASCADE;
 TRUNCATE gold.resource CASCADE;
 TRUNCATE gold.building CASCADE;
 TRUNCATE gold.building_value CASCADE;
---TRUNCATE gold.mapping CASCADE;

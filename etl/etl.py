@@ -9,10 +9,8 @@
 # ###################################################
 
 # System imports
-import os
 import argparse
 import subprocess
-from datetime import datetime, timedelta
 
 # Cotown includes
 from library.services.dbclient import DBClient
@@ -24,7 +22,6 @@ from library.business.beds import beds_real, beds_forecast
 from library.business.occupancy import occupancy_real, occupancy_forecast, occupancy_stabilised
 from library.business.income import income_forecast, income_stabilised
 from library.business.forecast import forecast, budget
-from library.business.gl import glSAP, glExcel
 
 # Logging
 import logging
@@ -125,35 +122,6 @@ def main(interfaces):
     load(dbOrigin, dbDestination, 'building', 'building')
     load(dbOrigin, dbDestination, 'building_value', 'building_value')
     load(dbOrigin, dbDestination, 'resource', 'resource')
-
-  # ------------------------------------
-  # SAP
-  # ------------------------------------
-
-  # Load dimensions
-  if 'gl' in interfaces:
-    # Clear
-    execute(dbDestination, '_clear_gl')
-
-    # Convert historic data
-    #glExcel('CTS00-2023-00', 2023)
-    #glExcel('CTS00-2024-00', 2024)
-    
-    # Extract current periods
-    periods = []
-    today = datetime.today()
-    if today.day < 20:
-      periods.append((today.replace(day=1) - timedelta(days=1)).strftime("%Y-%m-01"))
-    periods.append(today.strftime("%Y-%m-01"))
-
-    # Get periods data
-    for period in periods:
-      glSAP(period,'ES02', 'CTS00', 'gl') # 'ES01', 'VDS0000001'
-
-    # Load CSV files
-    for file in os.listdir('csv'):
-      if file.startswith('CTS00-') and file.endswith('.csv'):
-        load(dbOrigin, dbDestination, 'gl', file[:-4])
 
   # ------------------------------------
   # Core

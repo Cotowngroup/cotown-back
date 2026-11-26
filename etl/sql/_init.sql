@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS gold.beds CASCADE;
 DROP TABLE IF EXISTS gold.booking CASCADE;
 DROP TABLE IF EXISTS gold.marketplace CASCADE;
 
--- Drop SAP tables
+-- Drop retired tables (general ledger and mapping of SAP): no longer created, dropped from existing DWs
 DROP TABLE IF EXISTS gold.gl CASCADE;
 DROP TABLE IF EXISTS gold.mapping CASCADE;
 
@@ -348,41 +348,6 @@ CREATE TABLE gold.marketplace (
   "cost" numeric NULL,
   "ts" timestamp NULL DEFAULT CURRENT_TIMESTAMP
 );
-
--- Create general ledger
-CREATE TABLE gold.gl (
-  "cacc_doc_uuid" varchar NOT NULL,
-  "cacc_doc_it_uuid" varchar NOT NULL,
-  "cbus_part_uuid" varchar NULL,
-  "ccost_ctr_uuid" varchar NULL,
-  "ccreation_date" timestamp NOT NULL,
-  "cdoc_date" date NULL,
-  "cfiscyear" int4 NOT NULL,
-  "cfiscper" int4 NOT NULL,
-  "cfix_asset_uuid" varchar NULL,
-  "cglacct" varchar NOT NULL,
-  "cnote_hd" varchar NULL,
-  "cnote_it" varchar NULL,
-  "coedpartner" varchar NULL,
-  "coedref_f_id" varchar NULL,
-  "coff_glacct" varchar NULL,
-  "cposting_date" date NOT NULL,
-  "cprofitctr_uuid" varchar NULL,
-  "kccredit_currcomp" numeric NULL,
-  "kcdebit_currcomp" numeric NULL,
-  "kcbalance_currcomp" numeric NULL,
-  "tbus_part_uuid" varchar NULL,
-  "tcost_ctr_uuid" varchar NULL,
-  "tfix_asset_uuid" varchar NULL,
-  "tglacct" varchar NULL,
-  "toff_glacct" varchar NULL,
-  "tproduct_type" varchar NULL,
-  "tproduct_uuid" varchar NULL,
-  "tprofitctr_uuid" varchar NULL,
-  "ts" timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT gl_pk PRIMARY KEY ("cfiscyear","cacc_doc_uuid", "cacc_doc_it_uuid")
-);
-
 
 -- -------------------------------------
 -- TB
