@@ -272,6 +272,10 @@ def test_august_and_september_from_sap_have_the_layout_of_the_manual_export():
             if expected.value != '' and cell.value == expected.value:
                 assert cell_format(cell) == cell_format(expected), cell.coordinate
     assert generated.auto_filter.ref.startswith('B12:U')
-    assert {letter: generated.column_dimensions[letter].width for letter in 'AB'} == {
-        letter: manual.column_dimensions[letter].width for letter in 'AB'
-    }
+
+    # Column widths: narrow margins, every column of the table wide, the rest of the sheet hidden
+    def columns(sheet) -> list[tuple]:
+        return [(dimension.min, dimension.max, None if dimension.hidden else dimension.width, dimension.hidden)
+                for dimension in sheet.column_dimensions.values()]
+
+    assert columns(generated) == columns(manual)

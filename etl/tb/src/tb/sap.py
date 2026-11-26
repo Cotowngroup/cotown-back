@@ -25,6 +25,7 @@ import openpyxl
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.utils.indexed_list import IndexedList
+from openpyxl.worksheet.dimensions import ColumnDimension
 
 # Application libraries
 from tb.errors import ReadError
@@ -103,6 +104,11 @@ AMOUNT_ALIGNMENT = Alignment(horizontal='right', vertical='center', wrap_text=Tr
 LEFT = Alignment(horizontal='left')
 MONEY = '#,##0.00\\ "EUR"'
 NO_AMOUNT = '#,##0'
+
+# Column widths of the export: margins around the table, every column of the table, last column of a sheet
+MARGIN_WIDTH = 2.6640625
+COLUMN_WIDTH = 27.6640625
+MAX_COLUMN = 16384
 
 # Row height of the export: 15 points per line of the widest wrapped text, at least two lines
 LINE_HEIGHT = 15
@@ -266,14 +272,19 @@ def build_export(records: list[dict], months: list[str], selection: Selection, m
         _style(total, BOLD_FONT, WHITE, RESULT_BORDER, AMOUNT_ALIGNMENT, MONEY)
         sheet.row_dimensions[row].height = _row_height(list(cells))
 
-    # Columns: narrow margins, wide company column, a hidden one after the spacer; filter over the table
-    sheet.column_dimensions['A'].width = 2.6640625
-    sheet.column_dimensions[get_column_letter(FIRST_COLUMN)].width = 27.6640625
-    sheet.column_dimensions[get_column_letter(last_column + 1)].width = 2.6640625
-    sheet.column_dimensions[get_column_letter(last_column + 2)].width = 0
-    sheet.column_dimensions[get_column_letter(last_column + 2)].hidden = True
+    # Columns: narrow margins, every column of the table wide, the rest of the sheet hidden; filter over the table
+    for first, last, width, hidden in (
+        (1, 1, MARGIN_WIDTH, False),
+        (FIRST_COLUMN, last_column, COLUMN_WIDTH, False),
+        (last_column + 1, last_column + 1, MARGIN_WIDTH, False),
+        (last_column + 2, MAX_COLUMN, 0, True),
+    ):
+        sheet.column_dimensions[get_column_letter(first)] = ColumnDimension(
+            sheet, index=get_column_letter(first), min=first, max=last, width=width, hidden=hidden,
+        )
     sheet.auto_filter.ref = f'{get_column_letter(FIRST_COLUMN)}12:{get_column_letter(last_column)}{sheet.max_row}'
     sheet.sheet_format.baseColWidth = 10
+    sheet.sheet_format.defaultColWidth = 0
     stream = BytesIO()
     book.save(stream)
     return stream.getvalue()
