@@ -83,7 +83,7 @@ def read(records: list[dict], months: list[str]) -> list[dict]:
 # Cells of the data rows of the generated workbook, from column B
 def data_rows(records: list[dict], months: list[str]) -> list[list]:
     sheet = openpyxl.load_workbook(BytesIO(build(records, months))).worksheets[0]
-    return [list(row) for row in sheet.iter_rows(min_row=15, min_col=2, values_only=True)]
+    return [list(row) for row in sheet.iter_rows(min_row=13, min_col=2, values_only=True)]
 
 
 # Records of the same line are summed; the product code comes from CPRODUCT_UUID, its text from TPRODUCT_UUID
@@ -242,28 +242,36 @@ def cell_format(cell) -> tuple:
     )
 
 
-# Golden test of the layout: title, selection block, header rows, merges, filter, columns, order and format of the
-# export done by hand; the values of the data rows may differ only where SAP changed after that export
+# Golden test of the layout: title, selection block, columns, order and format of the export done by hand, with a
+# single bold header row with the filter instead of its three header rows; the values of the data rows may differ
+# only where SAP changed after that export
 def test_august_and_september_from_sap_have_the_layout_of_the_manual_export():
     generated = openpyxl.load_workbook(BytesIO(august_and_september())).worksheets[0]
     manual = openpyxl.load_workbook(TB_DIR / 'data' / 'TB - CTS - SEP.xlsx').worksheets[0]
 
-    # Sheet name, title, selection block and header rows, with their format
+    # Sheet name, title and selection block, with their format
     assert generated.title == manual.title
-    assert sorted(map(str, generated.merged_cells.ranges)) == sorted(map(str, manual.merged_cells.ranges))
-    for row in range(1, 15):
+    assert list(map(str, generated.merged_cells.ranges)) == ['B1:U1']
+    for row in range(1, 12):
         for column in range(2, 22):
             mine, theirs = generated.cell(row, column), manual.cell(row, column)
             assert (mine.value or None) == (theirs.value or None), mine.coordinate
             if theirs.value not in (None, ''):
                 assert cell_format(mine) == cell_format(theirs), mine.coordinate
 
+    # Header row: the dimension and period names of the export, the text column of the cost centre without the name
+    # of the period axis; bold and grey, with the filter of the table
+    header = [cell.value or '' for cell in generated[12][1:21]]
+    assert header == [*(cell.value or '' for cell in manual[14][1:17]), '', '008.2026', '009.2026', 'Resultado']
+    assert all(cell.font.b and cell.fill.fgColor.rgb == 'FFDFDFDF' for cell in generated[12][1:21])
+    assert generated.auto_filter.ref == f'B12:U{generated.max_row}'
+
     # Data rows: the same lines in the same order and format; only the drifted ones and the two fixed asset
     # categories (individual products, not in the OData masters) differ
-    def lines(sheet) -> dict:
-        return {tuple(cell.value for cell in row[1:18]): row for row in sheet.iter_rows(min_row=15)}
+    def lines(sheet, first: int) -> dict:
+        return {tuple(cell.value for cell in row[1:18]): row for row in sheet.iter_rows(min_row=first)}
 
-    mine, theirs = lines(generated), lines(manual)
+    mine, theirs = lines(generated, 13), lines(manual, 15)
     common = [key for key in theirs if key in mine]
     assert len(common) == len(theirs) - 3
     assert [key for key in mine if key in theirs] == common
@@ -271,7 +279,6 @@ def test_august_and_september_from_sap_have_the_layout_of_the_manual_export():
         for cell, expected in zip(mine[key][1:21], theirs[key][1:21], strict=True):
             if expected.value != '' and cell.value == expected.value:
                 assert cell_format(cell) == cell_format(expected), cell.coordinate
-    assert generated.auto_filter.ref.startswith('B12:U')
 
     # Column widths: narrow margins, every column of the table wide, the rest of the sheet hidden
     def columns(sheet) -> list[tuple]:

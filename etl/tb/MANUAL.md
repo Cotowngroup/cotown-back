@@ -32,7 +32,7 @@ Dos ejecuciones a la vez no procesan la misma carga: cada una toma la suya de fo
 
 ## Cargas desde SAP, sin export manual
 
-`back/etl/sap_tb.py` genera el export de Trial Balance directamente desde el libro mayor de SAP (informe OData `SAPURL_GL`) y lo sube como carga. El fichero tiene las mismas columnas, el mismo orden de filas y el mismo formato que el export hecho a mano (título, bloque de selección, cabecera de tres filas, celdas grises de dimensiones, importes en EUR y columna `Resultado`), así que la carga se procesa igual y guarda el fichero exacto que se transformó. Para agosto y septiembre de 2026 da el mismo TB, al céntimo, que el export manual (tests de oro con los apuntes de SAP guardados en `data/sap_gl_CTS00_2026-0*.json` y los maestros en `data/sap_maestros_2026-09.json`).
+`back/etl/sap_tb.py` genera el export de Trial Balance directamente desde el libro mayor de SAP (informe OData `SAPURL_GL`) y lo sube como carga. El fichero tiene las mismas columnas, el mismo orden de filas y el mismo formato que el export hecho a mano (título, bloque de selección, celdas grises de dimensiones, importes en EUR y columna `Resultado`). La única diferencia de forma buscada: la cabecera es una sola fila, en negrita y con los filtros; se quitan las dos filas de encima («Importe en moneda de empresa» y el año), que no aportan, así que la carga se procesa igual y guarda el fichero exacto que se transformó. Para agosto y septiembre de 2026 da el mismo TB, al céntimo, que el export manual (tests de oro con los apuntes de SAP guardados en `data/sap_gl_CTS00_2026-0*.json` y los maestros en `data/sap_maestros_2026-09.json`).
 
 Desde `back/etl`:
 

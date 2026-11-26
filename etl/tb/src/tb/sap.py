@@ -6,7 +6,7 @@
 # the masters that report lacks (product category, responsible unit of the
 # project task), and builds a workbook with the same columns, order and
 # format as the Trial Balance export done by hand in SAP: title, selection
-# block, three header rows, one row per company + account + product + project
+# block, a bold header row with the filter, one row per company + account + product + project
 # task + profit centre + cost centre, one NNN.AAAA column per period and the
 # result. The product code is CPRODUCT_UUID (TPRODUCT_UUID is its text, in
 # Spanish with sap-language=ES) and the balance carry-forward (document type
@@ -62,7 +62,7 @@ UNASSIGNED = ('#', 'Sin asignar')
 UNASSIGNED_CODES = {'', '#', 'Not Assigned', 'No asignado'}
 
 # Header of the dimension columns from B, as in the export: a dimension takes its code and its text (empty header),
-# the account type only its text; the last header goes over the text of the cost centre
+# the account type only its text
 HEADERS = [
     'Empresa', '',
     'Cuenta de mayor', '',
@@ -78,11 +78,9 @@ HEADERS = [
 # Positions of the codes in the dimension cells, in the order in which the export sorts its rows
 CODE_POSITIONS = [0, 2, 5, 7, 9, 11, 13, 15]
 
-# Header texts above the period columns and over the text column of the last dimension
-AMOUNT_TITLE = 'Importe en moneda de empresa'
-YEAR_TITLE = 'Año (Fecha de contabilización)'
-PERIOD_TITLE = 'Período/año contable'
+# Header of the result column, and the row of the header: after the selection block and a blank row
 RESULT_TITLE = 'Resultado'
+HEADER_ROW = 12
 
 # Format of the export: fonts, fills, borders and number formats of the SAP export
 FIRST_COLUMN = 2
@@ -98,7 +96,6 @@ TITLE_BORDER = Border(top=THIN, bottom=THIN)
 GRID_BORDER = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 AMOUNT_BORDER = Border(left=HAIR, right=HAIR, top=HAIR, bottom=HAIR)
 RESULT_BORDER = Border(left=HAIR, right=THIN, top=HAIR, bottom=HAIR)
-RESULT_HEADER_BORDER = Border(left=HAIR, right=THIN, top=HAIR, bottom=THIN)
 WRAP = Alignment(vertical='center', wrap_text=True)
 AMOUNT_ALIGNMENT = Alignment(horizontal='right', vertical='center', wrap_text=True)
 LEFT = Alignment(horizontal='left')
@@ -234,33 +231,14 @@ def build_export(records: list[dict], months: list[str], selection: Selection, m
                 _style(cell, TEXT_FONT, WHITE, alignment=LEFT if row in (3, 7) else None)
         sheet.row_dimensions[row].height = LINE_HEIGHT
 
-    # Header rows: amount title, year of each period, dimension and period names
-    for row in (12, 13, 14):
-        for column in range(FIRST_COLUMN, result_column):
-            _style(sheet.cell(row, column, ''), TEXT_FONT, GREY, GRID_BORDER, WRAP)
-    sheet.cell(12, first_period, AMOUNT_TITLE)
-    sheet.merge_cells(start_row=12, start_column=first_period, end_row=12, end_column=result_column)
-    sheet.cell(13, first_period - 1, YEAR_TITLE)
-    years: dict[str, list[int]] = {}
-    for index, month in enumerate(months):
-        years.setdefault(month[:4], []).append(first_period + index)
-    for year, columns in years.items():
-        end = result_column if columns[-1] == result_column - 1 else columns[-1]
-        sheet.cell(13, columns[0], year)
-        if end > columns[0]:
-            sheet.merge_cells(start_row=13, start_column=columns[0], end_row=13, end_column=end)
-    for offset, name in enumerate([*HEADERS[:-1], PERIOD_TITLE, *(period_header(month) for month in months)]):
-        sheet.cell(14, FIRST_COLUMN + offset, name)
-    for row in (12, 13):
-        sheet.cell(row, result_column).border = Border(right=THIN, top=THIN, bottom=THIN)
-    result = sheet.cell(14, result_column, RESULT_TITLE)
-    _style(result, BOLD_FONT, WHITE, RESULT_HEADER_BORDER, Alignment(horizontal='left', vertical='center',
-                                                                       wrap_text=True), '@')
-    for row in (13, 14):
-        sheet.row_dimensions[row].height = LINE_HEIGHT * MIN_LINES
+    # Header row: dimension, period and result names, in bold, with the filter of the table
+    names = [*HEADERS, *(period_header(month) for month in months), RESULT_TITLE]
+    for offset, name in enumerate(names):
+        _style(sheet.cell(HEADER_ROW, FIRST_COLUMN + offset, name), BOLD_FONT, GREY, GRID_BORDER, WRAP)
+    sheet.row_dimensions[HEADER_ROW].height = LINE_HEIGHT * MIN_LINES
 
     # One row per line in the order of the export; an empty month is an empty text cell, as SAP writes it
-    for row, cells in enumerate(sorted(lines, key=_sort_key), start=15):
+    for row, cells in enumerate(sorted(lines, key=_sort_key), start=HEADER_ROW + 1):
         amounts = lines[cells]
         for offset, value in enumerate(cells):
             _style(sheet.cell(row, FIRST_COLUMN + offset, value), TEXT_FONT, GREY, GRID_BORDER, WRAP)
@@ -282,7 +260,8 @@ def build_export(records: list[dict], months: list[str], selection: Selection, m
         sheet.column_dimensions[get_column_letter(first)] = ColumnDimension(
             sheet, index=get_column_letter(first), min=first, max=last, width=width, hidden=hidden,
         )
-    sheet.auto_filter.ref = f'{get_column_letter(FIRST_COLUMN)}12:{get_column_letter(last_column)}{sheet.max_row}'
+    table = f'{get_column_letter(FIRST_COLUMN)}{HEADER_ROW}:{get_column_letter(last_column)}{sheet.max_row}'
+    sheet.auto_filter.ref = table
     sheet.sheet_format.baseColWidth = 10
     sheet.sheet_format.defaultColWidth = 0
     stream = BytesIO()
