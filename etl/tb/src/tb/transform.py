@@ -30,7 +30,6 @@ AT_PREFIX = 'AT-'
 class TransformResult:
     rows: pd.DataFrame
     errors: list[str]
-    new_combinations: list[Combination]
     export_totals: dict[str, float]
 
 
@@ -51,16 +50,16 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
     # Drop zero amounts: a line with every period at 0 disappears, and the sums do not change
     lines = export[export['importe'] != 0].copy()
 
-    # Excluded accounts must net 0 every month: dropping them must not unbalance the TB
+    # Excluded accounts (Cuentas) must net 0 every month: dropping them must not unbalance the TB
     is_excluded = lines['cuenta'].isin(config.excluidas)
     for (account, month), total in lines[is_excluded].groupby(['cuenta', 'mes'])['importe'].sum().items():
         if abs(total) > BALANCE_TOLERANCE:
             errors.append(
                 f'Cuenta excluida que no neta 0: {account} en {month} suma {format_amount(total)}. '
-                f'Revísala en SAP o, si debe pasar a la TB, quítala de Excluidas.'
+                f'Revísala en SAP o, si debe pasar a la TB, quita la marca excluida en Cuentas.'
             )
 
-    # Drop the accounts of Excluidas; what is left is the export after the filter, the total the output must keep
+    # Drop the excluded accounts; what is left is the export after the filter, the total the output must keep
     lines = lines[~is_excluded].copy()
     export_totals = lines.groupby('mes')['importe'].sum().to_dict()
 
@@ -114,51 +113,30 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
     # New service of each line, or its own service (key[1]) when no row applies
     lines['servicio'] = [targets.get(row_keys[key], [key[1]])[0] for key in line_keys]
 
-    # Category and annual-accounts grouping per account + service + asset (spec decision 18)
+    # Annual-accounts grouping of each account, from Cuentas; once per account without it
+    for account in lines.loc[~lines['cuenta'].isin(config.cuentas), 'cuenta'].unique():
+        text = lines.loc[lines['cuenta'] == account, 'texto_cuenta'].iloc[0]
+        errors.append(f'Cuenta sin CCAA: {account} "{text}". Añádela a Cuentas con su ccaa1 y ccaa2.')
+
+    # Category per account + service + asset (spec decision 18): the exception of the asset, else the general row
     lines['combinacion'] = list(map(Combination._make, lines[list(Combination._fields)].itertuples(index=False)))
     categories: dict[Combination, Category] = {}
-    new_combinations = []
     unmapped: set[Combination] = set()
     for combination in lines['combinacion'].unique():
-        reference = config.referencia.get(combination, [])
-        manual = config.categorias.get(combination)
-        mapped = config.mapping.get(combination.servicio)
-
-        # 1. Categorias: the manual category, with the CCAA of its Referencia row or, without one, of Mapping
-        if manual is not None:
-            manual_reference = next((category for category in reference if category.categoria == manual), None)
-            if manual_reference is not None:
-                categories[combination] = manual_reference
-            elif mapped is not None:
-                categories[combination] = mapped._replace(categoria=manual)
-            else:
-                unmapped.add(combination)
-
-        # 2. Referencia with a single category; with several, the program does not choose
-        elif len(reference) == 1:
-            categories[combination] = reference[0]
-        elif reference:
-            options = ', '.join(f'"{category.categoria}"' for category in reference)
-            errors.append(
-                f'Combinación con varias categorías en Referencia: {combination} ({options}). '
-                f'Añádela a Categorias con la que corresponda.'
-            )
-
-        # 3. Mapping by service: the combination is new to the TB
-        elif mapped is not None:
-            categories[combination] = mapped
-            new_combinations.append(combination)
-        else:
+        category = config.categorias.get(combination, config.categorias.get(combination._replace(asset='')))
+        if category is None:
             unmapped.add(combination)
+        elif combination.cuenta in config.cuentas:
+            categories[combination] = Category(category, *config.cuentas[combination.cuenta])
 
-    # Services that no source resolves, once per service with the accounts of its unresolved combinations
+    # Services without a category row, once per service with the accounts of its unresolved combinations
     unresolved = lines[[combination in unmapped for combination in lines['combinacion']]]
     for service in unresolved['servicio'].unique():
         service_lines = unresolved[unresolved['servicio'] == service]
         accounts = ', '.join(sorted(service_lines['cuenta'].unique()))
         errors.append(
             f'Servicio sin categoría: {service} "{service_lines['descripcion'].iloc[0]}" (cuentas {accounts}). '
-            f'Añádelo a Mapping.'
+            f'Añade cuenta + servicio a Categorias.'
         )
 
     # Category columns of every line
@@ -170,7 +148,6 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
         return TransformResult(
             rows=pd.DataFrame(columns=OUTPUT_COLUMNS),
             errors=errors,
-            new_combinations=[],
             export_totals={},
         )
 
@@ -192,6 +169,5 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
     return TransformResult(
         rows=rows[OUTPUT_COLUMNS],
         errors=errors,
-        new_combinations=new_combinations,
         export_totals=export_totals,
     )

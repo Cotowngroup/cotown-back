@@ -19,19 +19,20 @@ from typing import BinaryIO, NamedTuple
 import pandas as pd
 
 # Application libraries
-from tb.config import Category, Combination, Config, Reclassification
+from tb.config import AnnualAccounts, Combination, Config, Reclassification
 from tb.errors import ReadError
 
-# Columns the transformation needs from each sheet; other columns (motivo, descripcion) are informative
+# Columns the transformation needs from each sheet; other columns (descripcion, motivo) are informative
 REQUIRED_COLUMNS = {
     'Reglas': ['patron_edificio', 'digitos_numero'],
-    'Excluidas': ['cuenta'],
+    'Cuentas': ['cuenta', *AnnualAccounts._fields, 'excluida'],
     'Equivalencias': ['centro_beneficio', 'asset'],
     'Reclasificaciones': list(Reclassification._fields),
-    'Mapping': ['servicio', *Category._fields],
     'Categorias': [*Combination._fields, 'categoria'],
-    'Referencia': [*Combination._fields, *Category._fields],
 }
+
+# Values of excluida in Cuentas: empty, the account goes to the TB; si or sí, it does not
+EXCLUDED_VALUES = {'', 'sí', 'si'}
 
 
 # Placeholder for an empty cell in the messages about incomplete rows
@@ -87,21 +88,21 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
     if errors:
         raise ReadError(errors)
 
-    # Codes without surrounding spaces; texts (categories) stay exactly as written, since they are part of TB!K
-    rules = sheets['Reglas'].dropna(how='all')
-    excluded = sheets['Excluidas']['cuenta'].dropna().str.strip()
-    equivalences = sheets['Equivalencias'].dropna(subset=['centro_beneficio', 'asset'], how='all')
-    reclassifications = sheets['Reclasificaciones'].dropna(subset=REQUIRED_COLUMNS['Reclasificaciones'], how='all')
-    mapping = sheets['Mapping'].dropna(subset=['servicio'])
-    equivalences['centro_beneficio'] = equivalences['centro_beneficio'].str.strip()
-    for column in Reclassification._fields:
-        reclassifications[column] = reclassifications[column].str.strip()
-    mapping['servicio'] = mapping['servicio'].str.strip()
-    categories_sheet = sheets['Categorias'].dropna(how='all', subset=REQUIRED_COLUMNS['Categorias'])
-    reference_sheet = sheets['Referencia'].dropna(how='all', subset=REQUIRED_COLUMNS['Referencia'])
-    for sheet in (categories_sheet, reference_sheet):
-        for column in Combination._fields:
+    # Rows with something in the columns the process reads, codes without surrounding spaces; texts (categories,
+    # CCAA) stay exactly as written, since they are part of the TB
+    def table(name: str, codes: list[str]) -> pd.DataFrame:
+        sheet = sheets[name].dropna(how='all', subset=REQUIRED_COLUMNS[name]).copy()
+        for column in codes:
             sheet[column] = sheet[column].str.strip()
+        return sheet
+
+    rules = sheets['Reglas'].dropna(how='all')
+    accounts = table('Cuentas', ['cuenta', 'excluida'])
+    equivalences = table('Equivalencias', ['centro_beneficio'])
+    reclassifications = table('Reclasificaciones', list(Reclassification._fields))
+    categories = table('Categorias', list(Combination._fields))
+    accounts['excluida'] = accounts['excluida'].fillna('').str.lower()
+    categories['asset'] = categories['asset'].fillna('')
 
     # Reglas: a single row with the building pattern and the number length
     if len(rules) != 1:
@@ -116,9 +117,17 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
         except re.error as error:
             errors.append(f'patron_edificio de la pestaña Reglas no es una expresión regular válida: {error}.')
 
-    # Excluidas: each account once
-    for account in excluded[excluded.duplicated()].unique():
-        errors.append(f'Excluidas: la cuenta {account} está repetida. Deja una sola fila.')
+    # Cuentas: each account once; excluida is "sí" or empty; an account that goes to the TB needs both CCAA
+    for row in accounts[accounts['cuenta'].isna()].fillna(EMPTY).itertuples():
+        errors.append(f'Cuentas: fila sin cuenta (ccaa1 {row.ccaa1}, ccaa2 {row.ccaa2}).')
+    accounts = accounts.dropna(subset=['cuenta'])
+    for account in accounts.loc[accounts['cuenta'].duplicated(), 'cuenta'].unique():
+        errors.append(f'Cuentas: la cuenta {account} está repetida. Deja una sola fila.')
+    for row in accounts[~accounts['excluida'].isin(EXCLUDED_VALUES)].itertuples():
+        errors.append(f'Cuentas: excluida de la cuenta {row.cuenta} debe ser "sí" o estar vacía, no "{row.excluida}".')
+    is_excluded = accounts['excluida'] != ''
+    for account in accounts.loc[~is_excluded & accounts[list(AnnualAccounts._fields)].isna().any(axis=1), 'cuenta']:
+        errors.append(f'Cuentas: a la cuenta {account} le falta ccaa1 o ccaa2. Complétala o márcala como excluida.')
 
     # Equivalencias: one asset per profit centre
     incomplete = equivalences[equivalences[['centro_beneficio', 'asset']].isna().any(axis=1)]
@@ -135,60 +144,37 @@ def read_maestro(source: BinaryIO, empresa: str) -> Config:
             f'servicio_tb {row.servicio_tb}).'
         )
 
-    # Mapping: one complete row per service
-    for service in mapping.loc[mapping[list(Category._fields)].isna().any(axis=1), 'servicio']:
-        errors.append(f'Mapping: al servicio {service} le falta categoria, ccaa1 o ccaa2.')
-    for service in mapping.loc[mapping['servicio'].duplicated(), 'servicio'].unique():
-        errors.append(f'Mapping: el servicio {service} está repetido. Deja una sola fila.')
-
-    # Categorias: one complete row per combination
-    incomplete = categories_sheet[REQUIRED_COLUMNS['Categorias']].isna().any(axis=1)
-    for row in categories_sheet[incomplete].fillna(EMPTY).itertuples():
+    # Categorias: account, service and category, the asset only in exceptions; one row per account + service + asset
+    incomplete = categories[['cuenta', 'servicio', 'categoria']].isna().any(axis=1)
+    for row in categories[incomplete].fillna(EMPTY).itertuples():
         errors.append(
-            f'Categorias: fila incompleta ({row.cuenta} {row.servicio} {row.asset}, categoria {row.categoria}).'
+            f'Categorias: fila incompleta (cuenta {row.cuenta}, servicio {row.servicio}, categoria {row.categoria}).'
         )
-    for row in categories_sheet[categories_sheet.duplicated(subset=list(Combination._fields))].itertuples():
-        errors.append(
-            f'Categorias: la combinación {row.cuenta} {row.servicio} {row.asset} está repetida. Deja una sola fila.'
-        )
-
-    # Referencia: complete rows, one per combination and category
-    incomplete = reference_sheet[REQUIRED_COLUMNS['Referencia']].isna().any(axis=1)
-    for row in reference_sheet[incomplete].fillna(EMPTY).itertuples():
-        errors.append(f'Referencia: fila incompleta ({row.cuenta} {row.servicio} {row.asset} {row.categoria}).')
-    for row in reference_sheet[reference_sheet.duplicated(subset=[*Combination._fields, 'categoria'])].itertuples():
-        errors.append(
-            f'Referencia: la combinación {row.cuenta} {row.servicio} {row.asset} con categoría "{row.categoria}" '
-            f'está repetida. Deja una sola fila.'
-        )
+    for row in categories[categories.duplicated(subset=list(Combination._fields))].itertuples():
+        where = f'el asset {row.asset}' if row.asset else 'la fila general (sin asset)'
+        errors.append(f'Categorias: {row.cuenta} {row.servicio} tiene repetida {where}. Deja una sola fila.')
     if errors:
         raise ReadError(errors)
-
-    # Referencia grouped by combination, keeping the order of the sheet
-    reference_categories: dict[Combination, list[Category]] = {}
-    for row in reference_sheet.itertuples(index=False):
-        combination = Combination(row.cuenta, row.servicio, row.asset)
-        reference_categories.setdefault(combination, []).append(Category(row.categoria, row.ccaa1, row.ccaa2))
 
     # Configuration of the company
     return Config(
         empresa=empresa,
         patron_edificio=rules['patron_edificio'].iloc[0],
         digitos_numero=int(rules['digitos_numero'].iloc[0]),
-        excluidas=list(excluded),
+        excluidas=list(accounts.loc[is_excluded, 'cuenta']),
+        cuentas={
+            row.cuenta: AnnualAccounts(row.ccaa1, row.ccaa2)
+            for row in accounts[~is_excluded].itertuples(index=False)
+        },
         equivalencias=dict(zip(equivalences['centro_beneficio'], equivalences['asset'], strict=True)),
         # An empty centre (NaN, or only spaces before the strip) means a general row
         reclasificaciones=[
             Reclassification(row.cuenta, row.servicio_sap, row.centro_beneficio or None, row.servicio_tb)
             for row in reclassifications.fillna({'centro_beneficio': ''}).itertuples(index=False)
         ],
-        mapping={
-            row.servicio: Category(row.categoria, row.ccaa1, row.ccaa2)
-            for row in mapping.itertuples(index=False)
-        },
+        # An empty asset is the general row of the account + service
         categorias={
             Combination(row.cuenta, row.servicio, row.asset): row.categoria
-            for row in categories_sheet.itertuples(index=False)
+            for row in categories.itertuples(index=False)
         },
-        referencia=reference_categories,
     )

@@ -93,8 +93,8 @@ def test_september_matches_tb(result: TransformResult):
     assert differences.empty, f'Diferencias con la TB:\n{differences.to_string()}'
 
 
-# 624000 S_62400 TDG0043, reassigned by hand in the manual process, takes its category only from Referencia
-def test_september_tdg0043_from_reference(config: Config, result: TransformResult):
+# 624000 S_62400 TDG0043, reassigned by hand in the manual process, takes the general category of its account + service
+def test_september_tdg0043_from_general_category(config: Config, result: TransformResult):
     rows = result.rows[result.rows['clave'].str.startswith('624000 S_62400 TDG0043 ')]
 
     assert Combination('624000', 'S_62400', 'TDG0043') not in config.categorias

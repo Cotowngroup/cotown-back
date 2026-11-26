@@ -15,7 +15,7 @@ Es la forma normal de uso. Cada export de SAP se sube a Airflows como una **carg
 3. El proceso (`back/etl/batch_tb.py`) se ejecuta cada pocos minutos. Pone la carga en `procesando`, la transforma con la hoja maestra de su empresa y la deja en `ok` o en `error`.
 4. Revisar la carga:
    - `Status`: `ok` si todo ha ido bien; `error` si hay algún problema.
-   - `Log`: en `ok`, el resumen (hoja maestra usada y su fecha, filas, claves, total de cada mes y combinaciones nuevas, que conviene revisar). En `error`, **todos** los errores a la vez y, si se llegó a leer, la hoja maestra usada.
+   - `Log`: en `ok`, el resumen (hoja maestra usada y su fecha, filas, claves y total de cada mes). En `error`, **todos** los errores a la vez y, si se llegó a leer, la hoja maestra usada.
    - `Company`, `Months`, `Rows`, `Totals` y `Processed_at`: empresa, meses del export, filas de salida, total de cada mes (debe ser 0) y cuándo se procesó.
 
 Si sale `error`, se corrige la hoja maestra (o el export) y se **reprocesa**: se vuelve a poner la carga en `pendiente`. Lo mismo si una carga se queda en `procesando` porque el proceso se cayó a medias.
@@ -64,8 +64,7 @@ python -m tb "TB - CTS - SEP.xlsx" --maestro maestro_tb_CTS00.xlsx --csv salida.
 Si todo va bien, el programa termina con código 0 y muestra:
 
 - el número de filas y de claves;
-- el total de cada mes, que debe ser 0;
-- las **combinaciones nuevas**: cuenta + servicio + asset que no estaban en la TB y cuya categoría se ha tomado de `Mapping`. Conviene revisarlas.
+- el total de cada mes, que debe ser 0.
 
 Si hay algún problema, no escribe nada, muestra **todos** los errores a la vez y termina con código 1. Se corrigen las tablas y se vuelve a lanzar.
 
@@ -79,13 +78,13 @@ Ejemplo con una línea real del export:
 
 1. **Lee el export.** Busca la fila de cabecera ("Cuenta de mayor") y las columnas de periodo (`008.2026`, `009.2026`…). Puede haber uno o varios periodos. Las celdas vacías cuentan como 0. Solo se usan la empresa, la cuenta, el producto, el centro de beneficio y los importes.
 2. **Comprueba la empresa.** El export debe ser de una sola empresa (aquí `CTS00`), y tiene que ser la misma que la de la hoja maestra (`maestro_tb_CTS00.xlsx`).
-3. **Filtra.** Quita las líneas con todos los meses a 0 y las cuentas de `Excluidas`.
+3. **Filtra.** Quita las líneas con todos los meses a 0 y las cuentas marcadas como excluidas en `Cuentas`.
 4. **Limpia el centro de beneficio.** Quita el prefijo `AT-` si lo hay.
 5. **Calcula el servicio.** Si el producto empieza por `S_`, el servicio es ese código. Si no, es la cuenta. → `S_70504`
 6. **Calcula la descripción.** El texto del producto si es un servicio `S_`. Si no, el texto de la cuenta. → `LIMPIEZA CHECK OUT`
 7. **Calcula el asset** a partir del centro de beneficio (ver `Equivalencias` y `Reglas`). → `BAI0033`
 8. **Reclasifica** si la línea está en `Reclasificaciones`.
-9. **Asigna categoría, CCAA 1 y CCAA 2.** Busca, por este orden, en `Categorias`, `Referencia` y `Mapping`. → `Checkout Cleaning Services (Final cleaning)`
+9. **Asigna categoría, CCAA 1 y CCAA 2.** La categoría sale de `Categorias`: la fila de cuenta + servicio + asset si existe y, si no, la fila general de cuenta + servicio. CCAA 1 y CCAA 2 salen de la cuenta, en `Cuentas`. → `Checkout Cleaning Services (Final cleaning)`, `PL`
 10. **Agrupa** por clave y mes y suma. La clave es la misma que la columna K de la TB:
     `705000 S_70504 BAI0033 Checkout Cleaning Services (Final cleaning)`
 11. **Cuadra.** Cada mes debe sumar 0, y el total debe coincidir con el del export después del filtro.
@@ -114,7 +113,7 @@ No hay filas con importe 0. El CSV se abre con doble clic en Excel (separador `;
 
 Toda la configuración de una empresa está en un único libro Excel, `maestro_tb_<empresa>.xlsx` (para CTS00, `maestro_tb_CTS00.xlsx`), con una pestaña por tabla. Hay un libro por empresa: la empresa la da el nombre del fichero, no una columna. Las pestañas que empiezan por `_` (por ejemplo, `_Notas`) se ignoran.
 
-Las cabeceras en turquesa son columnas que usa el proceso. Las grises (`motivo` y la `descripcion` de `Mapping`) son informativas: el proceso no las usa para mapear y van al final de cada tabla. Cada cabecera lleva un comentario de Excel con su significado.
+Las cabeceras en turquesa son columnas que usa el proceso. Las grises (`descripcion` y `motivo`) son informativas: el proceso no las usa para mapear y van al final de cada tabla. Cada cabecera lleva un comentario de Excel con su significado.
 
 Los códigos (cuentas, servicios, centros, assets) tienen que ser celdas de texto: `0026` tiene que seguir siendo `0026`, y `705000` no puede convertirse en `705000.0`.
 
@@ -179,20 +178,23 @@ Se busca así:
 
 **Cuándo editarla:** cuando aparezca un edificio nuevo cuyo código en la TB no coincida con el de SAP, o un nuevo centro fijo o de ciudad. Si un centro no encaja en nada, el programa da error y lo nombra.
 
-### Pestaña `Excluidas`: cuentas que no pasan a la TB
+### Pestaña `Cuentas`: CCAA de cada cuenta y cuentas excluidas
 
 | Columna | Contenido |
 |---|---|
-| `cuenta` | Cuenta de mayor |
-| `motivo` | Por qué se excluye |
+| `cuenta` | Cuenta de mayor. Una fila por cuenta |
+| `ccaa1`, `ccaa2` | Agrupación de cuentas anuales. Vale para todas las líneas de la cuenta |
+| `excluida` | `sí` si la cuenta no pasa a la TB; vacío si pasa |
+| `descripcion` | Informativa: texto de la cuenta en SAP |
+| `motivo` | Informativa: por qué se excluye |
 
-Contenido de CTS00:
+- En la TB, las CCAA dependen solo de la cuenta: ninguna cuenta tiene dos. Por eso están aquí y no en cada combinación.
+- Una cuenta que pasa a la TB necesita `ccaa1` y `ccaa2`. Si llega del export una cuenta que no está, el programa da error y la nombra con su texto.
+- Una cuenta excluida no necesita CCAA. Se excluye porque neta 0 en el mes (en CTS00, `570000`, caja: se reparte por unidades). Si algún mes no neta 0, el programa da error en lugar de quitarla, porque quitarla descuadraría la TB.
 
-| cuenta | motivo |
-|---|---|
-| `570000` | Caja: se reparte por unidades y neta 0 cada mes |
+Se generó una vez desde la TB de 09.2026 (CCAA de la pestaña `TB`) y la antigua pestaña `Excluidas`.
 
-Una cuenta se excluye porque neta 0 en el mes. Si algún mes no neta 0, el programa da error en lugar de quitarla, porque quitarla descuadraría la TB.
+**Cuándo editarla:** cuando SAP empiece a usar una cuenta nueva.
 
 ### Pestaña `Reclasificaciones`: cambios de servicio
 
@@ -212,62 +214,38 @@ Contenido inicial de CTS00: **vacía**. Con los datos de septiembre de 2026, la 
 - Una fila sin centro afecta a todas las líneas de esa cuenta y servicio. Una fila con centro gana a una sin centro.
 - Son decisiones contables, no reglas. Cada fila debería tener en `motivo` quién la aprobó.
 
-### Pestaña `Categorias`: categoría de las combinaciones ambiguas
-
-En la TB hay combinaciones cuenta + servicio + asset con más de una categoría. Por ejemplo, `629101 S_62951 Manco` existe como "Other expenses Trips and Delivery" y como "Other expenses Trips and Delivery building". El programa no elige: la categoría tiene que estar aquí.
-
-| Columna | Contenido |
-|---|---|
-| `cuenta` | Cuenta de mayor |
-| `servicio` | Servicio, ya reclasificado |
-| `asset` | Asset |
-| `categoria` | Categoría que se asigna |
-| `motivo` | Opcional |
-
-Nace con las 15 combinaciones ambiguas de la TB actual. Si aparece una nueva, el error muestra la combinación y las categorías que tiene en `Referencia`. Para resolverlo, se añade la fila con la categoría correcta.
-
-Esta tabla también sirve para forzar la categoría de una combinación que no es ambigua: siempre gana a las demás.
-
-### Pestaña `Referencia`: combinaciones que ya existen en la TB
+### Pestaña `Categorias`: categoría de cada cuenta + servicio
 
 Sustituye al BUSCARV contra la columna K de la TB.
 
 | Columna | Contenido |
 |---|---|
 | `cuenta` | Cuenta de mayor |
-| `servicio` | Servicio |
-| `asset` | Asset |
-| `categoria` | Categoría de producto |
-| `ccaa1`, `ccaa2` | Agrupación de cuentas anuales |
+| `servicio` | Servicio, ya reclasificado |
+| `asset` | Vacío en la fila general. Con asset, excepción solo para ese asset |
+| `categoria` | Categoría de producto de la TB |
+| `descripcion` | Informativa: texto del servicio |
+| `motivo` | Informativa: de dónde sale la fila o por qué se eligió la categoría |
 
-- Una fila por cada combinación distinta de la TB. Las combinaciones ambiguas aparecen varias veces, una por categoría.
-- Se generó una vez desde la pestaña `TB` de `09.2026 TB - COTOWN.xlsx` y es **de solo lectura**: la pestaña está protegida (sin contraseña) para evitar cambios accidentales.
-- El programa tampoco la modifica: las combinaciones nuevas que resuelve con `Mapping` solo aparecen en el resumen. Para fijar una combinación con otra categoría, se añade a `Categorias`.
+- Cada cuenta + servicio tiene una **fila general**, sin asset, que vale para cualquier asset, también para los edificios nuevos.
+- Cuando un asset lleva otra categoría, se añade una **excepción** con ese asset, que gana a la general. Por ejemplo, `629000 S_62901` es "Other expenses building" en general, pero "Other costs Valencia" en `VAL` y "Other expenses" en `Manco`.
+- La categoría va por cuenta + servicio: un servicio conocido en una cuenta nueva necesita su fila.
+- Si una línea no tiene fila (ni general ni de su asset), el programa da error y nombra el servicio, su texto y sus cuentas.
 
-### Pestaña `Mapping`: categoría por servicio, para combinaciones nuevas
+Se generó una vez desde la TB de 09.2026: la general de cada cuenta + servicio es la categoría que tienen más assets, y las excepciones son los assets con otra (en `motivo`, «General: N de M assets…» o «Excepción en la TB a 09.2026»). Las 15 combinaciones con más de una categoría en la TB se resolvieron con la categoría que tenía importe en ago/sep-26 o, si no, la del último mes con importe; el criterio queda en `motivo`. Con esta tabla, cada combinación existente en la TB conserva su categoría.
 
-| Columna | Contenido |
-|---|---|
-| `servicio` | Servicio `S_…` o cuenta |
-| `categoria` | Categoría de producto por defecto |
-| `ccaa1`, `ccaa2` | Agrupación de cuentas anuales |
-| `descripcion` | Texto informativo |
-
-- Se generó una vez desde la pestaña `Mapping` de la TB. Hay una fila por servicio.
-- Se usa solo cuando la combinación cuenta + servicio + asset no está en la referencia.
-
-**Cuándo editarla:** cuando SAP empiece a usar un servicio nuevo. Si un servicio no está ni en la referencia ni aquí, el programa da error.
+**Cuándo editarla:** cuando SAP empiece a usar un servicio nuevo (fila general), o cuando contabilidad quiera otra categoría para un asset (excepción) o para todos (cambiar la general).
 
 ## Errores habituales
 
 | Error | Qué hacer |
 |---|---|
 | Centro de beneficio sin asset | Añadirlo a `Equivalencias` o revisar si es un error de SAP |
-| Combinación con varias categorías | Añadir la fila a `Categorias`. El mensaje lista las categorías posibles |
-| Servicio sin categoría | Añadir el servicio a `Mapping`. También sale si una fila de `Categorias` pone una categoría que no está en `Referencia` y el servicio no está en `Mapping`: de ahí salen CCAA 1 y CCAA 2 |
-| Fila incompleta o repetida en `Categorias` o `Referencia` | Completar la fila o dejar una sola por combinación (en `Referencia`, una por combinación y categoría) |
-| Cuenta excluida que no neta 0 | Revisar en SAP. Si debe pasar a la TB, quitarla de `Excluidas` |
-| Cuenta repetida en `Excluidas` | Dejar una sola fila |
+| Servicio sin categoría | Añadir a `Categorias` la fila general de cuenta + servicio |
+| Cuenta sin CCAA | Añadir la cuenta a `Cuentas` con `ccaa1` y `ccaa2` |
+| Fila incompleta o repetida en `Categorias` | Rellenar `cuenta`, `servicio` y `categoria`, y dejar una sola fila por cuenta + servicio + asset (una sola general) |
+| Cuenta repetida, sin CCAA o con `excluida` no válido en `Cuentas` | Una fila por cuenta; `ccaa1` y `ccaa2` si no está excluida; `excluida` es `sí` o vacío |
+| Cuenta excluida que no neta 0 | Revisar en SAP. Si debe pasar a la TB, quitar la marca `excluida` en `Cuentas` y darle CCAA |
 | Reclasificación en conflicto | Una línea del export cae en dos filas de la misma cuenta y servicio, las dos con el mismo centro o las dos sin centro: dejar una |
 | Fila incompleta en `Reclasificaciones` | Rellenar `cuenta`, `servicio_sap` y `servicio_tb`; solo `centro_beneficio` es opcional |
 | Varias empresas en el export | Exportar de SAP una sola sociedad |

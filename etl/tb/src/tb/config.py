@@ -20,7 +20,14 @@ class Category(NamedTuple):
     ccaa2: str
 
 
-# Account + service + asset: the part of TB!K that decides the category
+# Annual-accounts grouping of an account (Cuentas)
+class AnnualAccounts(NamedTuple):
+    ccaa1: str
+    ccaa2: str
+
+
+# Account + service + asset: the part of TB!K that decides the category. In Categorias, an empty asset is the
+# general row of the account + service
 class Combination(NamedTuple):
     cuenta: str
     servicio: str
@@ -46,8 +53,7 @@ class Config:
     patron_edificio: str
     digitos_numero: int
     excluidas: list[str]
+    cuentas: dict[str, AnnualAccounts]
     equivalencias: dict[str, str]
     reclasificaciones: list[Reclassification]
-    mapping: dict[str, Category]
     categorias: dict[Combination, str]
-    referencia: dict[Combination, list[Category]]

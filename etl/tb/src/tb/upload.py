@@ -25,7 +25,7 @@ from openpyxl.utils.exceptions import InvalidFileException
 from tb.errors import ReadError
 from tb.export import read_export
 from tb.maestro import maestro_name, read_maestro
-from tb.run import error_lines, month_totals, new_combination_lines, summary_lines, transform_and_validate
+from tb.run import error_lines, month_totals, summary_lines, transform_and_validate
 
 # Status of an upload once processed, as in the enum Tb_upload_status
 STATUS_OK = 'ok'
@@ -104,13 +104,12 @@ def process_upload(export_source: BinaryIO, fetch_maestro: Callable[[str], Maest
             log.append(maestro_line)
         return UploadResult(STATUS_ERROR, company, months, None, None, '\n'.join(log))
 
-    # Summary: master workbook used, rows, keys, total per month and the new combinations to review
+    # Summary: master workbook used, rows, keys and total per month
     log = [
         maestro_line,
         f'Empresa: {company}',
         f'Meses: {months}',
         *summary_lines(result),
-        *new_combination_lines(result),
     ]
     return UploadResult(
         status=STATUS_OK,

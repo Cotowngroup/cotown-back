@@ -45,14 +45,6 @@ def summary_lines(result: TransformResult) -> list[str]:
     ]
 
 
-# New combinations of a good run: their category comes from Mapping and should be reviewed
-def new_combination_lines(result: TransformResult) -> list[str]:
-    return [
-        f'Combinaciones nuevas (categoría de Mapping): {len(result.new_combinations)}',
-        *(f'  {combination}' for combination in result.new_combinations),
-    ]
-
-
 # Report of a bad run: how many errors, that nothing was done, and the full list
 def error_lines(errors: list[str], nothing_done: str) -> list[str]:
     return [f'{len(errors)} errores; {nothing_done}:', *(f'- {message}' for message in errors)]

@@ -21,7 +21,7 @@ from tb.csv_writer import write_csv
 from tb.errors import ReadError
 from tb.export import read_export
 from tb.maestro import read_maestro
-from tb.run import error_lines, new_combination_lines, summary_lines, transform_and_validate
+from tb.run import error_lines, summary_lines, transform_and_validate
 
 # File name of a master workbook; the company comes from it
 MAESTRO_NAME = re.compile(r'^maestro_tb_(?P<empresa>[^.]+)\.xlsx$', re.IGNORECASE)
@@ -84,9 +84,6 @@ def main(argv: list[str] | None = None) -> int:
         print(f'{len(result.rows)} filas escritas en {args.csv}.')
     else:
         print('\n'.join(summary_lines(result)))
-
-    # New combinations, in both cases
-    print('\n'.join(new_combination_lines(result)))
     return 0
 
 

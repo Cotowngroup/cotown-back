@@ -15,7 +15,7 @@ import pandas as pd
 import pytest
 
 # Application libraries
-from tb.config import Category, Combination, Config, Reclassification
+from tb.config import AnnualAccounts, Combination, Config, Reclassification
 from tb.transform import TransformResult, transform
 
 # Building centre pattern of CTS00, as in the Reglas sheet of the master workbook
@@ -42,22 +42,24 @@ def build_export(*lines: list[dict]) -> pd.DataFrame:
     return pd.DataFrame([row for rows in lines for row in rows])
 
 
-# CTS00 configuration with a small Mapping and Equivalencias; no Excluidas, Reclasificaciones, Categorias or Referencia
+# CTS00 configuration: a few Cuentas, Equivalencias and general Categorias; no excluded accounts or Reclasificaciones
 def build_config(**overrides) -> Config:
     config = Config(
         empresa='CTS00',
         patron_edificio=CTS00_PATTERN,
         digitos_numero=4,
         excluidas=[],
+        cuentas={
+            '705000': AnnualAccounts('PL', 'Revenue'),
+            '629000': AnnualAccounts('PL', 'External Services'),
+        },
         equivalencias={'CTS01': 'Manco', 'CTSBCNCON0012': 'CCD0012', 'CTSMADDCT075': 'DCT075'},
         reclasificaciones=[],
-        mapping={
-            'S_70504': Category('Checkout Cleaning Services (Final cleaning)', 'PL', 'Revenue'),
-            '629000': Category('Other expenses', 'PL', 'External Services'),
-            'S_70505': Category('Cleaning Services', 'PL', 'Revenue'),
+        categorias={
+            Combination('705000', 'S_70504', ''): 'Checkout Cleaning Services (Final cleaning)',
+            Combination('629000', '629000', ''): 'Other expenses',
+            Combination('705000', 'S_70505', ''): 'Cleaning Services',
         },
-        categorias={},
-        referencia={},
     )
     return replace(config, **overrides)
 
@@ -153,14 +155,14 @@ def test_profit_centre_without_asset_is_error():
     assert 'Equivalencias' in result.errors[0]
 
 
-# A service missing from Mapping is an error that names it and points to Mapping
-def test_service_without_mapping_is_error():
+# A service without a row in Categorias is an error that names it and points to Categorias
+def test_service_without_category_is_error():
     result = transform(build_export(build_line(producto='S_99999', texto_producto='NUEVO SERVICIO')), build_config())
 
     assert result.rows.empty
     assert len(result.errors) == 1
     assert 'S_99999' in result.errors[0]
-    assert 'Mapping' in result.errors[0]
+    assert 'Categorias' in result.errors[0]
 
 
 # Every problem is reported in the same run, once per centre or service
@@ -245,88 +247,53 @@ def test_several_companies_with_zero_line_is_error():
 BAI0033_CLEANING = Combination('705000', 'S_70504', 'BAI0033')
 
 
-# A combination with a single category in Referencia takes it, with its CCAA, over Mapping
-def test_single_category_in_reference():
-    config = build_config(referencia={BAI0033_CLEANING: [Category('Cleaning', 'PL', 'Other revenue')]})
+# The general row of account + service gives the category to any asset, with the CCAA of the account
+def test_general_category_with_ccaa_of_the_account():
+    lines = build_export(build_line(), build_line(centro_beneficio='CTSMADGTF038'))
 
-    result = transform(build_export(build_line()), config)
+    result = transform(lines, build_config())
 
     assert result.errors == []
-    assert result.new_combinations == []
-    assert [(row['categoria'], row['ccaa1'], row['ccaa2'], row['clave']) for row in to_records(result)] == [
-        ('Cleaning', 'PL', 'Other revenue', '705000 S_70504 BAI0033 Cleaning'),
+    assert [(row['asset'], row['categoria'], row['ccaa1'], row['ccaa2']) for row in to_records(result)] == [
+        ('BAI0033', 'Checkout Cleaning Services (Final cleaning)', 'PL', 'Revenue'),
+        ('GTF0038', 'Checkout Cleaning Services (Final cleaning)', 'PL', 'Revenue'),
     ]
 
 
-# A combination missing from Referencia takes the category of its service in Mapping and is listed as new
-def test_mapping_marks_combination_as_new():
-    other = Combination('705000', 'S_70504', 'BAI0034')
-    config = build_config(referencia={other: [Category('Cleaning', 'PL', 'Other revenue')]})
+# A row with the asset is an exception that wins over the general row, only for that asset
+def test_asset_exception_wins_over_general_category():
+    config = build_config(categorias={**build_config().categorias, BAI0033_CLEANING: 'Cleaning building'})
+    lines = build_export(build_line(), build_line(centro_beneficio='CTSMADGTF038'))
 
-    result = transform(build_export(build_line()), config)
+    result = transform(lines, config)
 
     assert result.errors == []
-    assert result.new_combinations == [BAI0033_CLEANING]
-    assert to_records(result)[0]['categoria'] == 'Checkout Cleaning Services (Final cleaning)'
+    assert [(row['asset'], row['clave']) for row in to_records(result)] == [
+        ('BAI0033', '705000 S_70504 BAI0033 Cleaning building'),
+        ('GTF0038', '705000 S_70504 GTF0038 Checkout Cleaning Services (Final cleaning)'),
+    ]
 
 
-# Two categories in Referencia and no manual entry: error that names the combination and its categories, no choice
-def test_ambiguous_combination_is_error():
-    reference = [Category('Cleaning', 'PL', 'Other revenue'), Category('Cleaning building', 'PL', 'Other revenue')]
-    config = build_config(referencia={BAI0033_CLEANING: reference})
-
-    result = transform(build_export(build_line()), config)
+# A service known under another account has no category in this one: the category goes by account + service
+def test_service_of_another_account_is_error():
+    result = transform(build_export(build_line(cuenta='629000', producto='S_70504')), build_config())
 
     assert result.rows.empty
     assert len(result.errors) == 1
-    for text in ('705000 S_70504 BAI0033', '"Cleaning"', '"Cleaning building"', 'Categorias'):
+    for text in ('S_70504', '629000', 'Categorias'):
         assert text in result.errors[0], text
 
 
-# A manual entry settles an ambiguous combination; its CCAA come from the Referencia row with that category
-def test_manual_category_settles_ambiguity():
-    reference = [Category('Cleaning', 'PL', 'Other revenue'), Category('Cleaning building', 'PL', 'Building revenue')]
-    config = build_config(
-        categorias={BAI0033_CLEANING: 'Cleaning building'},
-        referencia={BAI0033_CLEANING: reference},
-    )
+# An account missing from Cuentas is an error that names it with its text and points to Cuentas
+def test_account_without_ccaa_is_error():
+    config = build_config(categorias={**build_config().categorias, Combination('706000', 'S_70504', ''): 'Fees'})
 
-    result = transform(build_export(build_line()), config)
-
-    assert result.errors == []
-    assert result.new_combinations == []
-    assert [(row['categoria'], row['ccaa1'], row['ccaa2']) for row in to_records(result)] == [
-        ('Cleaning building', 'PL', 'Building revenue'),
-    ]
-
-
-# A manual entry wins over a single category in Referencia; without that category there, the CCAA come from Mapping
-def test_manual_category_over_single_reference():
-    config = build_config(
-        categorias={BAI0033_CLEANING: 'Final cleaning'},
-        referencia={BAI0033_CLEANING: [Category('Cleaning', 'BS', 'Other revenue')]},
-    )
-
-    result = transform(build_export(build_line()), config)
-
-    assert result.errors == []
-    assert result.new_combinations == []
-    assert [(row['categoria'], row['ccaa1'], row['ccaa2']) for row in to_records(result)] == [
-        ('Final cleaning', 'PL', 'Revenue'),
-    ]
-
-
-# A manual category that neither Referencia nor Mapping can give CCAA to is an error on its service
-def test_manual_category_without_ccaa_is_error():
-    combination = Combination('705000', 'S_99999', 'BAI0033')
-    config = build_config(categorias={combination: 'Final cleaning'})
-
-    result = transform(build_export(build_line(producto='S_99999')), config)
+    result = transform(build_export(build_line(cuenta='706000', texto_cuenta='OTROS INGRESOS')), config)
 
     assert result.rows.empty
     assert len(result.errors) == 1
-    assert 'S_99999' in result.errors[0]
-    assert 'Mapping' in result.errors[0]
+    for text in ('706000', 'OTROS INGRESOS', 'Cuentas'):
+        assert text in result.errors[0], text
 
 
 # A general reclassification changes the service of every line of its account and SAP service
@@ -364,6 +331,7 @@ def test_reclassification_by_centre_wins_over_general():
             Reclassification('705000', 'S_70504', None, '629000'),
             Reclassification('705000', 'S_70504', 'CTSBCNBAI0034', 'S_70505'),
         ],
+        categorias={**build_config().categorias, Combination('705000', '629000', ''): 'Other expenses'},
     )
     lines = build_export(build_line(), build_line(centro_beneficio='CTSBCNBAI0034'))
 
@@ -431,5 +399,5 @@ def test_excluded_account_not_netting_is_error():
 
     assert result.rows.empty
     assert len(result.errors) == 1
-    for text in ('570000', '2026-09', '300,00', 'Excluidas'):
+    for text in ('570000', '2026-09', '300,00', 'Cuentas'):
         assert text in result.errors[0], text

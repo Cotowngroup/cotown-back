@@ -65,7 +65,6 @@ def test_good_export_is_ok_with_summary():
     assert result.totals == '2026-08: 0,00; 2026-09: 0,00'
     assert 'Hoja maestra: Maestro TB CTS00, modificada el 2026-11-24T16:30:00.' in result.log
     assert 'Claves: 576' in result.log
-    assert 'Combinaciones nuevas (categoría de Mapping): 0' in result.log
 
 
 # The errors of the master workbook go to the Log of the upload, all at once and with the workbook date
@@ -78,7 +77,7 @@ def test_master_workbook_errors_go_to_the_log():
     assert (result.company, result.months, result.rows, result.totals) == ('CTS00', '2026-08, 2026-09', None, None)
     assert 'Hoja maestra: Maestro TB CTS00, modificada el 2026-11-24T16:30:00.' in result.log
     assert 'Falta la pestaña Reglas en la hoja maestra.' in result.log
-    assert 'Falta la pestaña Referencia en la hoja maestra.' in result.log
+    assert 'Falta la pestaña Categorias en la hoja maestra.' in result.log
 
 
 # Without a master workbook for the company the upload is an error that names the company
