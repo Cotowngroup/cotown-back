@@ -113,7 +113,7 @@ No hay filas con importe 0. El CSV se abre con doble clic en Excel (separador `;
 
 Toda la configuración de una empresa está en un único libro Excel, `maestro_tb_<empresa>.xlsx` (para CTS00, `maestro_tb_CTS00.xlsx`), con una pestaña por tabla. Hay un libro por empresa: la empresa la da el nombre del fichero, no una columna. Las pestañas que empiezan por `_` (por ejemplo, `_Notas`) se ignoran.
 
-Las cabeceras en turquesa son columnas que usa el proceso. Las grises (`descripcion` y `motivo`) son informativas: el proceso no las usa para mapear y van al final de cada tabla. Cada cabecera lleva un comentario de Excel con su significado.
+Las cabeceras en turquesa son columnas que usa el proceso. Las grises (`descripcion`) son informativas: el proceso no las usa para mapear y van al final de cada tabla. Cada cabecera lleva un comentario de Excel con su significado.
 
 Los códigos (cuentas, servicios, centros, assets) tienen que ser celdas de texto: `0026` tiene que seguir siendo `0026`, y `705000` no puede convertirse en `705000.0`.
 
@@ -151,9 +151,8 @@ Solo se toca si SAP cambia la forma de codificar los centros.
 |---|---|
 | `centro_beneficio` | Código SAP completo (fijos, ciudades) o base del edificio, sin `_planta.puerta` |
 | `asset` | Asset en la TB |
-| `motivo` | Opcional. Por qué existe la equivalencia |
 
-Contenido de CTS00:
+Contenido de CTS00 (el motivo no está en la hoja):
 
 | centro_beneficio | asset | Motivo |
 |---|---|---|
@@ -169,6 +168,8 @@ Contenido de CTS00:
 | `CTSBCNMAD0110` | `AVM0110` | Avenida Madrid 110: ídem |
 | `CTSVLCFAC0002` | `PFC0002` | Paseo Facultades 2: ídem |
 | `CTSMADDCT075` | `DCT075` | La TB usa 3 dígitos; la regla daría `DCT0075` |
+| `CTSBCNROB067A` | `ROB067A` | La TB usa 3 dígitos y letra; la regla no admite la letra |
+| `CTSBCNROB067B` | `ROB067B` | Ídem |
 
 Se busca así:
 
@@ -186,7 +187,6 @@ Se busca así:
 | `ccaa1`, `ccaa2` | Agrupación de cuentas anuales. Vale para todas las líneas de la cuenta |
 | `excluida` | `sí` si la cuenta no pasa a la TB; vacío si pasa |
 | `descripcion` | Informativa: texto de la cuenta en SAP |
-| `motivo` | Informativa: por qué se excluye |
 
 - En la TB, las CCAA dependen solo de la cuenta: ninguna cuenta tiene dos. Por eso están aquí y no en cada combinación.
 - Una cuenta que pasa a la TB necesita `ccaa1` y `ccaa2`. Si llega del export una cuenta que no está, el programa da error y la nombra con su texto.
@@ -206,13 +206,12 @@ Algunas líneas llegan de SAP con un servicio que no encaja con la fila de la TB
 | `servicio_sap` | Servicio calculado del export |
 | `centro_beneficio` | Opcional. Si se rellena, solo afecta a ese centro (limpio, sin `AT-`) |
 | `servicio_tb` | Servicio con el que debe quedar |
-| `motivo` | Quién lo decidió y por qué |
 
 Contenido inicial de CTS00: **vacía**. Con los datos de septiembre de 2026, la TB no necesita ninguna reclasificación: todos los importes van con el servicio que trae SAP.
 
 - Cada fila se aplica en todos los meses y en todas las ejecuciones. Si una reclasificación deja de valer, hay que borrar la fila.
 - Una fila sin centro afecta a todas las líneas de esa cuenta y servicio. Una fila con centro gana a una sin centro.
-- Son decisiones contables, no reglas. Cada fila debería tener en `motivo` quién la aprobó.
+- Son decisiones contables, no reglas: conviene dejar constancia fuera de la hoja de quién aprobó cada fila.
 
 ### Pestaña `Categorias`: categoría de cada cuenta + servicio
 
@@ -225,14 +224,13 @@ Sustituye al BUSCARV contra la columna K de la TB.
 | `asset` | Vacío en la fila general. Con asset, excepción solo para ese asset |
 | `categoria` | Categoría de producto de la TB |
 | `descripcion` | Informativa: texto del servicio |
-| `motivo` | Informativa: de dónde sale la fila o por qué se eligió la categoría |
 
 - Cada cuenta + servicio tiene una **fila general**, sin asset, que vale para cualquier asset, también para los edificios nuevos.
 - Cuando un asset lleva otra categoría, se añade una **excepción** con ese asset, que gana a la general. Por ejemplo, `629000 S_62901` es "Other expenses building" en general, pero "Other costs Valencia" en `VAL` y "Other expenses" en `Manco`.
 - La categoría va por cuenta + servicio: un servicio conocido en una cuenta nueva necesita su fila.
 - Si una línea no tiene fila (ni general ni de su asset), el programa da error y nombra el servicio, su texto y sus cuentas.
 
-Se generó una vez desde la TB de 09.2026: la general de cada cuenta + servicio es la categoría que tienen más assets, y las excepciones son los assets con otra (en `motivo`, «General: N de M assets…» o «Excepción en la TB a 09.2026»). Las 15 combinaciones con más de una categoría en la TB se resolvieron con la categoría que tenía importe en ago/sep-26 o, si no, la del último mes con importe; el criterio queda en `motivo`. Con esta tabla, cada combinación existente en la TB conserva su categoría.
+Se generó una vez desde la TB de 09.2026: la general de cada cuenta + servicio es la categoría que tienen más assets, y las excepciones son los assets con otra. Las 15 combinaciones con más de una categoría en la TB se resolvieron con la categoría que tenía importe en ago/sep-26 o, si no, la del último mes con importe. Con esta tabla, cada combinación existente en la TB conserva su categoría.
 
 **Cuándo editarla:** cuando SAP empiece a usar un servicio nuevo (fila general), o cuando contabilidad quiera otra categoría para un asset (excepción) o para todos (cambiar la general).
 
