@@ -5,8 +5,9 @@
 # each SAP Trial Balance export in 'pendiente' is
 # transformed with the master workbook of its company
 # (Admin.Files, 'Maestro TB <empresa>') and the upload
-# gets its status, log and summary; a good one also
-# gets its file back with the TB rows in a sheet TB.
+# gets its status, log and summary. A good one also
+# replaces its months in gold.tb of the DW, and gets
+# its file back with the TB rows in a sheet TB.
 # Run by cron on the ETL machine. Reprocess = set the
 # upload to 'pendiente'.
 # ###################################################
@@ -29,9 +30,13 @@ from library.services.apiclient import APIClient
 
 # TB package, from its source folder
 sys.path.insert(0, str(Path(__file__).resolve().parent / 'tb' / 'src'))
+from tb.dw import SQL_DELETE, SQL_INSERT, dw_records
 from tb.errors import ReadError
 from tb.maestro import maestro_name, select_maestro
 from tb.upload import MaestroWorkbook, failed_upload, process_upload
+
+# Third-party imports
+from psycopg2.extras import execute_values
 
 # Logging
 import logging
@@ -99,6 +104,45 @@ def dbConnect():
   return dbClient
 
 
+def dwConnect():
+
+  dwClient = DBClient(
+    host=settings.DWDBHOST,
+    port=settings.get('DWDBPORT', 5432),
+    dbname=settings.DWDBNAME,
+    user=settings.DWDBUSER,
+    password=settings.DWDBPASS,
+    sshuser=settings.get('DWSSHUSER', None),
+    sshpassword=settings.get('DWSSHPASS', None),
+    sshprivatekey=settings.get('DWSSHPKEY', None),
+    readonly=False
+  )
+  dwClient.connect()
+  return dwClient
+
+
+# ###################################################
+# DW
+# ###################################################
+
+# Replace the months of a good upload in gold.tb, in one transaction; on failure the DW stays as it was
+def storeTB(dwClient, id, result):
+
+  con = dwClient.getconn()
+  try:
+    con.autocommit = False
+    with con.cursor() as cur:
+      cur.execute(SQL_DELETE, (result.company, result.months.split(', ')))
+      execute_values(cur, SQL_INSERT, dw_records(result.tb, id))
+    con.commit()
+  except Exception as e:
+    con.rollback()
+    raise ReadError(['No se puede guardar el TB en el DW (gold.tb): {}.'.format(e)])
+  finally:
+    con.autocommit = True
+    dwClient.putconn(con)
+
+
 # ###################################################
 # Files from Airflows
 # ###################################################
@@ -151,6 +195,7 @@ def main():
   # Connect
   try:
     dbClient = dbConnect()
+    dwClient = dwConnect()
     apiClient = apiConnect()
   except Exception as e:
     logger.error(e)
@@ -168,11 +213,12 @@ def main():
     id = row['id']
     logger.info('Processing TB upload {}...'.format(id))
 
-    # Process; whatever happens, the upload does not stay in 'procesando'
+    # Process; a good upload goes to the DW, then its file gets the TB sheet; the upload never stays in 'procesando'
     try:
       export = download(apiClient, id, 'Batch/Tb_upload')
       result = process_upload(io.BytesIO(export), lambda empresa: fetchMaestro(apiClient, empresa))
-      if result.workbook is not None:
+      if result.status == 'ok':
+        storeTB(dwClient, id, result)
         storeWorkbook(apiClient, id, result.workbook)
     except ReadError as e:
       result = failed_upload(e.errors)
@@ -192,6 +238,7 @@ def main():
   # Disconnect
   dbClient.putconn(con)
   dbClient.disconnect()
+  dwClient.disconnect()
   logger.info('{} TB uploads processed'.format(num))
 
 

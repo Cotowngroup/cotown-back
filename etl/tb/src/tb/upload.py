@@ -15,11 +15,12 @@
 # Standard libraries
 import zipfile
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from io import BytesIO
 from typing import BinaryIO, NamedTuple
 
 # Third-party libraries
+import pandas as pd
 from openpyxl.utils.exceptions import InvalidFileException
 
 # Application libraries
@@ -47,7 +48,7 @@ class MaestroWorkbook(NamedTuple):
 
 
 # What the batch writes in the upload; months, rows and totals stay empty when they are not known, and the workbook
-# (the export with its TB sheet) is only there when the upload is good
+# (the export with its TB sheet) and the TB rows (for the DW) are only there when the upload is good
 @dataclass(frozen=True)
 class UploadResult:
     status: str
@@ -57,6 +58,7 @@ class UploadResult:
     totals: str | None
     log: str
     workbook: bytes | None = None
+    tb: pd.DataFrame | None = field(default=None, compare=False)
 
 
 # Process one upload: read the export, fetch the master workbook of its company, transform and validate
@@ -124,6 +126,7 @@ def process_upload(export_source: BinaryIO, fetch_maestro: Callable[[str], Maest
         totals='; '.join(month_totals(result.rows)),
         log='\n'.join(log),
         workbook=add_tb_sheet(content, result.rows),
+        tb=result.rows,
     )
 
 

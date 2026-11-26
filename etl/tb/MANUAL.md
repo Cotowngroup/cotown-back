@@ -16,6 +16,7 @@ Es la forma normal de uso. Cada export de SAP se sube a Airflows como una **carg
 4. Revisar la carga:
    - `Status`: `ok` si todo ha ido bien; `error` si hay algún problema.
    - `File`: en `ok`, el mismo fichero con una pestaña más, `TB`, con las filas del TB (las columnas de «Resultado»). Si se reprocesa, la pestaña se sustituye.
+   - DW: en `ok`, los meses de la carga se sustituyen en `gold.tb` (borrar e insertar en una transacción), con el `id` de la carga en `tb_upload_id`. Si no se puede escribir, la carga queda en `error` y el DW no cambia.
    - `Log`: en `ok`, el resumen (hoja maestra usada y su fecha, filas, claves y total de cada mes). En `error`, **todos** los errores a la vez y, si se llegó a leer, la hoja maestra usada.
    - `Company`, `Months`, `Rows`, `Totals` y `Processed_at`: empresa, meses del export, filas de salida, total de cada mes (debe ser 0) y cuándo se procesó.
 

@@ -76,6 +76,14 @@ def test_good_export_gives_back_the_export_with_the_tb_sheet():
     assert len(list(book['TB'].iter_rows(min_row=2, values_only=True))) == 932
 
 
+# A good upload gives back its TB rows, for the DW
+def test_good_export_gives_back_its_tb_rows():
+    result = process_upload(BytesIO(EXPORT.read_bytes()), admin_files(MAESTRO.read_bytes()))
+
+    assert len(result.tb) == 932
+    assert sorted(result.tb['mes'].unique()) == ['2026-08', '2026-09']
+
+
 # The errors of the master workbook go to the Log of the upload, all at once and with the workbook date
 def test_master_workbook_errors_go_to_the_log():
     broken = workbook(['nada'])
