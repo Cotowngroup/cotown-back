@@ -82,7 +82,7 @@ Ejemplo con una línea real del export:
 
 1. **Lee el export.** Busca la fila de cabecera ("Cuenta de mayor") y las columnas de periodo (`008.2026`, `009.2026`…). Puede haber uno o varios periodos. Las celdas vacías cuentan como 0. Solo se usan la empresa, la cuenta, el producto, el centro de beneficio y los importes.
 2. **Comprueba la empresa.** El export debe ser de una sola empresa (aquí `CTS00`), y tiene que ser la misma que la de la hoja maestra (`maestro_tb_CTS00.xlsx`).
-3. **Filtra.** Quita las líneas con todos los meses a 0 y las cuentas marcadas como excluidas en `Cuentas`.
+3. **Filtra.** Suma las líneas que solo se distinguen por columnas que la TB no usa (centro de coste, tarea…) y quita las que quedan con todos los meses a 0 y las cuentas marcadas como excluidas en `Cuentas`.
 4. **Limpia el centro de beneficio.** Quita el prefijo `AT-` si lo hay.
 5. **Calcula el servicio.** Si el producto empieza por `S_`, el servicio es ese código. Si no, es la cuenta. → `S_70504`
 6. **Calcula la descripción.** El texto del producto si es un servicio `S_`. Si no, el texto de la cuenta. → `LIMPIEZA CHECK OUT`

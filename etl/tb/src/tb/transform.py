@@ -24,6 +24,9 @@ from tb.schema import BALANCE_TOLERANCE, NATURAL_KEY, OUTPUT_COLUMNS, format_amo
 # Prefix that some profit centres carry in SAP and the TB ignores
 AT_PREFIX = 'AT-'
 
+# Columns of the export that tell its lines apart for the TB
+LINE_DIMENSIONS = ['empresa', 'cuenta', 'producto', 'centro_beneficio', 'mes']
+
 
 # Result of a transformation: the TB rows, empty when there are errors
 @dataclass(frozen=True)
@@ -47,8 +50,14 @@ def transform(export: pd.DataFrame, config: Config) -> TransformResult:
             f'Usa maestro_tb_{companies[0]}.xlsx.'
         )
 
-    # Drop zero amounts: a line with every period at 0 disappears, and the sums do not change
-    lines = export[export['importe'] != 0].copy()
+    # Sum the export lines that the TB does not tell apart (they may differ in cost centre or project task), keeping
+    # the texts of the first one; then drop zero amounts: a line netting 0 in the month disappears, sums do not change
+    lines = export.groupby(LINE_DIMENSIONS, sort=False, as_index=False).agg(
+        texto_cuenta=('texto_cuenta', 'first'),
+        texto_producto=('texto_producto', 'first'),
+        importe=('importe', 'sum'),
+    )
+    lines = lines[lines['importe'].round(2) != 0].copy()
 
     # Excluded accounts (Cuentas) must net 0 every month: dropping them must not unbalance the TB
     is_excluded = lines['cuenta'].isin(config.excluidas)

@@ -215,6 +215,21 @@ def test_zero_line_is_ignored():
     assert [row['asset'] for row in to_records(result)] == ['BAI0033']
 
 
+# Export lines that differ only in dimensions the TB does not use (cost centre, project task) are summed first: if
+# they net 0 in the month, they need no asset or category
+def test_lines_netting_zero_across_unused_dimensions_are_ignored():
+    lines = build_export(
+        build_line(),
+        build_line(producto='S_99999', centro_beneficio='CTS0000XYZ', amounts={'2026-09': 21.78}),
+        build_line(producto='S_99999', centro_beneficio='CTS0000XYZ', amounts={'2026-09': -21.78}),
+    )
+
+    result = transform(lines, build_config())
+
+    assert result.errors == []
+    assert [row['asset'] for row in to_records(result)] == ['BAI0033']
+
+
 # Amounts are rounded to 2 decimals after summing, and key-months that net to 0 are not output
 def test_rounding_and_zero_sums():
     lines = build_export(
