@@ -23,7 +23,7 @@ addopts = "-p no:asyncio"
 line-length = 120
 target-version = "py312"
 # The scripts and the services follow the style of the ETL (back/etl), not this one
-extend-exclude = ["tb.py", "sap.py", "library/services"]
+extend-exclude = ["tb.py", "library/services"]
 
 [tool.ruff.format]
 quote-style = "single"

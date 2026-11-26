@@ -17,7 +17,7 @@ DWDBHOST='localhost'
 DWDBUSER='cotown'
 DWDBNAME='dw'
 
-# SAP: general ledger report (OData) and set of books of each company, for the TB from SAP (sap.py)
+# SAP: general ledger report (OData) and set of books of each company, for the step sap of tb.py
 SAPUSER = 'LORUMDESARROLLO'
 SAPURL_GL='https://my429724.businessbydesign.cloud.sap/sap/byd/odata/ana_businessanalytics_analytics.svc/RPZ21F81EB4A311D9FEF77A31QueryResults'
 SAPBOOKS = { CTS00 = 'ES02' }

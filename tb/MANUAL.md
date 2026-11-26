@@ -8,11 +8,11 @@ Especificación técnica: `.backlog/tb/transformacion-tb.md` del repo de documen
 
 ## Cargas en Airflows
 
-Es la forma normal de uso. Cada export de SAP se sube a Airflows como una **carga del TB** (entidad `Batch.Tb_upload`, «Carga TB»), y un proceso del ETL la transforma y deja el resultado en la propia carga.
+Es la forma normal de uso. Cada export de SAP llega a Airflows como una **carga del TB** (entidad `Batch.Tb_upload`, «Carga TB»), y un proceso la transforma y deja el resultado en la propia carga. Las cargas del mes en curso y del anterior llegan solas cada día desde SAP (ver «Cargas desde SAP»); a mano solo hace falta subir otros meses.
 
 1. Exportar de SAP el Trial Balance de una sociedad, con uno o varios periodos mensuales, y no tocar el fichero.
 2. En Airflows, crear una carga del TB y adjuntar el fichero en `File`. La carga nace en `pendiente`.
-3. El proceso (`back/tb/tb.py`) se ejecuta cada pocos minutos. Pone la carga en `procesando`, la transforma con la hoja maestra de su empresa y la deja en `ok` o en `error`.
+3. El proceso (`back/tb/tb.py procesar`) se ejecuta cada 15 minutos. Pone la carga en `procesando`, la transforma con la hoja maestra de su empresa y la deja en `ok` o en `error`.
 4. Revisar la carga:
    - `Status`: `ok` si todo ha ido bien; `error` si hay algún problema.
    - `File`: en `ok`, el mismo fichero con una pestaña más, `TB`, con las filas del TB (las columnas de «Resultado»). Si se reprocesa, la pestaña se sustituye.
@@ -20,32 +20,37 @@ Es la forma normal de uso. Cada export de SAP se sube a Airflows como una **carg
    - `Log`: en `ok`, el resumen (hoja maestra usada y su fecha, filas, claves y total de cada mes). En `error`, **todos** los errores a la vez y, si se llegó a leer, la hoja maestra usada.
    - `Company`, `Months`, `Rows`, `Totals` y `Processed_at`: empresa, meses del export, filas de salida, total de cada mes (debe ser 0) y cuándo se procesó.
 
-Si sale `error`, se corrige la hoja maestra (o el export) y se **reprocesa**: se vuelve a poner la carga en `pendiente`. Lo mismo si una carga se queda en `procesando` porque el proceso se cayó a medias.
+Si sale `error` por la hoja maestra, basta con corregirla: en la siguiente pasada, el proceso **reprocesa** solo las cargas en `error` con empresa cuya hoja maestra se ha modificado después de procesarlas (una vez por cada cambio). Si el error es del export, se sube uno bueno o se sustituye el fichero; para forzar un reproceso, se vuelve a poner la carga en `pendiente`. Si una carga se queda en `procesando` porque el proceso se cayó a medias, a la hora vuelve sola a `pendiente`.
 
 El proceso solo acepta exports de Trial Balance: comprueba que el fichero tenga el título «Trial Balance» y la fila «Cuenta de mayor».
 
-**Instalación** (máquina del ETL, data.cotown.com): `back/tb` es un proceso independiente del ETL, con la misma estructura (`tb.py` y `sap.py` en la raíz, el código en `library/business`, los clientes de Airflows, BD y configuración en `library/services`) y su propia configuración (`.settings.toml`, y `.secrets.toml` fuera de git con `GQLPASS`, `DBPASS`, `SSHPKEY`, `DWDBPASS` y `SAPPASS`). Usa el venv del ETL. Se ejecuta desde `back/tb` con un cron, por ejemplo cada 5 minutos:
+**Instalación** (máquina del ETL, data.cotown.com): `back/tb` es un proceso independiente del ETL, con la misma estructura (`tb.py` y `local.py` en la raíz, el código en `library/business`, los clientes de Airflows, BD y configuración en `library/services`) y su propia configuración (`.settings.toml`, y `.secrets.toml` fuera de git con `GQLPASS`, `DBPASS`, `SSHPKEY`, `DWDBPASS` y `SAPPASS`). Usa el venv del ETL. Se ejecuta desde `back/tb` con dos líneas de cron, una por paso:
 
 ```
-*/5 * * * * cd <ruta>/tb && <venv>/bin/python tb.py
+*/15 * * * * cd <ruta>/tb && <venv>/bin/python tb.py procesar
+0 2 * * * cd <ruta>/tb && <venv>/bin/python tb.py sap
 ```
 
-Dos ejecuciones a la vez no procesan la misma carga: cada una toma la suya de forma atómica. El registro del proceso queda en `log/tb.log`.
+Sin paso, `tb.py` hace `procesar`. Dos ejecuciones a la vez no procesan la misma carga: cada una toma la suya de forma atómica. El registro del proceso queda en `log/tb.log`.
 
 ## Cargas desde SAP, sin export manual
 
-`back/tb/sap.py` genera el export de Trial Balance directamente desde el libro mayor de SAP (informe OData `SAPURL_GL`) y lo sube como carga. El fichero tiene las mismas columnas, el mismo orden de filas y el mismo formato que el export hecho a mano (título, bloque de selección, celdas grises de dimensiones, importes en EUR y columna `Resultado`). La única diferencia de forma buscada: la cabecera es una sola fila, en negrita y con los filtros; se quitan las dos filas de encima («Importe en moneda de empresa» y el año), que no aportan, así que la carga se procesa igual y guarda el fichero exacto que se transformó. Para agosto y septiembre de 2026 da el mismo TB, al céntimo, que el export manual (tests de oro con los apuntes de SAP guardados en `data/sap_gl_CTS00_2026-0*.json` y los maestros en `data/sap_maestros_2026-09.json`).
+El paso `sap` de `tb.py` genera el export de Trial Balance de cada mes directamente desde el libro mayor de SAP (informe OData `SAPURL_GL`) y se lo da a la carga de ese mes. El fichero tiene las mismas columnas, el mismo orden de filas y el mismo formato que el export hecho a mano (título, bloque de selección, celdas grises de dimensiones, importes en EUR y columna `Resultado`). La única diferencia de forma buscada: la cabecera es una sola fila, en negrita y con los filtros; se quitan las dos filas de encima («Importe en moneda de empresa» y el año), que no aportan, así que la carga se procesa igual y guarda el fichero exacto que se transformó. Para agosto y septiembre de 2026 da el mismo TB, al céntimo, que el export manual (tests de oro con los apuntes de SAP guardados en `data/sap_gl_CTS00_2026-0*.json` y los maestros en `data/sap_maestros_2026-09.json`).
 
 Desde `back/tb`:
 
 ```
-python sap.py --empresa CTS00 --meses 2026-08 --subir
-python sap.py --empresa CTS00 --meses 2026-08 --subir --carga 11
-python sap.py --empresa CTS00 --meses 2026-08 2026-09 --xlsx "TB - CTS00.xlsx"
+python tb.py sap
+python tb.py sap --meses 2026-08 2026-09
+python tb.py sap --empresa CTS00 --meses 2026-08 --xlsx revision
 ```
 
-- `--subir` crea la carga en Airflows (`TB - <empresa> - <meses> (SAP).xlsx`), en `pendiente`. `--xlsx` guarda el fichero en disco para revisarlo. Se puede usar uno de los dos o ambos.
-- `--carga ID`, con `--subir`, sustituye el fichero de una carga que ya existe y la deja en `pendiente`, con `Log`, `Company`, `Months`, `Rows`, `Totals` y `Processed_at` vacíos. Sirve para regenerar un mes sin crear cargas repetidas.
+- Sin `--meses`, el mes anterior y el mes en curso, que es lo que hace el cron cada día. Con `--meses`, los meses indicados (por ejemplo, un mes antiguo con un ajuste posterior al cierre).
+- Sin `--empresa`, todas las sociedades de `SAPBOOKS`.
+- **Una carga por empresa y mes.** Cada mes se descarga por separado y va a la carga de esa empresa con `Months` igual a ese mes. Si no hay ninguna, se crea (`TB - <empresa> - <mes> (SAP).xlsx`). Si hay varias, se usa la más reciente y se avisa en el log. Las cargas de varios meses no cuentan. La carga queda en `pendiente` con su empresa y su mes, y sin el resto de su último proceso; el paso `procesar` la recoge en 15 minutos como mucho.
+- **SAP manda.** El fichero se sustituye siempre, aunque no haya cambios y aunque la carga se hubiera subido a mano. Si la carga está en `procesando`, ese mes se salta hasta la descarga siguiente.
+- Si el mes en curso aún no tiene apuntes (el día 1), se salta. Cualquier otro mes sin apuntes, o una respuesta incompleta, es un error: no se toca la carga y el error queda en `log/tb.log`. Un error en un mes no impide los demás.
+- `--xlsx CARPETA` guarda los ficheros en esa carpeta para revisarlos y no sube nada a Airflows.
 - La sociedad tiene que estar en `SAPBOOKS` de `back/tb/.settings.toml`, con su libro contable (`CTS00 = 'ES02'`). El nombre del libro, para el bloque de selección, está en `SAPBOOKNAMES`.
 - Columnas: empresa, cuenta, tipo de cuenta, producto, tarea de proyecto, centro de beneficio y centro de coste salen del libro mayor. La categoría de producto sale de los maestros de servicios y materiales (`RPSERVICE_Q0001`, `RPMATERIAL_Q0001`) y la unidad responsable de proyecto, del de tareas (`RPPROPRJU05_Q0007`). Los productos individuales (inmovilizado, como `100003019`) no están en esos maestros: su categoría sale vacía. El proceso no la usa.
 - Diferencias de forma con el export manual que no afectan: un mes sin apuntes es una celda vacía (SAP escribe un texto vacío), y la altura de alguna fila puede variar.
@@ -53,7 +58,7 @@ python sap.py --empresa CTS00 --meses 2026-08 2026-09 --xlsx "TB - CTS00.xlsx"
 - Se excluye el arrastre de saldos de apertura del ejercicio (tipo de documento `00058`, «Ejecución de transferencia de saldos»): no va a la TB.
 - Si SAP no tiene apuntes de algún mes pedido, o la respuesta llega incompleta, no se genera nada y se informa del error.
 
-Sirve también para el mes en curso antes del cierre. El TB de un mes abierto cambiará cuando se contabilice el resto: se vuelve a lanzar cuando haga falta.
+El TB del mes en curso es provisional: cambia cada día hasta el cierre.
 
 ## Uso en local
 
