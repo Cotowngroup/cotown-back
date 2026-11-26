@@ -9,6 +9,8 @@ import re
 import json
 from datetime import datetime, timezone
 
+from library.services.config import settings
+
 
 # ###################################################
 # Connection params
@@ -23,11 +25,6 @@ params = {
 '$filter': "(PARA_SETOFBKS eq 'ES01' and PARA_COMPANY eq 'VDS0000001' and CCREATION_DATE ge datetime'2024-07-01T00:00:00')",
 '$format': "json"
 }
-
-# Auth
-username = 'lorumdesarrollo'
-password = 'Vandor12345678912'
-
 
 # ###################################################
 # Utils
@@ -47,7 +44,7 @@ def get_date(value):
 def main():
 
     # Request
-    response = requests.get(url, params=params, auth=HTTPBasicAuth(username, password))
+    response = requests.get(url, params=params, auth=HTTPBasicAuth(settings.SAPUSER, settings.SAPPASS))
     if response.status_code != 200:
         print(response.status_code)
         return
